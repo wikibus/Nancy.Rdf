@@ -9,3 +9,4 @@ nuget HtmlAgilityPack == 1.4.6
 nuget SpecFlow
 nuget FakeItEasy
 nuget NUnit
+nuget StyleCopPlus.MSBuild

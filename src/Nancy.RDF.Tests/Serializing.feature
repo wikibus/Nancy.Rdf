@@ -2,6 +2,7 @@
 	Test serializing models to various RDF serializations
 
 @Brochure
+@JsonLd
 Scenario: Serialize simple model to JSON-LD
 	Given A model with content:
 	| Property | Vale |
@@ -12,5 +13,5 @@ Scenario: Serialize simple model to JSON-LD
 			'title': 'http://purl.org/dcterms/title'
 		}
 		"""
-	When model is serialized to 'application/ld+json'
+	When model is serialized
 	Then json object should contain key 'title' with value 'Jelcz M11 - mały, stary autobus'

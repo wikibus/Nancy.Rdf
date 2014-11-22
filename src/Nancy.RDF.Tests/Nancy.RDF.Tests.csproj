@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Common.props\build\Common.props.props" Condition="Exists('..\packages\Common.props\build\Common.props.props')" />
+  <Import Project="$(SolutionDir)\Common\Common.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -922,15 +922,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bindings\BrochureSerializingSteps.cs" />
+    <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
+    <Compile Include="Bindings\ModelSerializingSteps.cs" />
     <Compile Include="Models\Brochure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RdfSerializerTests.cs" />
     <Compile Include="Serializing.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Serializing.feature</DependentUpon>
     </Compile>
-    <Compile Include="SerializingSteps.cs" />
+    <Compile Include="Bindings\SerializationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
