@@ -11,9 +11,10 @@ namespace Nancy.RDF.Tests.Bindings
     public class JsonLdSerializationSteps
     {
         private readonly ISerializer _serializer;
-        private readonly JsonLdSerializationContext _context;
+        private readonly SerializationContext _context;
+        private dynamic _serialized;
 
-        public JsonLdSerializationSteps(JsonLdSerializationContext context)
+        public JsonLdSerializationSteps(SerializationContext context)
         {
             _context = context;
             _serializer = new JsonLdSerializer(context.ContextProvider);
@@ -29,7 +30,7 @@ namespace Nancy.RDF.Tests.Bindings
             {
                 using (var jsonTextReader = new JsonTextReader(streamReader))
                 {
-                    _context.Serialized = JToken.ReadFrom(jsonTextReader);
+                    _serialized = JToken.ReadFrom(jsonTextReader);
                 }
             }
         }
@@ -37,13 +38,13 @@ namespace Nancy.RDF.Tests.Bindings
         [Then(@"json object should contain key '(.*)' with value '(.*)'")]
         public void ThenJsonObjectShouldContainKeyWithValue(string key, string value)
         {
-            Assert.That((string)_context.Serialized[key], Is.EqualTo(value));
+            Assert.That((string)_serialized[key], Is.EqualTo(value));
         }
 
         [Then(@"json object should not contain key '(.*)'")]
         public void ThenJsonObjectShouldNotContainKey(string key)
         {
-            Assert.That(_context.Serialized[key], Is.Null);
+            Assert.That(_serialized[key], Is.Null);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.RDF
 {
     /// <summary>
     /// Contract for classes, which provide JSON-LD @context for given types
@@ -10,7 +11,7 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Gets the JSON-LD @context for a given serialized type.
         /// </summary>
-        /// <typeparam name="T">type of entity</typeparam>
-        JToken GetContext<T>();
+        /// <param name="modelType">Type of the entity.</param>
+        JToken GetContext(Type modelType);
     }
 }

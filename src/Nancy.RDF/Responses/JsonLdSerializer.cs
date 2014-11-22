@@ -70,7 +70,7 @@ namespace Nancy.RDF.Responses
                         });
 
                 JObject jsObject = JObject.Parse(json);
-                jsObject["@context"] = _contextProvider.GetContext<TModel>();
+                jsObject["@context"] = _contextProvider.GetContext(model.GetType());
 
                 writer.Write(jsObject);
             }

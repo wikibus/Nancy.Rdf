@@ -25,7 +25,7 @@ namespace Nancy.RDF.Tests.Bindings
         [Given(@"@context is:"), Scope(Tag = "Brochure")]
         public void GivenBrochureContext(string resource)
         {
-            A.CallTo(() => _context.ContextProvider.GetContext<Brochure>()).Returns(JToken.Parse(resource));
+            A.CallTo(() => _context.ContextProvider.GetContext(typeof(Brochure))).Returns(JToken.Parse(resource));
         }
     }
 }
