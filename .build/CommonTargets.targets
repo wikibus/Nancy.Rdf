@@ -5,6 +5,6 @@
       <Visible>false</Visible>
     </StyleCopAdditionalAddinPaths>
   </ItemGroup>
-  <Import Project="..\packages\StyleCop.MSBuild\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild\build\StyleCop.MSBuild.Targets')" />
-  <Import Project="..\packages\Zoltu.Versioning\build\Zoltu.Versioning.targets" Condition="Exists('..\packages\Zoltu.Versioning\build\Zoltu.Versioning.targets')" />
+  <Import Project="..\src\packages\StyleCop.MSBuild\build\StyleCop.MSBuild.Targets" Condition="Exists('..\src\packages\StyleCop.MSBuild\build\StyleCop.MSBuild.Targets')" />
+  <Import Project="..\src\packages\Zoltu.Versioning\build\Zoltu.Versioning.targets" Condition="Exists('..\src\packages\Zoltu.Versioning\build\Zoltu.Versioning.targets')" />
 </Project>
