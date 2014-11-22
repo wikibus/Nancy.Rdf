@@ -15,7 +15,7 @@ namespace Nancy.RDF.Responses
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
 
-        private IContextProvider _contextProvider;
+        private readonly IContextProvider _contextProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
@@ -65,7 +65,8 @@ namespace Nancy.RDF.Responses
                     Formatting.None,
                     new JsonSerializerSettings
                         {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                            NullValueHandling = NullValueHandling.Ignore
                         });
 
                 JObject jsObject = JObject.Parse(json);
