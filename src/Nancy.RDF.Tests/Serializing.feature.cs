@@ -84,9 +84,12 @@ this.ScenarioSetup(scenarioInfo);
                         "Jelcz M11 - mały, stary autobus"});
 #line 7
  testRunner.Given("A model with content:", ((string)(null)), table1, "Given ");
+#line hidden
 #line 10
+ testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 17
  testRunner.Then("json object should contain key \'title\' with value \'Jelcz M11 - mały, stary autobu" +
                     "s\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -102,7 +105,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Skip null properties when serializing model to JSON-LD", new string[] {
                         "Brochure",
                         "JsonLd"});
-#line 15
+#line 21
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -111,11 +114,14 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Title",
                         "Jelcz M11 - mały, stary autobus"});
-#line 16
+#line 22
  testRunner.Given("A model with content:", ((string)(null)), table2, "Given ");
-#line 19
+#line hidden
+#line 25
+ testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
+#line 32
  testRunner.Then("json object should not contain key \'description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
