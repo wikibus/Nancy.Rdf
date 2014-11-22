@@ -1,5 +1,4 @@
 using System.IO;
-using BoDi;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
 using VDS.RDF;

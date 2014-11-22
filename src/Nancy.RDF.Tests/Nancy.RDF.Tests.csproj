@@ -937,6 +937,7 @@
     <Compile Include="Bindings\SerializationContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="paket.references" />
     <None Include="Serializing.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
