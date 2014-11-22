@@ -60,20 +60,29 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var json = JsonConvert.SerializeObject(
-                    model,
-                    Formatting.None,
-                    new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                            NullValueHandling = NullValueHandling.Ignore
-                        });
-
-                JObject jsObject = JObject.Parse(json);
-                jsObject.AddFirst(new JProperty("@context", _contextProvider.GetContext(model.GetType())));
+                var jsObject = GetJson(model);
 
                 writer.Write(jsObject);
             }
+        }
+
+        /// <summary>
+        /// Gets the serialized JSON-LD object.
+        /// </summary>
+        internal JObject GetJson(object model)
+        {
+            var json = JsonConvert.SerializeObject(
+                model,
+                Formatting.None,
+                new JsonSerializerSettings
+                    {
+                        ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                        NullValueHandling = NullValueHandling.Ignore
+                    });
+
+            var jsObject = JObject.Parse(json);
+            jsObject.AddFirst(new JProperty("@context", _contextProvider.GetContext(model.GetType())));
+            return jsObject;
         }
     }
 }

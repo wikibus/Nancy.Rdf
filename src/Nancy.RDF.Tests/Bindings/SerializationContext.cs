@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using FakeItEasy;
-using Nancy.RDF.Responses;
 
 namespace Nancy.RDF.Tests.Bindings
 {

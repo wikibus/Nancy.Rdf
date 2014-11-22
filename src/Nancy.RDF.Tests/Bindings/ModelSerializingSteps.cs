@@ -27,5 +27,11 @@ namespace Nancy.RDF.Tests.Bindings
         {
             A.CallTo(() => _context.ContextProvider.GetContext(typeof(Brochure))).Returns(JToken.Parse(resource));
         }
+
+        [Given(@"expanded @context is:"), Scope(Tag = "Brochure")]
+        public void GivenExpandedContextForIs(string contextContent)
+        {
+            A.CallTo(() => _context.ContextProvider.GetExpandedContext(typeof(Brochure))).Returns(JObject.Parse(contextContent));
+        }
     }
 }

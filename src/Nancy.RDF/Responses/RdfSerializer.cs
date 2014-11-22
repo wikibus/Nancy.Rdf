@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using JsonLD.Core;
 using Nancy.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
@@ -18,15 +15,18 @@ namespace Nancy.RDF.Responses
     public abstract class RdfSerializer : ISerializer
     {
         private readonly RdfSerialization _serialization;
+        private readonly JsonLdSerializer _jsonLdSerializer;
         private readonly INodeFactory _nodeFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfSerializer"/> class.
         /// </summary>
-        /// <param name="serialization">The serialization.</param>
-        protected RdfSerializer(RdfSerialization serialization)
+        /// <param name="serialization">The output serialization.</param>
+        /// <param name="jsonLdSerializer">inner JSON-LD serializer</param>
+        protected RdfSerializer(RdfSerialization serialization, JsonLdSerializer jsonLdSerializer)
         {
             _serialization = serialization;
+            _jsonLdSerializer = jsonLdSerializer;
 
             _nodeFactory = new NodeFactory();
         }
@@ -48,19 +48,7 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var json = JsonConvert.SerializeObject(
-                    model,
-                    Formatting.None,
-                    new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
-                        });
-
-                JObject jsObject = JObject.Parse(json);
-                jsObject["@context"] = JObject.FromObject(new
-                    {
-                        title = "http://purl.org/dc/terms/title"
-                    });
+                var jsObject = _jsonLdSerializer.GetJson(model);
 
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 

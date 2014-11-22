@@ -701,6 +701,7 @@
     <Compile Include="Responses\RdfResponseProcessor.cs" />
     <Compile Include="Responses\RdfSerialization.cs" />
     <Compile Include="Responses\RdfSerializer.cs" />
+    <Compile Include="Responses\TurtleSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

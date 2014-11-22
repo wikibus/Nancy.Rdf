@@ -3,7 +3,7 @@
     <BooleanProperty Name="ViolationsAsErrors">True</BooleanProperty>
     <CollectionProperty Name="RecognizedWords">
       <Value>bootstrapper</Value>
-      <Value>wikibus</Value>
+      <Value>JSON-LD</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Parsers>

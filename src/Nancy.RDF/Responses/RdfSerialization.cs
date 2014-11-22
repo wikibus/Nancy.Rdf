@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Nancy.RDF.Responses
 {
@@ -100,6 +101,44 @@ namespace Nancy.RDF.Responses
         public string Extension
         {
             get { return _extension; }
+        }
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
+        public static bool operator ==(RdfSerialization left, RdfSerialization right)
+        {
+            return left.Equals(right);
+        }
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
+        public static bool operator !=(RdfSerialization left, RdfSerialization right)
+        {
+            return !left.Equals(right);
+        }
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
+        public bool Equals(RdfSerialization other)
+        {
+            return string.Equals(_mediaType, other._mediaType) && string.Equals(_extension, other._extension);
+        }
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            return obj is RdfSerialization && Equals((RdfSerialization)obj);
+        }
+
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_mediaType.GetHashCode() * 397) ^ _extension.GetHashCode();
+            }
         }
 
         /// <summary>

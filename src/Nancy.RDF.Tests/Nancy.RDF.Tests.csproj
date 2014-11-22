@@ -922,6 +922,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bindings\GraphSetup.cs" />
+    <Compile Include="Bindings\RdfGraphSteps.cs" />
+    <Compile Include="Bindings\TurtleSerializationSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
     <Compile Include="Models\Brochure.cs" />

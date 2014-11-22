@@ -13,5 +13,11 @@ namespace Nancy.RDF
         /// </summary>
         /// <param name="modelType">Type of the entity.</param>
         JToken GetContext(Type modelType);
+
+        /// <summary>
+        /// Gets the expanded context for a give serialized type..
+        /// </summary>
+        /// <param name="modelType">Type of the model.</param>
+        JObject GetExpandedContext(Type modelType);
     }
 }
