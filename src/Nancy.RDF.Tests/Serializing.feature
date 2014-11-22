@@ -30,11 +30,7 @@ Scenario: Serialize simple model to Turtle
 	Given A model with content:
 	| Property    | Vale                            |
 	| Title       | Jelcz M11 - mały, stary autobus |
-	And @context is: 
-		"""
-		'http://wikibus.org/contexts/brochure.jsonld'
-		"""
-	And expanded @context is:
+	And @context is:
 		"""
 		{
 			'title': 'http://purl.org/dcterms/title'

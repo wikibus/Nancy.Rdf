@@ -149,14 +149,11 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("A model with content:", ((string)(null)), table3, "Given ");
 #line hidden
 #line 33
- testRunner.And("@context is:", "\'http://wikibus.org/contexts/brochure.jsonld\'", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 37
- testRunner.And("expanded @context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
+ testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 40
  testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t?res <http://purl.org/dcterms/title> \"Jelcz M11 - mały, stary a" +
                     "utobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
