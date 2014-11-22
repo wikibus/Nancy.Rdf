@@ -922,7 +922,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bindings\BrochureSerializingSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
     <Compile Include="Models\Brochure.cs" />

@@ -20,9 +20,9 @@ namespace Nancy.RDF.Tests.Bindings
         }
 
         [When(@"model is serialized")]
-        public void WhenModelIsSerializedTo(string rdfSerialization)
+        public void WhenModelIsSerializedTo()
         {
-            _serializer.Serialize(rdfSerialization, ScenarioContext.Current["model"], _context.OutputStream);
+            _serializer.Serialize(RdfSerialization.JsonLd.MediaType, ScenarioContext.Current["model"], _context.OutputStream);
         }
 
         [Then(@"json object should contain key '(.*)' with value '(.*)'")]

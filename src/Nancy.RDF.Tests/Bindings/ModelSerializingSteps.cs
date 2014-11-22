@@ -1,4 +1,5 @@
 using FakeItEasy;
+using Nancy.RDF.Tests.Models;
 using Newtonsoft.Json.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -6,25 +7,25 @@ using TechTalk.SpecFlow.Assist;
 namespace Nancy.RDF.Tests.Bindings
 {
     [Binding]
-    public class ModelSerializingSteps<T>
+    public class ModelSerializingSteps
     {
         private readonly SerializationContext _context;
 
-        public ModelSerializingSteps(SerializationContext context)
+        protected ModelSerializingSteps(SerializationContext context)
         {
             _context = context;
         }
 
-        [Given(@"A model with content:")]
-        public void GivenAModelOfType(Table table)
+        [Given(@"A model with content:"), Scope(Tag = "Brochure")]
+        public void GivenABrochure(Table table)
         {
-            ScenarioContext.Current["model"] = table.CreateInstance<T>();
+            ScenarioContext.Current["model"] = table.CreateInstance<Brochure>();
         }
 
-        [Given(@"@context is:")]
-        public void GivenContextForIs(string resource)
+        [Given(@"@context is:"), Scope(Tag = "Brochure")]
+        public void GivenBrochureContext(string resource)
         {
-            A.CallTo(() => _context.ContextProvider.GetContext<T>()).Returns(JToken.Parse(resource));
+            A.CallTo(() => _context.ContextProvider.GetContext<Brochure>()).Returns(JToken.Parse(resource));
         }
     }
 }
