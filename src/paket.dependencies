@@ -1,0 +1,8 @@
+source https://nuget.org/api/v2
+
+nuget Nancy
+nuget dotNetRDF
+nuget json-ld.net
+nuget Nancy
+nuget Zoltu.Versioning
+nuget HtmlAgilityPack == 1.4.6
