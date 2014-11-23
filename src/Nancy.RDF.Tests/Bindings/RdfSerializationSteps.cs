@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.IO;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
@@ -49,7 +51,11 @@ namespace Nancy.RDF.Tests.Bindings
             _context.OutputStream.Seek(0, SeekOrigin.Begin);
             using (var streamReader = new StreamReader(_context.OutputStream))
             {
-                return streamReader.ReadToEnd();
+                var serializedGraph = streamReader.ReadToEnd();
+
+                Debug.WriteLine("Deserialized graph contents:{0}{1}", Environment.NewLine, serializedGraph);
+
+                return serializedGraph;
             }
         }
     }
