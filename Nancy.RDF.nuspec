@@ -7,7 +7,7 @@
     <authors>Tomasz Pluskiewicz</authors>
     <owners>Tomasz Pluskiewicz</owners>
     <projectUrl>http://github.org/wikibus/Nancy.RDF</projectUrl>
-    <iconUrl>https://github.com/wikibus/Nancy.RDF/blob/master/assets/icon_21532.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/wikibus/Nancy.RDF/blob/master/assets/icon_21532.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A C# implementation of R2RML, which allows creating R2RML and converting relational data to RDF using the .NET Framework</description>
     <releaseNotes>
