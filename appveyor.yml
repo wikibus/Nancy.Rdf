@@ -1,2 +1,4 @@
 before_build:  
   - restore_packages.bat
+
+configuration: Release
