@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Nancy.RDF</id>
+    <title>Nancy.RDF</title>
+    <version>$version$</version>
+    <authors>Tomasz Pluskiewicz</authors>
+    <owners>Tomasz Pluskiewicz</owners>
+    <projectUrl>http://github.org/wikibus/Nancy.RDF</projectUrl>
+    <iconUrl>https://github.com/wikibus/Nancy.RDF/blob/master/assets/icon_21532.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C# implementation of R2RML, which allows creating R2RML and converting relational data to RDF using the .NET Framework</description>
+    <releaseNotes>
+      
+    </releaseNotes>
+    <copyright>
+		Copyright 2014 Tomasz Pluskiewicz
+		Icon designed by Piotrek Chuchla from The Noun Project
+	</copyright>
+    <tags>rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web</tags>
+	<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+	<dependencies>
+		<dependency id="dotNetRDF" version="1.0.0" />
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Nancy.RDF.dll" target="lib\net40" />
+  </files>
+</package>
