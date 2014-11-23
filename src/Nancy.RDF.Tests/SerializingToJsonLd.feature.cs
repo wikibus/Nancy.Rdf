@@ -19,20 +19,20 @@ namespace Nancy.RDF.Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Serializing to Rdf")]
-    public partial class SerializingToRdfFeature
+    [NUnit.Framework.DescriptionAttribute("Serializing to JSON-LD")]
+    public partial class SerializingToJSON_LDFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Serializing.feature"
+#line 1 "SerializingToJsonLd.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Serializing to Rdf", "Test serializing models to various RDF serializations", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Serializing to JSON-LD", "Test serializing models to JSON-LD", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -123,39 +123,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
  testRunner.Then("json object should not contain key \'description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model to Turtle")]
-        [NUnit.Framework.CategoryAttribute("Brochure")]
-        [NUnit.Framework.CategoryAttribute("Turtle")]
-        public virtual void SerializeSimpleModelToTurtle()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model to Turtle", new string[] {
-                        "Brochure",
-                        "Turtle"});
-#line 29
-this.ScenarioSetup(scenarioInfo);
-#line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Property",
-                        "Vale"});
-            table3.AddRow(new string[] {
-                        "Title",
-                        "Jelcz M11 - mały, stary autobus"});
-#line 30
- testRunner.Given("A model with content:", ((string)(null)), table3, "Given ");
-#line hidden
-#line 33
- testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
- testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 40
- testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t?res <http://purl.org/dcterms/title> \"Jelcz M11 - mały, stary a" +
-                    "utobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

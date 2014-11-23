@@ -702,9 +702,11 @@
     <Compile Include="IContextProvider.cs" />
     <Compile Include="Responses\JsonLdResponseProcessor.cs" />
     <Compile Include="Responses\JsonLdSerializer.cs" />
+    <Compile Include="Responses\NTriplesSerializer.cs" />
     <Compile Include="Responses\RdfResponseProcessor.cs" />
     <Compile Include="Responses\RdfSerialization.cs" />
     <Compile Include="Responses\RdfSerializer.cs" />
+    <Compile Include="Responses\RdfXmlSerializer.cs" />
     <Compile Include="Responses\TurtleSerializer.cs" />
   </ItemGroup>
   <ItemGroup>

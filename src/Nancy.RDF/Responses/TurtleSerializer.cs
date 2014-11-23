@@ -10,7 +10,7 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Initializes a new instance of the <see cref="TurtleSerializer"/> class.
         /// </summary>
-        public TurtleSerializer(JsonLdConverter jsonLdConverter) 
+        public TurtleSerializer(JsonLdConverter jsonLdConverter)
             : base(RdfSerialization.Turtle, jsonLdConverter)
         {
         }
