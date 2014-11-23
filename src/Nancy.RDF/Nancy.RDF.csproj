@@ -696,6 +696,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IJsonLdConverter.cs" />
+    <Compile Include="JsonLdContractResolver.cs" />
     <Compile Include="JsonLdConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ContextNotFoundException.cs" />
