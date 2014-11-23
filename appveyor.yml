@@ -1,3 +1,2 @@
-before_build:
-  - cd src
-  - ".paket/paket.exe" restore
+before_build:  
+  - restore_packages.bat
