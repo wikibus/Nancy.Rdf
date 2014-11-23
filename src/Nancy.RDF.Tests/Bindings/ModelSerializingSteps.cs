@@ -1,3 +1,4 @@
+using System;
 using FakeItEasy;
 using Nancy.RDF.Tests.Models;
 using Newtonsoft.Json.Linq;
@@ -20,6 +21,12 @@ namespace Nancy.RDF.Tests.Bindings
         public void GivenABrochure(Table table)
         {
             ScenarioContext.Current["model"] = table.CreateInstance<Brochure>();
+        }
+
+        [Given(@"Model has property Id set to '(.*)'")]
+        public void GivenModelHasPropertyIdSetTo(string id)
+        {
+            ((dynamic)ScenarioContext.Current["model"]).Id = new Uri(id);
         }
 
         [Given(@"@context is:"), Scope(Tag = "Brochure")]

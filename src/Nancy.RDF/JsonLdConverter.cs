@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -36,6 +37,9 @@ namespace Nancy.RDF
 
             var jsObject = JObject.Parse(json);
             jsObject.AddFirst(new JProperty("@context", _contextProvider.GetContext(model.GetType())));
+
+            Debug.WriteLine("Serialized model: {0}", jsObject);
+
             return jsObject;
         }
     }

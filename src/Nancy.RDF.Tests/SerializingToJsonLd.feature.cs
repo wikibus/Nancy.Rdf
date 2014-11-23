@@ -65,12 +65,12 @@ namespace Nancy.RDF.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model to JSON-LD")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to JSON-LD")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("JsonLd")]
-        public virtual void SerializeSimpleModelToJSON_LD()
+        public virtual void SerializeSimpleModelWithBlankIdToJSON_LD()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model to JSON-LD", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to JSON-LD", new string[] {
                         "Brochure",
                         "JsonLd"});
 #line 6
@@ -123,6 +123,40 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
  testRunner.Then("json object should not contain key \'description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with URI id to JSON-LD")]
+        [NUnit.Framework.CategoryAttribute("Brochure")]
+        [NUnit.Framework.CategoryAttribute("JsonLd")]
+        public virtual void SerializeSimpleModelWithURIIdToJSON_LD()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with URI id to JSON-LD", new string[] {
+                        "Brochure",
+                        "JsonLd"});
+#line 29
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Property",
+                        "Vale"});
+            table3.AddRow(new string[] {
+                        "Title",
+                        "Jelcz M11 - mały, stary autobus"});
+#line 30
+ testRunner.Given("A model with content:", ((string)(null)), table3, "Given ");
+#line 33
+ testRunner.And("Model has property Id set to \'http://wikibus.org/brochure/Jelcz_M11\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+ testRunner.And("@context is:", "\'http://wikibus.org/contexts/brochure.jsonld\'", ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 39
+ testRunner.Then("json object should contain key \'@id\' with value \'http://wikibus.org/brochure/Jelc" +
+                    "z_M11\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

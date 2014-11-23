@@ -65,12 +65,12 @@ namespace Nancy.RDF.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model to RDF/XML")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to RDF/XML")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("RdfXml")]
-        public virtual void SerializeSimpleModelToRDFXML()
+        public virtual void SerializeSimpleModelWithBlankIdToRDFXML()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model to RDF/XML", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to RDF/XML", new string[] {
                         "Brochure",
                         "RdfXml"});
 #line 6

@@ -3,7 +3,7 @@
 	
 @Brochure
 @NTriples
-Scenario: Serialize simple model to NTriples
+Scenario: Serialize simple model with blank id to NTriples
 	Given A model with content:
 	| Property    | Vale                            |
 	| Title       | Jelcz M11 - mały, stary autobus |

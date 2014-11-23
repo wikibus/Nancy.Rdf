@@ -65,12 +65,12 @@ namespace Nancy.RDF.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model to Turtle")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to Turtle")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("Turtle")]
-        public virtual void SerializeSimpleModelToTurtle()
+        public virtual void SerializeSimpleModelWithBlankIdToTurtle()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model to Turtle", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to Turtle", new string[] {
                         "Brochure",
                         "Turtle"});
 #line 6

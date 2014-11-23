@@ -3,7 +3,7 @@
 		
 @Brochure
 @RdfXml
-Scenario: Serialize simple model to RDF/XML
+Scenario: Serialize simple model with blank id to RDF/XML
 	Given A model with content:
 	| Property    | Vale                            |
 	| Title       | Jelcz M11 - mały, stary autobus |

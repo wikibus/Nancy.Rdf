@@ -3,7 +3,7 @@
 	
 @Brochure
 @Turtle
-Scenario: Serialize simple model to Turtle
+Scenario: Serialize simple model with blank id to Turtle
 	Given A model with content:
 	| Property    | Vale                            |
 	| Title       | Jelcz M11 - mały, stary autobus |
