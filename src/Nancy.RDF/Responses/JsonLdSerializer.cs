@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Nancy.IO;
+using Newtonsoft.Json;
 
 namespace Nancy.RDF.Responses
 {
@@ -11,14 +13,15 @@ namespace Nancy.RDF.Responses
     public class JsonLdSerializer : ISerializer
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
-        private readonly JsonLdConverter _converter;
+        private readonly IContextProvider _contextProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
         /// </summary>
-        public JsonLdSerializer(JsonLdConverter converter)
+        /// <param name="contextProvider">The @context provider.</param>
+        public JsonLdSerializer(IContextProvider contextProvider)
         {
-            _converter = converter;
+            _contextProvider = contextProvider;
         }
 
         /// <summary>
@@ -55,7 +58,17 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                writer.Write(_converter.GetJson(model));
+                var serialized = JsonConvert.SerializeObject(
+                    model, 
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        ContractResolver = new JsonLdContractResolver(_contextProvider)
+                    });
+
+                Debug.WriteLine("Serialized model: {0}", new object[] { serialized });
+
+                writer.Write(serialized);
             }
         }
     }

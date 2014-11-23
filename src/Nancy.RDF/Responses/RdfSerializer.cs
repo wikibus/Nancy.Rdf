@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using JsonLD.Core;
 using Nancy.IO;
+using Newtonsoft.Json;
 using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
@@ -15,18 +16,18 @@ namespace Nancy.RDF.Responses
     public abstract class RdfSerializer : ISerializer
     {
         private readonly RdfSerialization _serialization;
-        private readonly JsonLdConverter _jsonLdConverter;
         private readonly INodeFactory _nodeFactory;
+        private readonly IContextProvider _contextProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RdfSerializer"/> class.
+        /// Initializes a new instance of the <see cref="RdfSerializer" /> class.
         /// </summary>
         /// <param name="serialization">The output serialization.</param>
-        /// <param name="jsonLdConverter">The JSON-LD converter</param>
-        protected RdfSerializer(RdfSerialization serialization, JsonLdConverter jsonLdConverter)
+        /// <param name="contextProvider">The @context provider.</param>
+        protected RdfSerializer(RdfSerialization serialization, IContextProvider contextProvider)
         {
             _serialization = serialization;
-            _jsonLdConverter = jsonLdConverter;
+            _contextProvider = contextProvider;
 
             _nodeFactory = new NodeFactory();
         }
@@ -48,7 +49,13 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = _jsonLdConverter.GetJson(model);
+                var jsObject = JsonConvert.SerializeObject(
+                    model,
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        ContractResolver = new JsonLdContractResolver(_contextProvider)
+                    });
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 
                 var h = CreateHandler<TModel>(writer);

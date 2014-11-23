@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Linq;
 using Nancy.RDF.Responses;
@@ -19,7 +18,7 @@ namespace Nancy.RDF.Tests.Bindings
         public JsonLdSerializationSteps(SerializationContext context)
         {
             _context = context;
-            _serializer = new JsonLdSerializer(new JsonLdConverter(context.ContextProvider));
+            _serializer = new JsonLdSerializer(_context.ContextProvider);
         }
 
         [When(@"model is serialized")]
@@ -52,7 +51,7 @@ namespace Nancy.RDF.Tests.Bindings
         [Then(@"@types property should contain")]
         public void ThenTypesPropertyShouldContain(Table table)
         {
-            JArray types = _serialized["@types"];
+            JArray types = _serialized["@type"];
             foreach (var type in table.Rows.Select(row => new JValue(row[0])))
             {
                 Assert.That(types, Contains.Item(type));

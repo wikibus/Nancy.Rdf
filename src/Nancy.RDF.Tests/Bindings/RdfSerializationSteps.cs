@@ -23,7 +23,7 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"model is serialized"), Scope(Tag = "Turtle")]
         public void WhenModelIsSerializedToTurtle()
         {
-            var serializer = new TurtleSerializer(new JsonLdConverter(_context.ContextProvider));
+            var serializer = new TurtleSerializer(_context.ContextProvider);
             var serialized = SerializeModel(serializer, RdfSerialization.Turtle);
             _serialized.LoadFromString(serialized, new TurtleParser());
         }
@@ -31,7 +31,7 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"model is serialized"), Scope(Tag = "RdfXml")]
         public void WhenModelIsSerializedToRdfXml()
         {
-            var serializer = new RdfXmlSerializer(new JsonLdConverter(_context.ContextProvider));
+            var serializer = new RdfXmlSerializer(_context.ContextProvider);
             var serialized = SerializeModel(serializer, RdfSerialization.RdfXml);
             _serialized.LoadFromString(serialized, new RdfXmlParser());
         }
@@ -39,7 +39,7 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"model is serialized"), Scope(Tag = "NTriples")]
         public void WhenModelIsSerializedToNTriples()
         {
-            var serializer = new NTriplesSerializer(new JsonLdConverter(_context.ContextProvider));
+            var serializer = new NTriplesSerializer(_context.ContextProvider);
             var serialized = SerializeModel(serializer, RdfSerialization.RdfXml);
             _serialized.LoadFromString(serialized, new NTriplesParser(NTriplesSyntax.Rdf11));
         }
