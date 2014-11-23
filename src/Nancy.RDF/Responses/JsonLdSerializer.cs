@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Nancy.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 
 namespace Nancy.RDF.Responses
 {
@@ -14,16 +11,14 @@ namespace Nancy.RDF.Responses
     public class JsonLdSerializer : ISerializer
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
-
-        private readonly IContextProvider _contextProvider;
+        private readonly JsonLdConverter _converter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
         /// </summary>
-        /// <param name="contextProvider">The @context provider.</param>
-        public JsonLdSerializer(IContextProvider contextProvider)
+        public JsonLdSerializer(JsonLdConverter converter)
         {
-            _contextProvider = contextProvider;
+            _converter = converter;
         }
 
         /// <summary>
@@ -60,29 +55,8 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = GetJson(model);
-
-                writer.Write(jsObject);
+                writer.Write(_converter.GetJson(model));
             }
-        }
-
-        /// <summary>
-        /// Gets the serialized JSON-LD object.
-        /// </summary>
-        internal JObject GetJson(object model)
-        {
-            var json = JsonConvert.SerializeObject(
-                model,
-                Formatting.None,
-                new JsonSerializerSettings
-                    {
-                        ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                        NullValueHandling = NullValueHandling.Ignore
-                    });
-
-            var jsObject = JObject.Parse(json);
-            jsObject.AddFirst(new JProperty("@context", _contextProvider.GetContext(model.GetType())));
-            return jsObject;
         }
     }
 }

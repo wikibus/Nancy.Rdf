@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.RDF
 {
     /// <summary>
     /// Represents errors which occur if @context cannot be found for a given type

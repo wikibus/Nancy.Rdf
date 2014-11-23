@@ -16,7 +16,7 @@ namespace Nancy.RDF.Tests.Bindings
         {
             _context = context;
             _serialized = graph;
-            _serializer = new TurtleSerializer(new JsonLdSerializer(context.ContextProvider));
+            _serializer = new TurtleSerializer(new JsonLdConverter(context.ContextProvider));
         }
 
         [When(@"model is serialized")]

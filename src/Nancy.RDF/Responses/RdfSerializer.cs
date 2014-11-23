@@ -15,18 +15,18 @@ namespace Nancy.RDF.Responses
     public abstract class RdfSerializer : ISerializer
     {
         private readonly RdfSerialization _serialization;
-        private readonly JsonLdSerializer _jsonLdSerializer;
+        private readonly JsonLdConverter _jsonLdConverter;
         private readonly INodeFactory _nodeFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfSerializer"/> class.
         /// </summary>
         /// <param name="serialization">The output serialization.</param>
-        /// <param name="jsonLdSerializer">inner JSON-LD serializer</param>
-        protected RdfSerializer(RdfSerialization serialization, JsonLdSerializer jsonLdSerializer)
+        /// <param name="jsonLdConverter">The JSON-LD converter</param>
+        protected RdfSerializer(RdfSerialization serialization, JsonLdConverter jsonLdConverter)
         {
             _serialization = serialization;
-            _jsonLdSerializer = jsonLdSerializer;
+            _jsonLdConverter = jsonLdConverter;
 
             _nodeFactory = new NodeFactory();
         }
@@ -48,8 +48,7 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = _jsonLdSerializer.GetJson(model);
-
+                var jsObject = _jsonLdConverter.GetJson(model);
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 
                 var h = CreateHandler<TModel>(writer);
