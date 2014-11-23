@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Linq;
 using Nancy.RDF.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -45,6 +47,16 @@ namespace Nancy.RDF.Tests.Bindings
         public void ThenJsonObjectShouldNotContainKey(string key)
         {
             Assert.That(_serialized[key], Is.Null);
+        }
+
+        [Then(@"@types property should contain")]
+        public void ThenTypesPropertyShouldContain(Table table)
+        {
+            JArray types = _serialized["@types"];
+            foreach (var type in table.Rows.Select(row => new JValue(row[0])))
+            {
+                Assert.That(types, Contains.Item(type));
+            }
         }
     }
 }

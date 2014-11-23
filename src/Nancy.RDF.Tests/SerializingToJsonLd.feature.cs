@@ -65,12 +65,12 @@ namespace Nancy.RDF.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to JSON-LD")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("JsonLd")]
-        public virtual void SerializeSimpleModelWithBlankIdToJSON_LD()
+        public virtual void SerializeSimpleModelWithBlankId()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to JSON-LD", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id", new string[] {
                         "Brochure",
                         "JsonLd"});
 #line 6
@@ -100,12 +100,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Skip null properties when serializing model to JSON-LD")]
+        [NUnit.Framework.DescriptionAttribute("Skip null properties when serializing model")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("JsonLd")]
-        public virtual void SkipNullPropertiesWhenSerializingModelToJSON_LD()
+        public virtual void SkipNullPropertiesWhenSerializingModel()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Skip null properties when serializing model to JSON-LD", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Skip null properties when serializing model", new string[] {
                         "Brochure",
                         "JsonLd"});
 #line 20
@@ -128,12 +128,12 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model with URI id to JSON-LD")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model with URI id")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("JsonLd")]
-        public virtual void SerializeSimpleModelWithURIIdToJSON_LD()
+        public virtual void SerializeSimpleModelWithURIId()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with URI id to JSON-LD", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with URI id", new string[] {
                         "Brochure",
                         "JsonLd"});
 #line 29
@@ -157,6 +157,30 @@ this.ScenarioSetup(scenarioInfo);
 #line 39
  testRunner.Then("json object should contain key \'@id\' with value \'http://wikibus.org/brochure/Jelc" +
                     "z_M11\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Serialize model @types")]
+        [NUnit.Framework.CategoryAttribute("JsonLd")]
+        public virtual void SerializeModelTypes()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize model @types", new string[] {
+                        "JsonLd"});
+#line 42
+this.ScenarioSetup(scenarioInfo);
+#line 43
+ testRunner.Given("A model of type \'Nancy.RDF.Tests.Models.TypedModel\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
+ testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Type"});
+            table4.AddRow(new string[] {
+                        "http://example.org/ontology#Parent"});
+#line 45
+ testRunner.Then("@types property should contain", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

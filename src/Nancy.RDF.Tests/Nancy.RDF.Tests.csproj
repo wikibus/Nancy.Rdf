@@ -928,6 +928,7 @@
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
     <Compile Include="Models\Brochure.cs" />
+    <Compile Include="Models\TypedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
     <Compile Include="SerializingToJsonLd.feature.cs">

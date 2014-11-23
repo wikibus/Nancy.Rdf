@@ -695,6 +695,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotations\Class.cs" />
     <Compile Include="IJsonLdConverter.cs" />
     <Compile Include="JsonLdContractResolver.cs" />
     <Compile Include="JsonLdConverter.cs" />
@@ -716,6 +717,7 @@
   <ItemGroup>
     <None Include="paket.references" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\.build\CommonTargets.targets" />
   <Import Project="..\..\.build\Fody.targets" />

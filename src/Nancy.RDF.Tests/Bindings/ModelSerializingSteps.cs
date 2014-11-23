@@ -23,6 +23,13 @@ namespace Nancy.RDF.Tests.Bindings
             ScenarioContext.Current["model"] = table.CreateInstance<Brochure>();
         }
 
+        [Given(@"A model of type '(.*)'")]
+        public void GivenATypedModel(string typeName)
+        {
+            var modelType = Type.GetType(typeName, true);
+            ScenarioContext.Current["model"] = Activator.CreateInstance(modelType);
+        }
+
         [Given(@"Model has property Id set to '(.*)'")]
         public void GivenModelHasPropertyIdSetTo(string id)
         {

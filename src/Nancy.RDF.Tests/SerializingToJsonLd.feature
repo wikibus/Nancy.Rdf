@@ -3,7 +3,7 @@
 
 @Brochure
 @JsonLd
-Scenario: Serialize simple model with blank id to JSON-LD
+Scenario: Serialize simple model with blank id
 	Given A model with content:
 	| Property | Vale |
 	| Title    | Jelcz M11 - mały, stary autobus |
@@ -17,7 +17,7 @@ Scenario: Serialize simple model with blank id to JSON-LD
 	
 @Brochure
 @JsonLd
-Scenario: Skip null properties when serializing model to JSON-LD
+Scenario: Skip null properties when serializing model
 	Given A model with content:
 	| Property    | Vale                            |
 	| Title       | Jelcz M11 - mały, stary autobus |
@@ -26,7 +26,7 @@ Scenario: Skip null properties when serializing model to JSON-LD
 
 @Brochure
 @JsonLd
-Scenario: Serialize simple model with URI id to JSON-LD
+Scenario: Serialize simple model with URI id
 	Given A model with content:
 	| Property | Vale                                  |
 	| Title    | Jelcz M11 - mały, stary autobus |
@@ -37,3 +37,11 @@ Scenario: Serialize simple model with URI id to JSON-LD
 		"""
 	When model is serialized
 	Then json object should contain key '@id' with value 'http://wikibus.org/brochure/Jelcz_M11'
+
+@JsonLd
+Scenario: Serialize model @types
+	Given A model of type 'Nancy.RDF.Tests.Models.TypedModel'
+	When model is serialized
+	Then @types property should contain
+		| Type                               |
+		| http://example.org/ontology#Parent |

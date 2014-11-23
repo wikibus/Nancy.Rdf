@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Serialization;
 
 namespace Nancy.RDF
@@ -8,18 +9,16 @@ namespace Nancy.RDF
     public class JsonLdContractResolver : CamelCasePropertyNamesContractResolver
     {
         /// <summary>
-        /// Creates a <see cref="T:Newtonsoft.Json.Serialization.JsonProperty" /> for the given <see cref="T:System.Reflection.MemberInfo" />.
+        /// Resolves the name of the property.
         /// </summary>
-        protected override JsonProperty CreateProperty(System.Reflection.MemberInfo member, Newtonsoft.Json.MemberSerialization memberSerialization)
+        protected override string ResolvePropertyName(string propertyName)
         {
-            var jsonProperty = base.CreateProperty(member, memberSerialization);
-
-            if (member.Name == "Id")
+            if (propertyName == "Id")
             {
-                jsonProperty.PropertyName = "@id";
+                return "@id";
             }
 
-            return jsonProperty;
+            return base.ResolvePropertyName(propertyName);
         }
     }
 }
