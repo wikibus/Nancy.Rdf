@@ -14,18 +14,20 @@
       
     </releaseNotes>
     <copyright>
-		Copyright 2014 Tomasz Pluskiewicz
-		Icon designed by Piotrek Chuchla from The Noun Project
-	</copyright>
+    Copyright 2014 Tomasz Pluskiewicz
+    Icon designed by Piotrek Chuchla from The Noun Project
+  </copyright>
     <tags>rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web</tags>
-	<licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-	<dependencies>
+  <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+  <dependencies>
     <dependency id="dotNetRDF" version="1.0.0" />
     <dependency id="Nancy" version="0.23" />
     <dependency id="json-ld.net" version="1.0" />
-	</dependencies>
+  </dependencies>
   </metadata>
   <files>
     <file src="bin\Nancy.RDF.dll" target="lib\net40" />
+    <file src="bin\Nancy.RDF.xml" target="lib\net40" />
+    <file src="bin\Nancy.RDF.pdb" target="lib\net40" />
   </files>
 </package>
