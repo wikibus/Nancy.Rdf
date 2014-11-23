@@ -1,5 +1,6 @@
-![graph icon](https://raw.githubusercontent.com/wikibus/Nancy.RDF/blob/master/assets/icon_21532.png)
+![graph icon](https://raw.githubusercontent.com/wikibus/Nancy.RDF/master/assets/icon_21532.png)
+[![Build status](https://ci.appveyor.com/api/projects/status/tu54t4e76c1c773e/branch/master?svg=true)](https://ci.appveyor.com/project/tpluscode78631/nancy-rdf/branch/master)
 
-[Nancy][http://github.org/nancyFx/nancy] serializers for RDF datatypes
+[Nancy](http://github.org/nancyFx/nancy) serializers for RDF datatypes
 
 [The icon](http://thenounproject.com/term/graph/21532/) desiged by [Piotrek Chuchla](http://thenounproject.com/pchuchla/) from [The Noun Project](http://thenounproject.com/)
