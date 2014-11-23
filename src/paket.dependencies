@@ -11,3 +11,4 @@ nuget FakeItEasy
 nuget NUnit
 nuget StyleCopPlus.MSBuild
 github tpluscode/FileVersionExtractor
+nuget GitLink

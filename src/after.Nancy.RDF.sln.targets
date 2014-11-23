@@ -3,7 +3,7 @@
   <UsingTask AssemblyFile="$(MSBuildProjectDirectory)\src\paket-files\tpluscode\FileVersionExtractor\bin\Release\FileVersionExtractor.dll" 
              TaskName="GetAssemblyFileVersion"/>
 
-  <Target Name="Update Build Version" AfterTargets="Build" Condition="$(ContinuousIntegrationBuild)">
+  <Target Name="Update Build Version" AfterTargets="Build">
     <GetAssemblyFileVersion FilePathAssemblyInfo="$(MSBuildProjectDirectory)\src\Nancy.RDF\Properties\VersionAssemblyInfo.cs">
       <Output TaskParameter="AssemblyFileVersion" PropertyName="AssemblyFileVersion" />
     </GetAssemblyFileVersion>
