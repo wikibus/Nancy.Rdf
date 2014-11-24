@@ -4,15 +4,13 @@ using System.IO;
 using JsonLD.Core;
 using Nancy.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
 {
-    using Newtonsoft.Json.Linq;
-    using Newtonsoft.Json.Serialization;
-
     /// <summary>
     /// Serializer for RDF data types (other than JSON-LD)
     /// </summary>
