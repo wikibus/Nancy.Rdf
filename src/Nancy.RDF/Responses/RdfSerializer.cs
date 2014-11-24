@@ -10,6 +10,9 @@ using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
 {
+    using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json.Serialization;
+
     /// <summary>
     /// Serializer for RDF data types (other than JSON-LD)
     /// </summary>
@@ -49,9 +52,9 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = JsonConvert.SerializeObject(
+                var jsObject = JObject.FromObject(
                     model,
-                    new JsonSerializerSettings
+                    new JsonSerializer
                     {
                         NullValueHandling = NullValueHandling.Ignore,
                         ContractResolver = new JsonLdContractResolver(_contextProvider)
