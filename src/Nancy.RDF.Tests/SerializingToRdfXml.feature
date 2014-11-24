@@ -3,6 +3,7 @@
 		
 @Brochure
 @RdfXml
+@ignore
 Scenario: Serialize simple model with blank id to RDF/XML
 	Given A model with content:
 	| Property    | Vale                            |

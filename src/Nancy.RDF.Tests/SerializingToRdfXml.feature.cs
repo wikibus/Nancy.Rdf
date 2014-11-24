@@ -66,14 +66,16 @@ namespace Nancy.RDF.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to RDF/XML")]
+        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("RdfXml")]
         public virtual void SerializeSimpleModelWithBlankIdToRDFXML()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to RDF/XML", new string[] {
                         "Brochure",
-                        "RdfXml"});
-#line 6
+                        "RdfXml",
+                        "ignore"});
+#line 7
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -82,15 +84,15 @@ this.ScenarioSetup(scenarioInfo);
             table1.AddRow(new string[] {
                         "Title",
                         "Jelcz M11 - mały, stary autobus"});
-#line 7
+#line 8
  testRunner.Given("A model with content:", ((string)(null)), table1, "Given ");
 #line hidden
-#line 10
+#line 11
  testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
+#line 17
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 18
  testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t?res <http://purl.org/dcterms/title> \"Jelcz M11 - mały, stary a" +
                     "utobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
