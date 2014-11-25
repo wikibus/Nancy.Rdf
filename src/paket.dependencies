@@ -1,4 +1,5 @@
 source https://nuget.org/api/v2
+source https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
 
 nuget Nancy
 nuget dotNetRDF < 1.0.7
@@ -12,3 +13,4 @@ nuget NUnit
 nuget StyleCopPlus.MSBuild
 github tpluscode/FileVersionExtractor
 nuget GitLink
+nuget JsonLd.Entities
