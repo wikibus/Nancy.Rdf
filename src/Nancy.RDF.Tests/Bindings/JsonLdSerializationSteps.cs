@@ -18,7 +18,7 @@ namespace Nancy.RDF.Tests.Bindings
         public JsonLdSerializationSteps(SerializationContext context)
         {
             _context = context;
-            _serializer = new JsonLdSerializer(_context.ContextProvider);
+            _serializer = new JsonLdSerializer(_context.Serializer);
         }
 
         [When(@"model is serialized")]

@@ -8,6 +8,12 @@ namespace Nancy.RDF.Tests.Bindings
     {
         private readonly Stream _outputStream = new MemoryStream();
         private readonly IContextProvider _contextProvider = A.Fake<IContextProvider>();
+        private readonly IEntitySerializer _serializer;
+
+        public SerializationContext()
+        {
+            _serializer = new EntitySerializer(_contextProvider);
+        }
 
         public Stream OutputStream
         {
@@ -17,6 +23,11 @@ namespace Nancy.RDF.Tests.Bindings
         public IContextProvider ContextProvider
         {
             get { return _contextProvider; }
+        }
+
+        public IEntitySerializer Serializer
+        {
+            get { return _serializer; }
         }
     }
 }

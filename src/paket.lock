@@ -29,7 +29,7 @@ NUGET
     Zoltu.Versioning (1.1.29)
   remote: https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
   specs:
-    JsonLd.Entities (0.1.8)
+    JsonLd.Entities (0.1.9)
       dotNetRDF (>= 1.0.0)
       json-ld.net (>= 1.0)
 GITHUB
