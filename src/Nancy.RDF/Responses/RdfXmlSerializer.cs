@@ -1,4 +1,5 @@
-﻿using VDS.RDF.Writing.Formatting;
+﻿using JsonLD.Entities;
+using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
 {

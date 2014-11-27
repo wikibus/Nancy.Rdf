@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using JsonLD.Core;
+using JsonLD.Entities;
 using Nancy.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

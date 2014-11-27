@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FakeItEasy;
+using JsonLD.Entities;
 
 namespace Nancy.RDF.Tests.Bindings
 {

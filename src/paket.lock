@@ -27,6 +27,11 @@ NUGET
       StyleCop.MSBuild (>= 4.7.49.0)
     VDS.Common (1.3.0)
     Zoltu.Versioning (1.1.29)
+  remote: https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
+  specs:
+    JsonLd.Entities (0.1.8)
+      dotNetRDF (>= 1.0.0)
+      json-ld.net (>= 1.0)
 GITHUB
   remote: tpluscode/FileVersionExtractor
   specs:

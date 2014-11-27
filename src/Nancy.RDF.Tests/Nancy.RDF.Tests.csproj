@@ -123,6 +123,11 @@
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
             <Reference Include="nunit.framework">
               <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
               <Private>True</Private>
@@ -182,6 +187,11 @@
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
             <Reference Include="nunit.framework">
               <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
               <Private>True</Private>
@@ -233,6 +243,11 @@
             </Reference>
             <Reference Include="HtmlAgilityPack">
               <HintPath>..\packages\HtmlAgilityPack\lib\Net45\HtmlAgilityPack.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
@@ -375,6 +390,11 @@
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
+        <Reference Include="JsonLD.Entities">
+          <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="nunit.framework">
           <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
           <Private>True</Private>
@@ -426,6 +446,11 @@
         </Reference>
         <Reference Include="HtmlAgilityPack">
           <HintPath>..\packages\HtmlAgilityPack\lib\Net45\HtmlAgilityPack.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="JsonLD.Entities">
+          <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -485,6 +510,11 @@
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
             <Reference Include="nunit.framework">
               <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
               <Private>True</Private>
@@ -536,6 +566,11 @@
             </Reference>
             <Reference Include="HtmlAgilityPack">
               <HintPath>..\packages\HtmlAgilityPack\lib\sl4\HtmlAgilityPack.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
@@ -593,6 +628,11 @@
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
             <Reference Include="nunit.framework">
               <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
               <Private>True</Private>
@@ -645,7 +685,12 @@
           <Paket>True</Paket>
         </Reference>
         <Reference Include="HtmlAgilityPack">
-          <HintPath>..\packages\HtmlAgilityPack\lib\Net45\HtmlAgilityPack.dll</HintPath>
+          <HintPath>..\packages\HtmlAgilityPack\lib\winrt45\HtmlAgilityPack.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="JsonLD.Entities">
+          <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -660,7 +705,7 @@
           <Paket>True</Paket>
         </Reference>
         <Reference Include="Newtonsoft.Json">
-          <HintPath>..\packages\Newtonsoft.Json\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+          <HintPath>..\packages\Newtonsoft.Json\lib\netcore45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -670,17 +715,17 @@
           <Paket>True</Paket>
         </Reference>
         <Reference Include="VDS.Common">
-          <HintPath>..\packages\VDS.Common\lib\net40-client\VDS.Common.dll</HintPath>
+          <HintPath>..\packages\VDS.Common\lib\portable-net4+sl5+netcore45+wp8+MonoAndroid1+MonoTouch1\VDS.Common.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="Portable.Runtime">
+          <HintPath>..\packages\dotNetRDF\lib\portable-net4+sl4+netcore45+wp8+MonoAndroid1+MonoTouch1\Portable.Runtime.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
         <Reference Include="dotNetRDF">
-          <HintPath>..\packages\dotNetRDF\lib\net40-client\dotNetRDF.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-        <Reference Include="dotNetRDF">
-          <HintPath>..\packages\dotNetRDF\lib\net40\dotNetRDF.dll</HintPath>
+          <HintPath>..\packages\dotNetRDF\lib\portable-net4+sl4+netcore45+wp8+MonoAndroid1+MonoTouch1\dotNetRDF.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
@@ -702,6 +747,11 @@
             </Reference>
             <Reference Include="HtmlAgilityPack">
               <HintPath>..\packages\HtmlAgilityPack\lib\sl4-windowsphone71\HtmlAgilityPack.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
@@ -759,6 +809,11 @@
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
             <Reference Include="nunit.framework">
               <HintPath>..\packages\NUnit\lib\nunit.framework.dll</HintPath>
               <Private>True</Private>
@@ -810,6 +865,11 @@
             </Reference>
             <Reference Include="HtmlAgilityPack">
               <HintPath>..\packages\HtmlAgilityPack\lib\Net45\HtmlAgilityPack.dll</HintPath>
+              <Private>True</Private>
+              <Paket>True</Paket>
+            </Reference>
+            <Reference Include="JsonLD.Entities">
+              <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
               <Private>True</Private>
               <Paket>True</Paket>
             </Reference>
@@ -866,6 +926,11 @@
         </Reference>
         <Reference Include="HtmlAgilityPack">
           <HintPath>..\packages\HtmlAgilityPack\lib\Net45\HtmlAgilityPack.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="JsonLD.Entities">
+          <HintPath>..\packages\JsonLd.Entities\lib\net40\JsonLD.Entities.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

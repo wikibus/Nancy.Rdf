@@ -1,4 +1,4 @@
-﻿using Nancy.RDF.Annotations;
+﻿using JsonLD.Entities;
 
 namespace Nancy.RDF.Tests.Models
 {
