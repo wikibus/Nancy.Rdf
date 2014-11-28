@@ -84,17 +84,13 @@ this.ScenarioSetup(scenarioInfo);
                         "Jelcz M11 - mały, stary autobus"});
 #line 7
  testRunner.Given("A model with content:", ((string)(null)), table1, "Given ");
-#line hidden
 #line 10
- testRunner.And("@context is:", "\'http://wikibus.org/contexts/brochure.jsonld\'", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
+#line 11
  testRunner.Then("json object should contain key \'title\' with value \'Jelcz M11 - mały, stary autobu" +
                     "s\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 16
- testRunner.Then("json object should contain key \'@context\' with value \'http://wikibus.org/contexts" +
-                    "/brochure.jsonld\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.Then("json object should not contain key \'@id\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -108,7 +104,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Skip null properties when serializing model", new string[] {
                         "Brochure",
                         "JsonLd"});
-#line 20
+#line 16
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -117,11 +113,11 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "Title",
                         "Jelcz M11 - mały, stary autobus"});
-#line 21
+#line 17
  testRunner.Given("A model with content:", ((string)(null)), table2, "Given ");
-#line 24
+#line 20
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 21
  testRunner.Then("json object should not contain key \'description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -136,7 +132,7 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with URI id", new string[] {
                         "Brochure",
                         "JsonLd"});
-#line 29
+#line 25
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -145,16 +141,13 @@ this.ScenarioSetup(scenarioInfo);
             table3.AddRow(new string[] {
                         "Title",
                         "Jelcz M11 - mały, stary autobus"});
-#line 30
+#line 26
  testRunner.Given("A model with content:", ((string)(null)), table3, "Given ");
-#line 33
+#line 29
  testRunner.And("Model has property Id set to \'http://wikibus.org/brochure/Jelcz_M11\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 34
- testRunner.And("@context is:", "\'http://wikibus.org/contexts/brochure.jsonld\'", ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 30
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 39
+#line 31
  testRunner.Then("json object should contain key \'@id\' with value \'http://wikibus.org/brochure/Jelc" +
                     "z_M11\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -168,18 +161,18 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize model @types", new string[] {
                         "JsonLd"});
-#line 42
+#line 34
 this.ScenarioSetup(scenarioInfo);
-#line 43
+#line 35
  testRunner.Given("A model of type \'Nancy.RDF.Tests.Models.TypedModel\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 36
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Type"});
             table4.AddRow(new string[] {
                         "http://example.org/ontology#Parent"});
-#line 45
+#line 37
  testRunner.Then("@types property should contain", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();

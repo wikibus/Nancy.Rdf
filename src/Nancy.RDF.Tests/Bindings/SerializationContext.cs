@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using FakeItEasy;
 using JsonLD.Entities;
 
@@ -12,6 +13,7 @@ namespace Nancy.RDF.Tests.Bindings
 
         public SerializationContext()
         {
+            A.CallTo(() => _contextProvider.GetContext(A<Type>.Ignored)).Returns(null);
             _serializer = new EntitySerializer(_contextProvider);
         }
 

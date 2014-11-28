@@ -4,8 +4,6 @@ using System.IO;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
@@ -19,17 +17,17 @@ namespace Nancy.RDF.Responses
     {
         private readonly RdfSerialization _serialization;
         private readonly INodeFactory _nodeFactory;
-        private readonly IContextProvider _contextProvider;
+        private readonly IEntitySerializer _entitySerializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfSerializer" /> class.
         /// </summary>
         /// <param name="serialization">The output serialization.</param>
-        /// <param name="contextProvider">The @context provider.</param>
-        protected RdfSerializer(RdfSerialization serialization, IContextProvider contextProvider)
+        /// <param name="entitySerializer">The entity serializer.</param>
+        protected RdfSerializer(RdfSerialization serialization, IEntitySerializer entitySerializer)
         {
             _serialization = serialization;
-            _contextProvider = contextProvider;
+            _entitySerializer = entitySerializer;
 
             _nodeFactory = new NodeFactory();
         }
@@ -51,13 +49,7 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = JObject.FromObject(
-                    model,
-                    new JsonSerializer
-                    {
-                        NullValueHandling = NullValueHandling.Ignore,
-                        ContractResolver = new JsonLdContractResolver(_contextProvider)
-                    });
+                var jsObject = _entitySerializer.Serialize(model);
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 
                 var h = CreateHandler<TModel>(writer);

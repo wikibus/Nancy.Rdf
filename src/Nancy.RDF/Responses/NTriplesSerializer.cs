@@ -11,8 +11,8 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Initializes a new instance of the <see cref="NTriplesSerializer"/> class.
         /// </summary>
-        public NTriplesSerializer(IContextProvider contextProvider)
-            : base(RdfSerialization.NTriples, contextProvider)
+        public NTriplesSerializer(IEntitySerializer entitySerializer)
+            : base(RdfSerialization.NTriples, entitySerializer)
         {
         }
 
