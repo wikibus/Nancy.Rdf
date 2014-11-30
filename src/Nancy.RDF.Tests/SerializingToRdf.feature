@@ -3,7 +3,7 @@
 		
 @Brochure
 @Rdf
-Scenario: Serialize simple model with blank id to RDF/XML
+Scenario: Serialize simple model to RDF
 	Given A serialized model:
 		"""
 		{
@@ -19,6 +19,6 @@ Scenario: Serialize simple model with blank id to RDF/XML
 		"""
 			ASK WHERE
 			{
-				?res <http://purl.org/dcterms/title> "Jelcz M11 - mały, stary autobus"
+				<http://wikibus.org/brochure/12345> <http://purl.org/dcterms/title> "Jelcz M11 - mały, stary autobus"
 			}
 		"""

@@ -65,12 +65,12 @@ namespace Nancy.RDF.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to RDF/XML")]
+        [NUnit.Framework.DescriptionAttribute("Serialize simple model to RDF")]
         [NUnit.Framework.CategoryAttribute("Brochure")]
         [NUnit.Framework.CategoryAttribute("Rdf")]
-        public virtual void SerializeSimpleModelWithBlankIdToRDFXML()
+        public virtual void SerializeSimpleModelToRDF()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to RDF/XML", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model to RDF", new string[] {
                         "Brochure",
                         "Rdf"});
 #line 6
@@ -84,8 +84,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t?res <http://purl.org/dcterms/title> \"Jelcz M11 - mały, stary a" +
-                    "utobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t<http://wikibus.org/brochure/12345> <http://purl.org/dcterms/ti" +
+                    "tle> \"Jelcz M11 - mały, stary autobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
