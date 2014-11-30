@@ -1,12 +1,7 @@
-using System;
-using System.Diagnostics;
-using System.IO;
-using FakeItEasy;
 using JsonLD.Entities;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
 using VDS.RDF;
-using VDS.RDF.Parsing;
 using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Tests.Bindings
@@ -15,14 +10,12 @@ namespace Nancy.RDF.Tests.Bindings
     public class RdfSerializationSteps
     {
         private readonly SerializationContext _context;
-        private readonly IGraph _serialized;
         private readonly ITripleFormatter _formatter;
         private readonly RdfSerializerTestable _serializer;
 
         public RdfSerializationSteps(SerializationContext context, IGraph graph)
         {
             _context = context;
-            _serialized = graph;
 
             _formatter = new TestFormatter(graph);
             _serializer = new RdfSerializerTestable(_context.Serializer, _formatter);

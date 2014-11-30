@@ -5,10 +5,21 @@ using Nancy.Responses.Negotiation;
 namespace Nancy.RDF.Responses
 {
     /// <summary>
-    /// Response processor for RDF media types (except JSON-LD)
+    /// Response processor for RDF media types (other than JSON-LD)
     /// </summary>
     public class RdfResponseProcessor : IResponseProcessor
     {
+        private readonly IEnumerable<ISerializer> _serializers;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RdfResponseProcessor"/> class.
+        /// </summary>
+        /// <param name="serializers">The serializers.</param>
+        public RdfResponseProcessor(IEnumerable<ISerializer> serializers)
+        {
+            _serializers = serializers;
+        }
+
         /// <summary>
         /// Gets the RDF extension mappings
         /// </summary>
@@ -37,7 +48,10 @@ namespace Nancy.RDF.Responses
         /// <returns>a response</returns>
         public Response Process(MediaRange requestedMediaRange, dynamic model, NancyContext context)
         {
-            return null;
+            return new Response
+                {
+                    StatusCode = HttpStatusCode.OK
+                };
         }
- }
+    }
 }
