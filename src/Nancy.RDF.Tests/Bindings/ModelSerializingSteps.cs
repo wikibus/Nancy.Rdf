@@ -21,10 +21,17 @@ namespace Nancy.RDF.Tests.Bindings
             A.CallTo(() => _context.Serializer.Serialize(A<object>.Ignored)).Returns(JObject.Parse(json));
         }
 
+        [Given(@"accepted media type '(.*)'")]
+        public void GivenAcceptedMediaType(string mediaType)
+        {
+            _context.AcceptHeader = mediaType;
+        }
+
         [Then(@"output stream should equal")]
         public void ThenOutputStreamShouldEqual(string expectedBody)
         {
-            Assert.That(JToken.DeepEquals(_context.Result, JToken.Parse(expectedBody)));
+            var expected = JToken.Parse(expectedBody);
+            Assert.That(JToken.DeepEquals(_context.Result, expected));
         }
     }
 }

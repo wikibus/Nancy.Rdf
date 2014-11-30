@@ -760,6 +760,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonLdProfiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\JsonLdResponseProcessor.cs" />
     <Compile Include="Responses\JsonLdSerializer.cs" />

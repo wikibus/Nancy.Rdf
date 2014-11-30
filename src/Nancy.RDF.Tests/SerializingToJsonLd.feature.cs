@@ -90,6 +90,35 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Should allow expanded profile")]
+        [NUnit.Framework.CategoryAttribute("Brochure")]
+        [NUnit.Framework.CategoryAttribute("JsonLd")]
+        public virtual void ShouldAllowExpandedProfile()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should allow expanded profile", new string[] {
+                        "Brochure",
+                        "JsonLd"});
+#line 31
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+#line 32
+ testRunner.Given("A serialized model:", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
+                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
+                    "", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 42
+ testRunner.Given("accepted media type \'application/ld+json; profile=http://www.w3.org/ns/json-ld#ex" +
+                    "panded\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 43
+ testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
+ testRunner.Then("output stream should equal", "[{\r\n\t\'@id\': \'http://wikibus.org/brochure/12345\',\r\n\t\'http://purl.org/dcterms/title" +
+                    "\': [{\r\n\t\t\'@value\': \'Jelcz M11 - mały, stary autobus\'\r\n\t}]\r\n}]", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

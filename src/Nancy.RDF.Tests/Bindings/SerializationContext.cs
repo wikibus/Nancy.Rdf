@@ -20,5 +20,7 @@ namespace Nancy.RDF.Tests.Bindings
         }
 
         public dynamic Result { get; set; }
+
+        public string AcceptHeader { get; set; }
     }
 }

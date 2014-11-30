@@ -1,9 +1,7 @@
 using System.IO;
-using System.Linq;
 using Nancy.RDF.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace Nancy.RDF.Tests.Bindings
@@ -13,7 +11,6 @@ namespace Nancy.RDF.Tests.Bindings
     {
         private readonly ISerializer _serializer;
         private readonly SerializationContext _context;
-        private dynamic _serialized;
 
         public JsonLdSerializationSteps(SerializationContext context)
         {
@@ -24,7 +21,8 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"model is serialized"), Scope(Tag = "JsonLd")]
         public void WhenModelIsSerializedTo()
         {
-            _serializer.Serialize(RdfSerialization.JsonLd.MediaType, new object(), _context.OutputStream);
+            var contentType = _context.AcceptHeader ?? RdfSerialization.JsonLd.MediaType;
+            _serializer.Serialize(contentType, new object(), _context.OutputStream);
 
             _context.OutputStream.Seek(0, SeekOrigin.Begin);
             using (var streamReader = new StreamReader(_context.OutputStream))

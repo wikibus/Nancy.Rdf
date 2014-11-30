@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
+using Nancy.Responses.Negotiation;
+using Newtonsoft.Json.Linq;
 
 namespace Nancy.RDF.Responses
 {
@@ -57,7 +60,14 @@ namespace Nancy.RDF.Responses
         {
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var serialized = _serializer.Serialize(model);
+                JToken serialized = _serializer.Serialize(model);
+
+                var mediaRange = new MediaRange(contentType);
+
+                if (mediaRange.Parameters["profile"] == JsonLdProfiles.Expanded)
+                {
+                    serialized = JsonLdProcessor.Expand(serialized);
+                }
 
                 Debug.WriteLine("Serialized model: {0}", new object[] { serialized });
 
