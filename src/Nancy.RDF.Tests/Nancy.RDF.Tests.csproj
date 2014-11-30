@@ -992,8 +992,6 @@
     <Compile Include="Bindings\RdfSerializationSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
-    <Compile Include="Models\Brochure.cs" />
-    <Compile Include="Models\TypedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
     <Compile Include="SerializingToJsonLd.feature.cs">
@@ -1001,20 +999,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SerializingToJsonLd.feature</DependentUpon>
     </Compile>
-    <Compile Include="SerializingToNTriples.feature.cs">
+    <Compile Include="SerializingToRdf.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SerializingToNTriples.feature</DependentUpon>
-    </Compile>
-    <Compile Include="SerializingToRdfXml.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SerializingToRdfXml.feature</DependentUpon>
-    </Compile>
-    <Compile Include="SerializingToTurtle.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SerializingToTurtle.feature</DependentUpon>
+      <DependentUpon>SerializingToRdf.feature</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1024,17 +1012,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SerializingToJsonLd.feature.cs</LastGenOutput>
     </None>
-    <None Include="SerializingToNTriples.feature">
+    <None Include="SerializingToRdf.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SerializingToNTriples.feature.cs</LastGenOutput>
-    </None>
-    <None Include="SerializingToRdfXml.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SerializingToRdfXml.feature.cs</LastGenOutput>
-    </None>
-    <None Include="SerializingToTurtle.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SerializingToTurtle.feature.cs</LastGenOutput>
+      <LastGenOutput>SerializingToRdf.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -19,20 +19,20 @@ namespace Nancy.RDF.Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Serializing to RDF/XML")]
-    public partial class SerializingToRDFXMLFeature
+    [NUnit.Framework.DescriptionAttribute("Serializing to RDF")]
+    public partial class SerializingToRDFFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SerializingToRdfXml.feature"
+#line 1 "SerializingToRdf.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Serializing to RDF/XML", "Test serializing models to RDF/XML", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Serializing to RDF", "Test serializing models to RDF", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,29 +66,20 @@ namespace Nancy.RDF.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Serialize simple model with blank id to RDF/XML")]
-        [NUnit.Framework.IgnoreAttribute()]
         [NUnit.Framework.CategoryAttribute("Brochure")]
-        [NUnit.Framework.CategoryAttribute("RdfXml")]
+        [NUnit.Framework.CategoryAttribute("Rdf")]
         public virtual void SerializeSimpleModelWithBlankIdToRDFXML()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Serialize simple model with blank id to RDF/XML", new string[] {
                         "Brochure",
-                        "RdfXml",
-                        "ignore"});
-#line 7
+                        "Rdf"});
+#line 6
 this.ScenarioSetup(scenarioInfo);
 #line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Property",
-                        "Vale"});
-            table1.AddRow(new string[] {
-                        "Title",
-                        "Jelcz M11 - mały, stary autobus"});
-#line 8
- testRunner.Given("A model with content:", ((string)(null)), table1, "Given ");
-#line hidden
-#line 11
- testRunner.And("@context is:", "{\r\n\t\'title\': \'http://purl.org/dcterms/title\'\r\n}", ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.Given("A serialized model:", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
+                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
+                    "", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

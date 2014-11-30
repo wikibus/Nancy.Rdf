@@ -18,5 +18,7 @@ namespace Nancy.RDF.Tests.Bindings
         {
             get { return _serializer; }
         }
+
+        public dynamic Result { get; set; }
     }
 }

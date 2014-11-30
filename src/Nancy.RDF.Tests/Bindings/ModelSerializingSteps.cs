@@ -1,9 +1,7 @@
-using System;
 using FakeItEasy;
-using Nancy.RDF.Tests.Models;
 using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace Nancy.RDF.Tests.Bindings
 {
@@ -17,29 +15,16 @@ namespace Nancy.RDF.Tests.Bindings
             _context = context;
         }
 
-        [Given(@"A model with content:"), Scope(Tag = "Brochure")]
-        public void GivenABrochure(Table table)
+        [Given(@"A serialized model:")]
+        public void GivenASerializedModel(string json)
         {
-            ScenarioContext.Current["model"] = table.CreateInstance<Brochure>();
+            A.CallTo(() => _context.Serializer.Serialize(A<object>.Ignored)).Returns(JObject.Parse(json));
         }
 
-        [Given(@"A model of type '(.*)'")]
-        public void GivenATypedModel(string typeName)
+        [Then(@"output stream should equal")]
+        public void ThenOutputStreamShouldEqual(string expectedBody)
         {
-            var modelType = Type.GetType(typeName, true);
-            ScenarioContext.Current["model"] = Activator.CreateInstance(modelType);
-        }
-
-        [Given(@"Model has property Id set to '(.*)'")]
-        public void GivenModelHasPropertyIdSetTo(string id)
-        {
-            ((dynamic)ScenarioContext.Current["model"]).Id = new Uri(id);
-        }
-
-        [Given(@"@context is:"), Scope(Tag = "Brochure")]
-        public void GivenExpandedContextForIs(string contextContent)
-        {
-            A.CallTo(() => _context.ContextProvider.GetContext(typeof(Brochure))).Returns(JObject.Parse(contextContent));
+            Assert.That(JToken.DeepEquals(_context.Result, JToken.Parse(expectedBody)));
         }
     }
 }

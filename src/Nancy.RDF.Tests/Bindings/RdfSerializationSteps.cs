@@ -1,10 +1,13 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using FakeItEasy;
+using JsonLD.Entities;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
 using VDS.RDF;
 using VDS.RDF.Parsing;
+using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Tests.Bindings
 {
@@ -13,49 +16,54 @@ namespace Nancy.RDF.Tests.Bindings
     {
         private readonly SerializationContext _context;
         private readonly IGraph _serialized;
+        private readonly ITripleFormatter _formatter;
+        private readonly RdfSerializerTestable _serializer;
 
         public RdfSerializationSteps(SerializationContext context, IGraph graph)
         {
             _context = context;
             _serialized = graph;
+
+            _formatter = new TestFormatter(graph);
+            _serializer = new RdfSerializerTestable(_context.Serializer, _formatter);
         }
 
-        [When(@"model is serialized"), Scope(Tag = "Turtle")]
-        public void WhenModelIsSerializedToTurtle()
+        [When(@"model is serialized"), Scope(Tag = "Rdf")]
+        public void WhenModelIsSerialized()
         {
-            var serializer = new TurtleSerializer(_context.Serializer);
-            var serialized = SerializeModel(serializer, RdfSerialization.Turtle);
-            _serialized.LoadFromString(serialized, new TurtleParser());
+            _serializer.Serialize(RdfSerialization.Turtle.MediaType, new object(), _context.OutputStream);
         }
 
-        [When(@"model is serialized"), Scope(Tag = "RdfXml")]
-        public void WhenModelIsSerializedToRdfXml()
+        private class RdfSerializerTestable : RdfSerializer
         {
-            var serializer = new RdfXmlSerializer(_context.Serializer);
-            var serialized = SerializeModel(serializer, RdfSerialization.RdfXml);
-            _serialized.LoadFromString(serialized, new RdfXmlParser());
-        }
+            private readonly ITripleFormatter _formatter;
 
-        [When(@"model is serialized"), Scope(Tag = "NTriples")]
-        public void WhenModelIsSerializedToNTriples()
-        {
-            var serializer = new NTriplesSerializer(_context.Serializer);
-            var serialized = SerializeModel(serializer, RdfSerialization.RdfXml);
-            _serialized.LoadFromString(serialized, new NTriplesParser(NTriplesSyntax.Rdf11));
-        }
-
-        private string SerializeModel(ISerializer serializer, RdfSerialization serialization)
-        {
-            serializer.Serialize(serialization.MediaType, ScenarioContext.Current["model"], _context.OutputStream);
-
-            _context.OutputStream.Seek(0, SeekOrigin.Begin);
-            using (var streamReader = new StreamReader(_context.OutputStream))
+            public RdfSerializerTestable(IEntitySerializer entitySerializer, ITripleFormatter formatter)
+                : base(RdfSerialization.Turtle, entitySerializer)
             {
-                var serializedGraph = streamReader.ReadToEnd();
+                _formatter = formatter;
+            }
 
-                Debug.WriteLine("Deserialized graph contents:{0}{1}", Environment.NewLine, serializedGraph);
+            protected override ITripleFormatter CreateFormatter()
+            {
+                return _formatter;
+            }
+        }
 
-                return serializedGraph;
+        private class TestFormatter : ITripleFormatter
+        {
+            private readonly IGraph _graph;
+
+            public TestFormatter(IGraph graph)
+            {
+                _graph = graph;
+            }
+
+            public string Format(Triple t)
+            {
+                _graph.Assert(t);
+
+                return string.Empty;
             }
         }
     }
