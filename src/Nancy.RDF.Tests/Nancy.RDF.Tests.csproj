@@ -993,11 +993,6 @@
     <Compile Include="Bindings\RdfSerializationSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
-    <Compile Include="ContentNegotiation.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ContentNegotiation.feature</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
     <Compile Include="SerializingToJsonLd.feature.cs">
@@ -1013,10 +1008,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ContentNegotiation.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ContentNegotiation.feature.cs</LastGenOutput>
-    </None>
     <None Include="paket.references" />
     <None Include="SerializingToJsonLd.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using FakeItEasy;
+using Nancy.RDF.Responses;
 using Nancy.Responses.Negotiation;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -25,18 +27,10 @@ namespace Nancy.RDF.Tests.Bindings
             _mediaRange = new MediaRange(mediaRange);
         }
 
-        [When(@"processing model")]
+        [When(@"processing model"), Scope(Tag = "Rdf")]
         public void WhenProcessingRdfModel()
         {
-            var processor = new Responses.RdfResponseProcessor(new[] { _serializer });
-
-            _response = processor.Process(_mediaRange, new object(), new NancyContext());
-        }
-
-        [When(@"processing model"), Scope(Tag = "JsonLd")]
-        public void WhenProcessingModel()
-        {
-            var processor = new Responses.JsonLdResponseProcessor(new[] { _serializer });
+            var processor = new RdfResponseProcessorTestable(new[] { _serializer });
 
             _response = processor.Process(_mediaRange, new object(), new NancyContext());
         }
@@ -45,6 +39,14 @@ namespace Nancy.RDF.Tests.Bindings
         public void ThenResponseShouldHaveStatus(string expectedStatusCode)
         {
             Assert.That(_response.StatusCode, Is.EqualTo(Enum.Parse(typeof(HttpStatusCode), expectedStatusCode)));
+        }
+
+        private class RdfResponseProcessorTestable : RdfResponseProcessor
+        {
+            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers)
+                : base(RdfSerialization.Turtle, serializers)
+            {
+            }
         }
     }
 }

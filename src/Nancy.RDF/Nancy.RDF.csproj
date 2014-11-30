@@ -764,11 +764,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\JsonLdResponseProcessor.cs" />
     <Compile Include="Responses\JsonLdSerializer.cs" />
+    <Compile Include="Responses\Notation3ResponseProcessor.cs" />
+    <Compile Include="Responses\NTriplesResponseProcessor.cs" />
     <Compile Include="Responses\NTriplesSerializer.cs" />
     <Compile Include="Responses\RdfResponseProcessor.cs" />
     <Compile Include="Responses\RdfSerialization.cs" />
     <Compile Include="Responses\RdfSerializer.cs" />
+    <Compile Include="Responses\RdfXmlResponseProcessor.cs" />
     <Compile Include="Responses\RdfXmlSerializer.cs" />
+    <Compile Include="Responses\TurtleResponseProcessor.cs" />
     <Compile Include="Responses\TurtleSerializer.cs" />
   </ItemGroup>
   <ItemGroup>

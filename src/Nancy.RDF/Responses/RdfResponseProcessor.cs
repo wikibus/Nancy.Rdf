@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Nancy.Responses.Negotiation;
 
 namespace Nancy.RDF.Responses
@@ -7,17 +8,20 @@ namespace Nancy.RDF.Responses
     /// <summary>
     /// Response processor for RDF media types (other than JSON-LD)
     /// </summary>
-    public class RdfResponseProcessor : IResponseProcessor
+    public abstract class RdfResponseProcessor : IResponseProcessor
     {
-        private readonly IEnumerable<ISerializer> _serializers;
+        private readonly RdfSerialization _serialization;
+        private ISerializer _serializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfResponseProcessor"/> class.
         /// </summary>
+        /// <param name="serialization">The supported serialization.</param>
         /// <param name="serializers">The serializers.</param>
-        public RdfResponseProcessor(IEnumerable<ISerializer> serializers)
+        protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers)
         {
-            _serializers = serializers;
+            _serialization = serialization;
+            _serializer = serializers.FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
         }
 
         /// <summary>
@@ -27,10 +31,7 @@ namespace Nancy.RDF.Responses
         {
             get
             {
-                yield return Tuple.Create("ttl", new MediaRange(RdfSerialization.Turtle.MediaType));
-                yield return Tuple.Create("rdf", new MediaRange(RdfSerialization.RdfXml.MediaType));
-                yield return Tuple.Create("n3", new MediaRange(RdfSerialization.Notation3.MediaType));
-                yield return Tuple.Create("nt", new MediaRange(RdfSerialization.NTriples.MediaType));
+                yield return Tuple.Create(_serialization.Extension, new MediaRange(_serialization.MediaType));
             }
         }
 
@@ -39,7 +40,16 @@ namespace Nancy.RDF.Responses
         /// </summary>
         public ProcessorMatch CanProcess(MediaRange requestedMediaRange, dynamic model, NancyContext context)
         {
-            return new ProcessorMatch();
+            var processorMatch = new ProcessorMatch
+                {
+                    ModelResult = MatchResult.DontCare
+                };
+            if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange))
+            {
+                processorMatch.RequestedContentTypeResult = MatchResult.ExactMatch;
+            }
+
+            return processorMatch;
         }
 
         /// <summary>
@@ -50,7 +60,9 @@ namespace Nancy.RDF.Responses
         {
             return new Response
                 {
-                    StatusCode = HttpStatusCode.OK
+                    Contents = stream => _serializer.Serialize(_serialization.MediaType, model, stream),
+                    StatusCode = HttpStatusCode.OK,
+                    ContentType = _serialization.MediaType
                 };
         }
     }
