@@ -987,6 +987,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptHeaderCoercion.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AcceptHeaderCoercion.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Bindings\AcceptHeaderCoercionSteps.cs" />
     <Compile Include="Bindings\ContentNegotiationSteps.cs" />
     <Compile Include="Bindings\GraphSetup.cs" />
     <Compile Include="Bindings\RdfGraphSteps.cs" />
@@ -1007,6 +1013,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AcceptHeaderCoercion.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AcceptHeaderCoercion.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="paket.references" />
     <None Include="SerializingToJsonLd.feature">
