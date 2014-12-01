@@ -5,6 +5,7 @@
       <Value>bootstrapper</Value>
       <Value>JSON-LD</Value>
       <Value>serializers</Value>
+      <Value>Rdf</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Parsers>
