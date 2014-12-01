@@ -18,7 +18,7 @@ namespace Nancy.RDF.Conventions
     /// <summary>
     /// Provides Nancy.Rdf Accept header coercion conventions
     /// </summary>
-    public static class DefaultRdfContentTypeConvention
+    public static class AcceptHeaderConventions
     {
         /// <summary>
         /// Replaces blank accept header with Turtle.
