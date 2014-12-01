@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FakeItEasy;
+using Nancy.Conventions;
 using Nancy.RDF.Responses;
 using Nancy.Responses.Negotiation;
 using NUnit.Framework;
