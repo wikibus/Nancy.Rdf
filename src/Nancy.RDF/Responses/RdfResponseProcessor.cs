@@ -11,7 +11,7 @@ namespace Nancy.RDF.Responses
     public abstract class RdfResponseProcessor : IResponseProcessor
     {
         private readonly RdfSerialization _serialization;
-        private ISerializer _serializer;
+        private readonly ISerializer _serializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfResponseProcessor"/> class.
@@ -44,7 +44,7 @@ namespace Nancy.RDF.Responses
                 {
                     ModelResult = MatchResult.DontCare
                 };
-            if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange))
+            if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange) && !requestedMediaRange.IsWildcard)
             {
                 processorMatch.RequestedContentTypeResult = MatchResult.ExactMatch;
             }
