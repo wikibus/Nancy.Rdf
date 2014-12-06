@@ -12,7 +12,7 @@ namespace Nancy.RDF.Responses
         /// Initializes a new instance of the <see cref="Notation3Serializer"/> class.
         /// </summary>
         public Notation3Serializer(IEntitySerializer entitySerializer)
-            : base(RdfSerialization.NTriples, entitySerializer)
+            : base(RdfSerialization.Notation3, entitySerializer)
         {
         }
 
