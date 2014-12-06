@@ -1001,6 +1001,7 @@
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
+    <Compile Include="RdfResponseProcessorTests.cs" />
     <Compile Include="SerializingToJsonLd.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

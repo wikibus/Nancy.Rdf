@@ -40,16 +40,20 @@ namespace Nancy.RDF.Responses
         /// </summary>
         public ProcessorMatch CanProcess(MediaRange requestedMediaRange, dynamic model, NancyContext context)
         {
-            var processorMatch = new ProcessorMatch
-                {
-                    ModelResult = MatchResult.DontCare
-                };
-            if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange) && !requestedMediaRange.IsWildcard)
+            var match = new ProcessorMatch
             {
-                processorMatch.RequestedContentTypeResult = MatchResult.ExactMatch;
+                ModelResult = MatchResult.DontCare
+            };
+
+            if (_serializer != null)
+            {
+                if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange) && !requestedMediaRange.IsWildcard)
+                {
+                    match.RequestedContentTypeResult = MatchResult.ExactMatch;
+                }
             }
 
-            return processorMatch;
+            return match;
         }
 
         /// <summary>
