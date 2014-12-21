@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
@@ -52,27 +53,31 @@ namespace Nancy.RDF.Responses
                 var jsObject = _entitySerializer.Serialize(model);
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 
-                var h = CreateHandler<TModel>(writer);
-                h.StartRdf();
-
-                foreach (var triple in rdf.GetQuads("@default"))
-                {
-                    var subj = CreateNode(triple.GetSubject());
-                    var pred = CreateNode(triple.GetPredicate());
-                    var obj = CreateNode(triple.GetObject());
-                    h.HandleTriple(new Triple(subj, pred, obj));
-                }
-
-                h.EndRdf(true);
+                WriteRdf(writer, rdf.GetQuads("@default").Select(ToTriple));
             }
+        }
+
+        /// <summary>
+        /// Writes the RDF is proper serialization.
+        /// </summary>
+        protected virtual void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
+        {
+            var h = CreateHandler(writer);
+            h.StartRdf();
+
+            foreach (var triple in triples)
+            {
+                h.HandleTriple(triple);
+            }
+
+            h.EndRdf(true);
         }
 
         /// <summary>
         /// Creates the RDF write handler.
         /// </summary>
-        /// <typeparam name="TModel">The type of the model.</typeparam>
         /// <param name="writer">The writer.</param>
-        protected virtual IRdfHandler CreateHandler<TModel>(StreamWriter writer)
+        protected virtual IRdfHandler CreateHandler(StreamWriter writer)
         {
             return new WriteThroughHandler(CreateFormatter(), writer);
         }
@@ -95,6 +100,15 @@ namespace Nancy.RDF.Responses
             }
 
             return _nodeFactory.CreateLiteralNode(node.GetValue(), new Uri(node.GetDatatype()));
+        }
+
+        private Triple ToTriple(RDFDataset.Quad triple)
+        {
+            var subj = CreateNode(triple.GetSubject());
+            var pred = CreateNode(triple.GetPredicate());
+            var obj = CreateNode(triple.GetObject());
+
+            return new Triple(subj, pred, obj);
         }
     }
 }
