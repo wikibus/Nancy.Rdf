@@ -6,7 +6,7 @@ using Nancy.Responses.Negotiation;
 namespace Nancy.RDF.Responses
 {
     /// <summary>
-    /// Response processor for RDF media types (other than JSON-LD)
+    /// Response processor for RDF media types
     /// </summary>
     public abstract class RdfResponseProcessor : IResponseProcessor
     {
