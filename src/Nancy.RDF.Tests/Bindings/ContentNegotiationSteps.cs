@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FakeItEasy;
-using Nancy.Conventions;
 using Nancy.RDF.Responses;
 using Nancy.Responses.Negotiation;
 using NUnit.Framework;
@@ -31,7 +30,7 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"processing model"), Scope(Tag = "Rdf")]
         public void WhenProcessingRdfModel()
         {
-            var processor = new RdfResponseProcessorTestable(new[] { _serializer });
+            var processor = new RdfResponseProcessorTestable(new[] { _serializer }, new RdfResponseOptions());
 
             _response = processor.Process(_mediaRange, new object(), new NancyContext());
         }
@@ -44,8 +43,8 @@ namespace Nancy.RDF.Tests.Bindings
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor
         {
-            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers)
-                : base(RdfSerialization.Turtle, serializers)
+            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers, RdfResponseOptions options)
+                : base(RdfSerialization.Turtle, serializers, options)
             {
             }
         }

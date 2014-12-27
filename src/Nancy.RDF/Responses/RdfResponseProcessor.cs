@@ -11,6 +11,7 @@ namespace Nancy.RDF.Responses
     public abstract class RdfResponseProcessor : IResponseProcessor
     {
         private readonly RdfSerialization _serialization;
+        private readonly RdfResponseOptions _options;
         private readonly ISerializer _serializer;
 
         /// <summary>
@@ -18,9 +19,11 @@ namespace Nancy.RDF.Responses
         /// </summary>
         /// <param name="serialization">The supported serialization.</param>
         /// <param name="serializers">The serializers.</param>
-        protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers)
+        /// <param name="options">Response processing options</param>
+        protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers, RdfResponseOptions options)
         {
             _serialization = serialization;
+            _options = options;
             _serializer = serializers.FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
         }
 
@@ -47,9 +50,16 @@ namespace Nancy.RDF.Responses
 
             if (_serializer != null)
             {
-                if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange) && !requestedMediaRange.IsWildcard)
+                if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange))
                 {
-                    match.RequestedContentTypeResult = MatchResult.ExactMatch;
+                    if (requestedMediaRange.IsWildcard == false)
+                    {
+                        match.RequestedContentTypeResult = MatchResult.ExactMatch;
+                    }
+                    else if (_options.FallbackSerialization == _serialization)
+                    {
+                        match.RequestedContentTypeResult = MatchResult.NonExactMatch;
+                    }
                 }
             }
 

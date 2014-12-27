@@ -769,6 +769,7 @@
     <Compile Include="Responses\Notation3ResponseProcessor.cs" />
     <Compile Include="Responses\NTriplesResponseProcessor.cs" />
     <Compile Include="Responses\NTriplesSerializer.cs" />
+    <Compile Include="Responses\RdfResponseOptions.cs" />
     <Compile Include="Responses\RdfResponseProcessor.cs" />
     <Compile Include="Responses\RdfSerialization.cs" />
     <Compile Include="Responses\RdfSerializer.cs" />
