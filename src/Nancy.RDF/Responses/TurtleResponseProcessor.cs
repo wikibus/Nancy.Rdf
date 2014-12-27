@@ -16,6 +16,7 @@ namespace Nancy.RDF.Responses
             : base(RdfSerialization.Turtle, serializers, options)
         {
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TurtleResponseProcessor"/> class.
         /// </summary>

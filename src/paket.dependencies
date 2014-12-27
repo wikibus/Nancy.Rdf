@@ -11,6 +11,8 @@ nuget SpecFlow
 nuget FakeItEasy
 nuget NUnit
 nuget StyleCopPlus.MSBuild
-github tpluscode/FileVersionExtractor
 nuget GitLink
 nuget JsonLd.Entities
+nuget Nullguard.Fody
+
+github tpluscode/FileVersionExtractor FULLPROJECT
