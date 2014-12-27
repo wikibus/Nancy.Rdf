@@ -11,7 +11,6 @@ namespace Nancy.RDF.Responses
     public abstract class RdfResponseProcessor : IResponseProcessor
     {
         private readonly RdfSerialization _serialization;
-        private readonly RdfResponseOptions _options;
         private readonly ISerializer _serializer;
 
         /// <summary>
@@ -19,11 +18,9 @@ namespace Nancy.RDF.Responses
         /// </summary>
         /// <param name="serialization">The supported serialization.</param>
         /// <param name="serializers">The serializers.</param>
-        /// <param name="options">Response processing options</param>
-        protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers, RdfResponseOptions options)
+        protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers)
         {
             _serialization = serialization;
-            _options = options;
             _serializer = serializers.FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
         }
 
@@ -56,7 +53,7 @@ namespace Nancy.RDF.Responses
                     {
                         match.RequestedContentTypeResult = MatchResult.ExactMatch;
                     }
-                    else if (_options.FallbackSerialization == _serialization)
+                    else if (GetFallbackSerialization(context) == _serialization)
                     {
                         match.RequestedContentTypeResult = MatchResult.NonExactMatch;
                     }
@@ -78,6 +75,16 @@ namespace Nancy.RDF.Responses
                     StatusCode = HttpStatusCode.OK,
                     ContentType = _serialization.MediaType
                 };
+        }
+
+        private static RdfSerialization? GetFallbackSerialization(NancyContext context)
+        {
+            if (context.Items.ContainsKey(RdfResponses.FallbackSerializationKey))
+            {
+                return (RdfSerialization)context.Items[RdfResponses.FallbackSerializationKey];
+            }
+
+            return null;
         }
     }
 }

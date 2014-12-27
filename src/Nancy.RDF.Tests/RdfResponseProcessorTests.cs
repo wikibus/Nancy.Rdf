@@ -9,12 +9,14 @@ namespace Nancy.RDF.Tests
     [TestFixture]
     public class RdfResponseProcessorTests
     {
+        private const string FallbackSerializationKey = "__nrfs";
+
         [Test]
         public void Should_not_allow_processing_when_no_compatible_serializer_is_available()
         {
             // given
             var serializers = new ISerializer[0];
-            var processor = new RdfResponseProcessorTestable(serializers, new RdfResponseOptions());
+            var processor = new RdfResponseProcessorTestable(serializers);
 
             // when
             var match = processor.CanProcess(new MediaRange(RdfSerialization.RdfXml.MediaType), new object(), new NancyContext());
@@ -30,14 +32,12 @@ namespace Nancy.RDF.Tests
             // given
             var serializer = A.Fake<ISerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
-            var options = new RdfResponseOptions
-            {
-                FallbackSerialization = RdfSerialization.RdfXml
-            };
-            var processor = new RdfResponseProcessorTestable(new[] { serializer }, options);
+            var nancyContext = new NancyContext();
+            nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.RdfXml);
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
-            var match = processor.CanProcess(new MediaRange("*/*"), new object(), new NancyContext());
+            var match = processor.CanProcess(new MediaRange("*/*"), new object(), nancyContext);
 
             // then
             Assert.That(match.ModelResult, Is.EqualTo(MatchResult.DontCare));
@@ -50,14 +50,12 @@ namespace Nancy.RDF.Tests
             // given
             var serializer = A.Fake<ISerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
-            var options = new RdfResponseOptions
-            {
-                FallbackSerialization = RdfSerialization.Turtle
-            };
-            var processor = new RdfResponseProcessorTestable(new[] { serializer }, options);
+            var nancyContext = new NancyContext();
+            nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.Turtle);
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
-            var match = processor.CanProcess(new MediaRange("*/*"), new object(), new NancyContext());
+            var match = processor.CanProcess(new MediaRange("*/*"), new object(), nancyContext);
 
             // then
             Assert.That(match.ModelResult, Is.EqualTo(MatchResult.DontCare));
@@ -70,7 +68,7 @@ namespace Nancy.RDF.Tests
             // given
             var serializer = A.Fake<ISerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
-            var processor = new RdfResponseProcessorTestable(new[] { serializer }, new RdfResponseOptions());
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
             var match = processor.CanProcess(new MediaRange("*/*"), new object(), new NancyContext());
@@ -82,8 +80,8 @@ namespace Nancy.RDF.Tests
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor
         {
-            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers, RdfResponseOptions options)
-                : base(RdfSerialization.RdfXml, serializers, options)
+            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers)
+                : base(RdfSerialization.RdfXml, serializers)
             {
             }
         }

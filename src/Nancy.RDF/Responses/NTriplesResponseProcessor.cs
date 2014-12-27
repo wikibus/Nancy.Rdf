@@ -11,18 +11,8 @@ namespace Nancy.RDF.Responses
         /// Initializes a new instance of the <see cref="NTriplesResponseProcessor"/> class.
         /// </summary>
         /// <param name="serializers">The serializers.</param>
-        /// <param name="options">Response processing options</param>
-        public NTriplesResponseProcessor(IEnumerable<ISerializer> serializers, RdfResponseOptions options)
-            : base(RdfSerialization.NTriples, serializers, options)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NTriplesResponseProcessor"/> class.
-        /// </summary>
-        /// <param name="serializers">The serializers.</param>
         public NTriplesResponseProcessor(IEnumerable<ISerializer> serializers)
-            : base(RdfSerialization.NTriples, serializers, new RdfResponseOptions())
+            : base(RdfSerialization.NTriples, serializers)
         {
         }
     }

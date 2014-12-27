@@ -30,7 +30,7 @@ namespace Nancy.RDF.Tests.Bindings
         [When(@"processing model"), Scope(Tag = "Rdf")]
         public void WhenProcessingRdfModel()
         {
-            var processor = new RdfResponseProcessorTestable(new[] { _serializer }, new RdfResponseOptions());
+            var processor = new RdfResponseProcessorTestable(new[] { _serializer });
 
             _response = processor.Process(_mediaRange, new object(), new NancyContext());
         }
@@ -43,8 +43,8 @@ namespace Nancy.RDF.Tests.Bindings
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor
         {
-            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers, RdfResponseOptions options)
-                : base(RdfSerialization.Turtle, serializers, options)
+            public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers)
+                : base(RdfSerialization.Turtle, serializers)
             {
             }
         }
