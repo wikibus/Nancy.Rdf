@@ -55,7 +55,7 @@
     <Compile Include="Responses\NTriplesResponseProcessor.cs" />
     <Compile Include="Responses\NTriplesSerializer.cs" />
     <Compile Include="Responses\RdfResponseProcessor.cs" />
-    <Compile Include="Responses\RdfSerialization.cs" />
+    <Compile Include="RdfSerialization.cs" />
     <Compile Include="Responses\RdfSerializer.cs" />
     <Compile Include="Responses\RdfXmlResponseProcessor.cs" />
     <Compile Include="Responses\RdfXmlSerializer.cs" />
