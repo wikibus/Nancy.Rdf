@@ -1,4 +1,9 @@
-﻿using JsonLD.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using JsonLD.Entities;
+using VDS.RDF;
+using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
@@ -21,7 +26,17 @@ namespace Nancy.RDF.Responses
         /// </summary>
         protected override ITripleFormatter CreateFormatter()
         {
-            return new Notation3Formatter();
+            throw new NotImplementedException("Not used for Notation3");
+        }
+
+        /// <summary>
+        /// Writes the RDF as compressed Turtle
+        /// </summary>
+        protected override void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
+        {
+            var graph = new Graph();
+            graph.Assert(triples);
+            graph.SaveToStream(writer, new Notation3Writer());
         }
     }
 }
