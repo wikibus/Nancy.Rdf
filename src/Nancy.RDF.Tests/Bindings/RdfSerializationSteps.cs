@@ -1,8 +1,8 @@
+using System.IO;
 using JsonLD.Entities;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
 using VDS.RDF;
-using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Tests.Bindings
 {
@@ -10,15 +10,13 @@ namespace Nancy.RDF.Tests.Bindings
     public class RdfSerializationSteps
     {
         private readonly SerializationContext _context;
-        private readonly ITripleFormatter _formatter;
         private readonly RdfSerializerTestable _serializer;
 
         public RdfSerializationSteps(SerializationContext context, IGraph graph)
         {
             _context = context;
 
-            _formatter = new TestFormatter(graph);
-            _serializer = new RdfSerializerTestable(_context.Serializer, _formatter);
+            _serializer = new RdfSerializerTestable(_context.Serializer, new TestWriter(graph));
         }
 
         [When(@"model is serialized"), Scope(Tag = "Rdf")]
@@ -27,36 +25,41 @@ namespace Nancy.RDF.Tests.Bindings
             _serializer.Serialize(RdfSerialization.Turtle.MediaType, new object(), _context.OutputStream);
         }
 
-        private class RdfSerializerTestable : RdfSerializer
+        private class RdfSerializerTestable : CompressingSerializer
         {
-            private readonly ITripleFormatter _formatter;
+            private readonly IRdfWriter _writer;
 
-            public RdfSerializerTestable(IEntitySerializer entitySerializer, ITripleFormatter formatter)
+            public RdfSerializerTestable(IEntitySerializer entitySerializer, IRdfWriter writer)
                 : base(RdfSerialization.Turtle, entitySerializer)
             {
-                _formatter = formatter;
+                _writer = writer;
             }
 
-            protected override ITripleFormatter CreateFormatter()
+            protected override IRdfWriter CreateWriter()
             {
-                return _formatter;
+                return _writer;
             }
         }
 
-        private class TestFormatter : ITripleFormatter
+        private class TestWriter : IRdfWriter
         {
             private readonly IGraph _graph;
 
-            public TestFormatter(IGraph graph)
+            public TestWriter(IGraph graph)
             {
                 _graph = graph;
             }
 
-            public string Format(Triple t)
-            {
-                _graph.Assert(t);
+            public event RdfWriterWarning Warning;
 
-                return string.Empty;
+            public void Save(IGraph g, string filename)
+            {
+                _graph.Assert(g.Triples);
+            }
+
+            public void Save(IGraph g, TextWriter output)
+            {
+                _graph.Assert(g.Triples);
             }
         }
     }

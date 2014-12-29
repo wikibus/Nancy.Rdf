@@ -6,8 +6,6 @@ using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
 using VDS.RDF;
-using VDS.RDF.Parsing.Handlers;
-using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
 {
@@ -60,32 +58,7 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Writes the RDF is proper serialization.
         /// </summary>
-        protected virtual void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
-        {
-            var h = CreateHandler(writer);
-            h.StartRdf();
-
-            foreach (var triple in triples)
-            {
-                h.HandleTriple(triple);
-            }
-
-            h.EndRdf(true);
-        }
-
-        /// <summary>
-        /// Creates the RDF write handler.
-        /// </summary>
-        /// <param name="writer">The writer.</param>
-        protected virtual IRdfHandler CreateHandler(StreamWriter writer)
-        {
-            return new WriteThroughHandler(CreateFormatter(), writer);
-        }
-
-        /// <summary>
-        /// Creates the triple formatter.
-        /// </summary>
-        protected abstract ITripleFormatter CreateFormatter();
+        protected abstract void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples);
 
         private INode CreateNode(RDFDataset.Node node)
         {

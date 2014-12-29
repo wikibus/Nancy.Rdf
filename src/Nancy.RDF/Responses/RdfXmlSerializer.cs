@@ -1,4 +1,6 @@
 ﻿using JsonLD.Entities;
+using VDS.RDF;
+using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
@@ -6,7 +8,7 @@ namespace Nancy.RDF.Responses
     /// <summary>
     /// Serializer for RDF/XML format
     /// </summary>
-    public class RdfXmlSerializer : RdfSerializer
+    public class RdfXmlSerializer : CompressingSerializer
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfXmlSerializer"/> class.
@@ -17,11 +19,11 @@ namespace Nancy.RDF.Responses
         }
 
         /// <summary>
-        /// Creates the triple formatter for RDF/XML.
+        /// Creates the RDF writer.
         /// </summary>
-        protected override ITripleFormatter CreateFormatter()
+        protected override IRdfWriter CreateWriter()
         {
-            return new RdfXmlFormatter();
+            return new RdfXmlWriter();
         }
     }
 }

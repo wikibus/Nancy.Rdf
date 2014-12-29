@@ -1,4 +1,8 @@
-﻿using JsonLD.Entities;
+﻿using System.Collections.Generic;
+using System.IO;
+using JsonLD.Entities;
+using VDS.RDF;
+using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
@@ -17,11 +21,19 @@ namespace Nancy.RDF.Responses
         }
 
         /// <summary>
-        /// Creates the triple formatter for NTriples.
+        /// Writes the RDF is proper serialization.
         /// </summary>
-        protected override ITripleFormatter CreateFormatter()
+        protected override void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
         {
-            return new NTriples11Formatter();
+            IRdfHandler h = new WriteThroughHandler(new NTriples11Formatter(), writer);
+            h.StartRdf();
+
+            foreach (var triple in triples)
+            {
+                h.HandleTriple(triple);
+            }
+
+            h.EndRdf(true);
         }
     }
 }
