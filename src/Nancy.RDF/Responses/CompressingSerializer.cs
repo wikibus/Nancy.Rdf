@@ -10,14 +10,18 @@ namespace Nancy.RDF.Responses
     /// </summary>
     public abstract class CompressingSerializer : RdfSerializer
     {
+        private readonly INamespaceMapper _namespaces;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompressingSerializer"/> class.
+        /// Initializes a new instance of the <see cref="CompressingSerializer" /> class.
         /// </summary>
         /// <param name="rdfSerialization">The RDF serialization.</param>
         /// <param name="entitySerializer">The entity serializer.</param>
-        protected CompressingSerializer(RdfSerialization rdfSerialization, IEntitySerializer entitySerializer)
+        /// <param name="namespaces">The namespace mapper.</param>
+        protected CompressingSerializer(RdfSerialization rdfSerialization, IEntitySerializer entitySerializer, INamespaceMapper namespaces)
             : base(rdfSerialization, entitySerializer)
         {
+            _namespaces = namespaces;
         }
 
         /// <summary>
@@ -25,7 +29,8 @@ namespace Nancy.RDF.Responses
         /// </summary>
         protected override void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
         {
-            var graph = new Graph();
+            var graph = new Graph(true);
+            graph.NamespaceMap.Import(_namespaces);
             graph.Assert(triples);
             graph.SaveToStream(writer, CreateWriter());
         }

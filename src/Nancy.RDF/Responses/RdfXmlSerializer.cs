@@ -1,7 +1,6 @@
 ﻿using JsonLD.Entities;
 using VDS.RDF;
 using VDS.RDF.Writing;
-using VDS.RDF.Writing.Formatting;
 
 namespace Nancy.RDF.Responses
 {
@@ -13,8 +12,8 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfXmlSerializer"/> class.
         /// </summary>
-        public RdfXmlSerializer(IEntitySerializer entitySerializer)
-            : base(RdfSerialization.RdfXml, entitySerializer)
+        public RdfXmlSerializer(IEntitySerializer entitySerializer, INamespaceMapper prefixMapper)
+            : base(RdfSerialization.RdfXml, entitySerializer, prefixMapper)
         {
         }
 

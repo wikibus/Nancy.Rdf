@@ -16,7 +16,7 @@ namespace Nancy.RDF.Tests.Bindings
         {
             _context = context;
 
-            _serializer = new RdfSerializerTestable(_context.Serializer, new TestWriter(graph));
+            _serializer = new RdfSerializerTestable(_context.Serializer, new TestWriter(graph), new NamespaceMapper(true));
         }
 
         [When(@"model is serialized"), Scope(Tag = "Rdf")]
@@ -29,8 +29,8 @@ namespace Nancy.RDF.Tests.Bindings
         {
             private readonly IRdfWriter _writer;
 
-            public RdfSerializerTestable(IEntitySerializer entitySerializer, IRdfWriter writer)
-                : base(RdfSerialization.Turtle, entitySerializer)
+            public RdfSerializerTestable(IEntitySerializer entitySerializer, IRdfWriter writer, INamespaceMapper mapper)
+                : base(RdfSerialization.Turtle, entitySerializer, mapper)
             {
                 _writer = writer;
             }

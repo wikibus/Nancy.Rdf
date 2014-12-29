@@ -13,8 +13,8 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Initializes a new instance of the <see cref="TurtleSerializer"/> class.
         /// </summary>
-        public TurtleSerializer(IEntitySerializer entitySerializer)
-            : base(RdfSerialization.Turtle, entitySerializer)
+        public TurtleSerializer(IEntitySerializer entitySerializer, INamespaceMapper prefixMapper)
+            : base(RdfSerialization.Turtle, entitySerializer, prefixMapper)
         {
         }
 

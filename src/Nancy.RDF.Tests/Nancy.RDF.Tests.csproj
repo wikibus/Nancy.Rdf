@@ -54,7 +54,7 @@
     <Compile Include="Bindings\RdfSerializationSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
-    <Compile Include="PrefixedSerializerTests.cs" />
+    <Compile Include="CompressingSerializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
     <Compile Include="RdfResponseProcessorTests.cs" />
