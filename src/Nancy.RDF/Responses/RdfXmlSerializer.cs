@@ -12,7 +12,7 @@ namespace Nancy.RDF.Responses
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfXmlSerializer"/> class.
         /// </summary>
-        public RdfXmlSerializer(IEntitySerializer entitySerializer, INamespaceMapper prefixMapper)
+        public RdfXmlSerializer(IEntitySerializer entitySerializer, INamespaceManager prefixMapper)
             : base(RdfSerialization.RdfXml, entitySerializer, prefixMapper)
         {
         }

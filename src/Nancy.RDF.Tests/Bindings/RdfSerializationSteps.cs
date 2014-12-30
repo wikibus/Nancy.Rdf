@@ -1,4 +1,5 @@
 using System.IO;
+using FakeItEasy;
 using JsonLD.Entities;
 using Nancy.RDF.Responses;
 using TechTalk.SpecFlow;
@@ -16,7 +17,7 @@ namespace Nancy.RDF.Tests.Bindings
         {
             _context = context;
 
-            _serializer = new RdfSerializerTestable(_context.Serializer, new TestWriter(graph), new NamespaceMapper(true));
+            _serializer = new RdfSerializerTestable(_context.Serializer, new TestWriter(graph), A.Dummy<INamespaceManager>());
         }
 
         [When(@"model is serialized"), Scope(Tag = "Rdf")]
@@ -29,7 +30,7 @@ namespace Nancy.RDF.Tests.Bindings
         {
             private readonly IRdfWriter _writer;
 
-            public RdfSerializerTestable(IEntitySerializer entitySerializer, IRdfWriter writer, INamespaceMapper mapper)
+            public RdfSerializerTestable(IEntitySerializer entitySerializer, IRdfWriter writer, INamespaceManager mapper)
                 : base(RdfSerialization.Turtle, entitySerializer, mapper)
             {
                 _writer = writer;
