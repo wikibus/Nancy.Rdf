@@ -1,5 +1,4 @@
 ﻿using Nancy.Bootstrapper;
-using VDS.RDF;
 
 namespace Nancy.RDF
 {
@@ -13,7 +12,7 @@ namespace Nancy.RDF
         /// </summary>
         public Installer()
         {
-            Register<INamespaceMapper>(new NamespaceMapper(true));
+            Register<INamespaceManager>(new DictionaryNamespaceManager());
         }
     }
 }

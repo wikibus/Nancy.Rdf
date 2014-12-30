@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conventions\AcceptHeaderConventions.cs" />
+    <Compile Include="DefaultNamespaceManager.cs" />
     <Compile Include="INamespaceManager.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="JsonLdProfiles.cs" />
