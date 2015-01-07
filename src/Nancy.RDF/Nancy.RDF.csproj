@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonLdContextModule.cs" />
+    <Compile Include="Contexts\ContextPathMap.cs" />
+    <Compile Include="Contexts\IContextPathMapper.cs" />
+    <Compile Include="Contexts\JsonLdContextModule.cs" />
     <Compile Include="Conventions\AcceptHeaderConventions.cs" />
     <Compile Include="DefaultNamespaceManager.cs" />
     <Compile Include="INamespaceManager.cs" />

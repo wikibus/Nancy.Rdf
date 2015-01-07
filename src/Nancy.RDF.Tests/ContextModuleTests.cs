@@ -2,6 +2,7 @@
 using FluentAssertions;
 using JetBrains.Annotations;
 using JsonLD.Entities;
+using Nancy.RDF.Contexts;
 using Nancy.Responses.Negotiation;
 using Nancy.Testing;
 using Newtonsoft.Json.Linq;
@@ -12,41 +13,20 @@ namespace Nancy.RDF.Tests
     public class ContextModuleTests
     {
         private Browser _browser;
+        private IContextPathMapper _mapper;
 
         [SetUp]
         public void Setup()
         {
+            _mapper = A.Fake<IContextPathMapper>();
+            A.CallTo(() => _mapper.BasePath).Returns("context");
+            A.CallTo(() => _mapper.Contexts).Returns(new[] { new ContextPathMap("staticString", typeof(Model)) });
+
             _browser = new Browser(
-                with => with.Module(new ContextModuleTestable())
-                            .Dependency(A.Dummy<IEntitySerializer>()));
-        }
-
-        [Test]
-        public void Should_serve_statically_set_up_string_jsonld_context_by_default()
-        {
-            // given
-            const string expected = "{ 'sch': 'http://schema.org' }";
-
-            // when
-            var response = _browser.Get("/context/staticString");
-
-            // then
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-            JToken.DeepEquals(JObject.Parse(response.Body.AsString()), JObject.Parse(expected)).Should().BeTrue();
-        }
-
-        [Test]
-        public void Should_serve_statically_set_up_jsonld_context_by_default()
-        {
-            // given
-            const string expected = "{ 'sch': 'http://schema.org' }";
-
-            // when
-            var response = _browser.Get("/context/staticJObject");
-
-            // then
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-            JToken.DeepEquals(JObject.Parse(response.Body.AsString()), JObject.Parse(expected)).Should().BeTrue();
+                with => with.Module<JsonLdContextModule>()
+                            .Dependency(_mapper)
+                            .Dependency(A.Dummy<IEntitySerializer>())
+                            .Dependency(A.Dummy<IContextProvider>()));
         }
 
         [Test]
@@ -56,7 +36,7 @@ namespace Nancy.RDF.Tests
             const string expected = "{ 'sch': 'http://schema.org' }";
 
             // when
-            var response = _browser.Get("/context/model");
+            var response = _browser.Get("/context/staticString");
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -71,16 +51,6 @@ namespace Nancy.RDF.Tests
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.NotAcceptable);
-        }
-
-        private class ContextModuleTestable : JsonLdContextModule
-        {
-            public ContextModuleTestable() : base("context", A.Dummy<IContextProvider>())
-            {
-                Get["staticString"] = ServeContext("{ 'sch': 'http://schema.org' }");
-                Get["staticJObject"] = ServeContext(JObject.Parse("{ 'sch': 'http://schema.org' }"));
-                Get["model"] = ServeContextOf<Model>();
-            }
         }
 
         [UsedImplicitly]
