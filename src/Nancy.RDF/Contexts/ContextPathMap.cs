@@ -27,5 +27,53 @@ namespace Nancy.RDF.Contexts
         /// Gets the type of the model.
         /// </summary>
         public Type ModelType { get; private set; }
+
+        /// <summary>
+        /// Implements the operator ==.
+        /// </summary>
+        public static bool operator ==(ContextPathMap left, ContextPathMap right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        public static bool operator !=(ContextPathMap left, ContextPathMap right)
+        {
+            return !left.Equals(right);
+        }
+
+        /// <summary>
+        /// Checks equality
+        /// </summary>
+        public bool Equals(ContextPathMap other)
+        {
+            return string.Equals(Path, other.Path) && ModelType == other.ModelType;
+        }
+
+        /// <summary>
+        /// Checks equality
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            return obj is ContextPathMap && Equals((ContextPathMap)obj);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Path != null ? Path.GetHashCode() : 0) * 397) ^ (ModelType != null ? ModelType.GetHashCode() : 0);
+            }
+        }
     }
 }

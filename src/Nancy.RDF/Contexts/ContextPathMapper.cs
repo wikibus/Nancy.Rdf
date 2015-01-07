@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Nancy.RDF.Contexts
@@ -29,6 +30,11 @@ namespace Nancy.RDF.Contexts
         {
             get { return _contexts; }
         }
+
+        /// <summary>
+        /// Gets the application path.
+        /// </summary>
+        public abstract Uri AppPath { get; }
 
         /// <summary>
         /// Enables serving of type <typeparamref name="T" />'s @context. The class name will be used as path

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Nancy.RDF.Contexts
@@ -8,7 +9,7 @@ namespace Nancy.RDF.Contexts
     public interface IContextPathMapper
     {
         /// <summary>
-        /// Gets the base path at which @contexts will be served.
+        /// Gets the base relative path at which @contexts will be served.
         /// </summary>
         string BasePath { get; }
 
@@ -16,5 +17,10 @@ namespace Nancy.RDF.Contexts
         /// Gets the context path maps.
         /// </summary>
         IEnumerable<ContextPathMap> Contexts { get; }
+
+        /// <summary>
+        /// Gets the application path.
+        /// </summary>
+        Uri AppPath { get; }
     }
 }

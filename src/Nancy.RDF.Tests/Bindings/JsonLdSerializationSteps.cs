@@ -1,4 +1,6 @@
 using System.IO;
+using FakeItEasy;
+using Nancy.RDF.Contexts;
 using Nancy.RDF.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,7 +17,7 @@ namespace Nancy.RDF.Tests.Bindings
         public JsonLdSerializationSteps(SerializationContext context)
         {
             _context = context;
-            _serializer = new JsonLdSerializer(_context.Serializer);
+            _serializer = new JsonLdSerializer(_context.Serializer, A.Dummy<IContextPathMapper>());
         }
 
         [When(@"model is serialized"), Scope(Tag = "JsonLd")]

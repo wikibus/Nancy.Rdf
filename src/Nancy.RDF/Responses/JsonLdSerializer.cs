@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
+using Nancy.RDF.Contexts;
 using Nancy.Responses.Negotiation;
 using Newtonsoft.Json.Linq;
 
@@ -17,13 +19,15 @@ namespace Nancy.RDF.Responses
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
         private readonly IEntitySerializer _serializer;
+        private readonly IContextPathMapper _contextPathMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
         /// </summary>
-        public JsonLdSerializer(IEntitySerializer serializer)
+        public JsonLdSerializer(IEntitySerializer serializer, IContextPathMapper contextPathMapper)
         {
             _serializer = serializer;
+            _contextPathMapper = contextPathMapper;
         }
 
         /// <summary>
@@ -67,6 +71,22 @@ namespace Nancy.RDF.Responses
                 if (mediaRange.Parameters["profile"] == JsonLdProfiles.Expanded)
                 {
                     serialized = JsonLdProcessor.Expand(serialized);
+                }
+                else
+                {
+                    if (serialized[JsonLdKeywords.Context] != null)
+                    {
+                        var contextMap =
+                            _contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == typeof(TModel));
+
+                        if (contextMap != default(ContextPathMap))
+                        {
+                            var newContext = _contextPathMapper.AppPath
+                                .Append(_contextPathMapper.BasePath)
+                                .Append(contextMap.Path);
+                            serialized[JsonLdKeywords.Context] = newContext;
+                        }
+                    }
                 }
 
                 Debug.WriteLine("Serialized model: {0}", new object[] { serialized });
