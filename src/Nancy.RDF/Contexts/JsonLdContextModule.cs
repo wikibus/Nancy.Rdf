@@ -27,6 +27,13 @@ namespace Nancy.RDF.Contexts
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonLdContextModule"/> class.
+        /// </summary>
+        public JsonLdContextModule()
+        {
+        }
+
         private Func<object, object> ServeContextOf(Type modelType)
         {
             return request =>

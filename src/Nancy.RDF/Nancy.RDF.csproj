@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ContextPathMap.cs" />
+    <Compile Include="Contexts\ContextPathMapper.cs" />
     <Compile Include="Contexts\IContextPathMapper.cs" />
     <Compile Include="Contexts\JsonLdContextModule.cs" />
     <Compile Include="Conventions\AcceptHeaderConventions.cs" />
