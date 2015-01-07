@@ -11,6 +11,8 @@ NUGET
     Fody (1.26.4)
     gitlink (2.0.0)
     HtmlAgilityPack (1.4.6)
+    JetBrainsAnnotations.Fody (1.0.2)
+      Fody
     json-ld.net (1.0.3)
       Newtonsoft.Json (>= 4.0.1)
     Nancy (0.23.2)
@@ -29,7 +31,7 @@ NUGET
     Zoltu.Versioning (1.2.15.0)
   remote: https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
   specs:
-    JsonLd.Entities (0.1.9)
+    JsonLd.Entities (0.2.45.0)
       dotNetRDF (>= 1.0.0)
       json-ld.net (>= 1.0)
 GITHUB

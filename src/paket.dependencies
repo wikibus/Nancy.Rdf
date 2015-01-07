@@ -16,6 +16,6 @@ nuget JsonLd.Entities
 nuget Nullguard.Fody
 nuget Nancy.Testing
 nuget FluentAssertions
-nuget FluentAssertions
+nuget JetbrainsAnnotations.Fody
 
 github tpluscode/FileVersionExtractor

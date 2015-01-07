@@ -1,6 +1,6 @@
-﻿using CsQuery.ExtensionMethods;
-using FakeItEasy;
+﻿using FakeItEasy;
 using FluentAssertions;
+using JetBrains.Annotations;
 using JsonLD.Entities;
 using Nancy.Responses.Negotiation;
 using Nancy.Testing;
@@ -22,33 +22,74 @@ namespace Nancy.RDF.Tests
         }
 
         [Test]
-        public void Should_serve_jsonld_context_by_default()
+        public void Should_serve_statically_set_up_string_jsonld_context_by_default()
         {
             // given
             const string expected = "{ 'sch': 'http://schema.org' }";
 
             // when
-            var response = _browser.Get("/context/someclass");
+            var response = _browser.Get("/context/staticString");
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            JToken.DeepEquals(response.ToJSON(), expected).Should().BeTrue();
+            JToken.DeepEquals(JObject.Parse(response.Body.AsString()), JObject.Parse(expected)).Should().BeTrue();
+        }
+
+        [Test]
+        public void Should_serve_statically_set_up_jsonld_context_by_default()
+        {
+            // given
+            const string expected = "{ 'sch': 'http://schema.org' }";
+
+            // when
+            var response = _browser.Get("/context/staticJObject");
+
+            // then
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            JToken.DeepEquals(JObject.Parse(response.Body.AsString()), JObject.Parse(expected)).Should().BeTrue();
+        }
+
+        [Test]
+        public void Should_serve_type_jsonld_context_by_default()
+        {
+            // given
+            const string expected = "{ 'sch': 'http://schema.org' }";
+
+            // when
+            var response = _browser.Get("/context/model");
+
+            // then
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            JToken.DeepEquals(JObject.Parse(response.Body.AsString()), JObject.Parse(expected)).Should().BeTrue();
         }
 
         [Test]
         public void Should_not_serve_jsonld_context_in_other_format()
         {
             // when
-            var response = _browser.Get("/context/someclass", with => with.Accept(new MediaRange(RdfSerialization.Turtle.MediaType)));
+            var response = _browser.Get("/context/staticString", with => with.Accept(new MediaRange(RdfSerialization.Turtle.MediaType)));
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.NotAcceptable);
         }
 
-        public class ContextModuleTestable : ContextModule
+        private class ContextModuleTestable : ContextModule
         {
-            public ContextModuleTestable() : base("context")
+            public ContextModuleTestable() : base("context", A.Dummy<IContextProvider>())
             {
+                Get["staticString"] = ServeContext("{ 'sch': 'http://schema.org' }");
+                Get["staticJObject"] = ServeContext(JObject.Parse("{ 'sch': 'http://schema.org' }"));
+                Get["model"] = ServeContextOf<Model>();
+            }
+        }
+
+        [UsedImplicitly]
+        private class Model
+        {
+            [UsedImplicitly]
+            public static JObject Context
+            {
+                get { return JObject.Parse("{ 'sch': 'http://schema.org' }"); }
             }
         }
     }
