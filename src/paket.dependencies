@@ -14,5 +14,8 @@ nuget StyleCopPlus.MSBuild
 nuget GitLink
 nuget JsonLd.Entities
 nuget Nullguard.Fody
+nuget Nancy.Testing
+nuget FluentAssertions
+nuget FluentAssertions
 
-github tpluscode/FileVersionExtractor FULLPROJECT
+github tpluscode/FileVersionExtractor

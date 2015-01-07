@@ -6,3 +6,5 @@ SpecFlow
 FakeItEasy
 NUnit
 JsonLd.Entities
+Nancy.Testing
+FluentAssertions
