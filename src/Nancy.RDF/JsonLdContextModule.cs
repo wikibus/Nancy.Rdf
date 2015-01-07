@@ -8,25 +8,25 @@ namespace Nancy.RDF
     /// <summary>
     /// Module, which serves JSON-LD contexts
     /// </summary>
-    public abstract class ContextModule : NancyModule
+    public abstract class JsonLdContextModule : NancyModule
     {
         private readonly ContextResolver _resolver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContextModule"/> class.
+        /// Initializes a new instance of the <see cref="JsonLdContextModule"/> class.
         /// </summary>
         /// <param name="provider">custom context provider</param>
-        protected ContextModule(IContextProvider provider)
+        protected JsonLdContextModule(IContextProvider provider)
         {
             _resolver = new ContextResolver(provider);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContextModule"/> class.
+        /// Initializes a new instance of the <see cref="JsonLdContextModule"/> class.
         /// </summary>
         /// <param name="modulePath">A base path for contexts.</param>
         /// <param name="provider">custom context provider</param>
-        protected ContextModule(string modulePath, IContextProvider provider) : base(modulePath)
+        protected JsonLdContextModule(string modulePath, IContextProvider provider) : base(modulePath)
         {
             _resolver = new ContextResolver(provider);
         }

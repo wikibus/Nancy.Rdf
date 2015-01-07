@@ -73,7 +73,7 @@ namespace Nancy.RDF.Tests
             response.StatusCode.Should().Be(HttpStatusCode.NotAcceptable);
         }
 
-        private class ContextModuleTestable : ContextModule
+        private class ContextModuleTestable : JsonLdContextModule
         {
             public ContextModuleTestable() : base("context", A.Dummy<IContextProvider>())
             {
