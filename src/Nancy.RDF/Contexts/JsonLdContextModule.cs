@@ -1,6 +1,7 @@
 ﻿using System;
 using JsonLD.Entities;
 using Nancy.Responses;
+using Newtonsoft.Json.Linq;
 
 namespace Nancy.RDF.Contexts
 {
@@ -38,7 +39,10 @@ namespace Nancy.RDF.Contexts
         {
             return request =>
             {
-                var context = _resolver.GetContext(modelType);
+                var context = new JObject
+                {
+                    { JsonLdKeywords.Context, _resolver.GetContext(modelType) }
+                };
                 var response = new TextResponse(context.ToString(), RdfSerialization.JsonLd.MediaType);
                 return Negotiate.WithAllowedMediaRange(RdfSerialization.JsonLd.MediaType)
                                 .WithMediaRangeResponse(RdfSerialization.JsonLd.MediaType, response);

@@ -33,7 +33,8 @@ namespace Nancy.RDF.Tests
         public void Should_serve_type_jsonld_context_by_default()
         {
             // given
-            const string expected = "{ 'sch': 'http://schema.org' }";
+            const string context = "{ 'sch': 'http://schema.org' }";
+            string expected = string.Format("{{'@context': {0} }}", context);
 
             // when
             var response = _browser.Get("/context/staticString");
