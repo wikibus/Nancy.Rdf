@@ -9,7 +9,7 @@ nuget newtonsoft.json 6.0.6
 nuget dotNetRDF < 1.0.7
 nuget json-ld.net
 nuget Nancy
-nuget Zoltu.Versioning
+nuget GitVersionTask
 nuget HtmlAgilityPack == 1.4.6
 nuget SpecFlow
 nuget FakeItEasy

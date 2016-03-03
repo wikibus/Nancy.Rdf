@@ -1,8 +1,19 @@
+install:
+  - choco install gitversion.portable -pre -y
+  
 before_build:  
-  - restore_packages.bat
+  - .paket\paket.bootstrapper.exe
+  - .paket\paket.exe restore
+  - ps: gitversion /l console /output buildserver
 
 configuration: Release
 
-on_success:
-  - nuget pack Nancy.RDF.nuspec -Version %APPVEYOR_BUILD_VERSION%
-  - ps: Push-AppveyorArtifact "Nancy.RDF.$($env:APPVEYOR_BUILD_VERSION).nupkg"
+after_build:
+  - nuget pack Nancy.RDF.nuspec -Version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
+
+deploy:
+- provider: NuGet
+  server: https://ci.appveyor.com/nuget/tpluscode78631-6jxuo30rn51k
+  api_key:
+    secure: i9B4FzSsIyRHv57fkSaH97JiI7jwQL+FC1WSal2lR0E=
+  artifact: Nancy.RDF%GitVersion_NuGetVersion%.nupkg
