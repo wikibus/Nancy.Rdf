@@ -8,7 +8,7 @@ before_build:
 
 configuration: Release
 
-after_build:
+build_success:
   - nuget pack Nancy.RDF.nuspec -Version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
 
 artifacts:
