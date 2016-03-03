@@ -1,4 +1,5 @@
 ﻿using System;
+using NullGuard;
 
 namespace Nancy.RDF.Contexts
 {
@@ -21,12 +22,12 @@ namespace Nancy.RDF.Contexts
         /// <summary>
         /// Gets the path.
         /// </summary>
-        public string Path { get; private set; }
+        public string Path { [return: AllowNull] get; private set; }
 
         /// <summary>
         /// Gets the type of the model.
         /// </summary>
-        public Type ModelType { get; private set; }
+        public Type ModelType { [return: AllowNull] get; private set; }
 
         /// <summary>
         /// Implements the operator ==.
