@@ -11,6 +11,9 @@ configuration: Release
 after_build:
   - nuget pack Nancy.RDF.nuspec -Version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
 
+artifacts:
+  - path: Nancy.RDF.%GitVersion_NuGetVersion%.nupkg
+  
 deploy:
 - provider: NuGet
   server: https://ci.appveyor.com/nuget/tpluscode78631-6jxuo30rn51k
