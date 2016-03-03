@@ -1,7 +1,7 @@
 dotNetRDF
 json-ld.net
 Nancy
-Zoltu.Versioning
+GitVersionTask
 SpecFlow
 FakeItEasy
 NUnit

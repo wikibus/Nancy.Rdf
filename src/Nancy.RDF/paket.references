@@ -1,6 +1,6 @@
 dotNetRDF
 json-ld.net
 Nancy
-Zoltu.Versioning
+GitVersionTask
 JsonLd.Entities
 NullGuard.Fody

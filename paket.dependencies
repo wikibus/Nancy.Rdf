@@ -1,5 +1,5 @@
 source https://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
+source https://ci.appveyor.com/nuget/tpluscode78631-6jxuo30rn51k
 
 content: none
 redirects: on
@@ -16,10 +16,8 @@ nuget FakeItEasy
 nuget NUnit
 nuget StyleCopPlus.MSBuild
 nuget GitLink
-nuget JsonLd.Entities
+nuget JsonLd.Entities prerelease
 nuget Nullguard.Fody
 nuget Nancy.Testing
 nuget FluentAssertions
 nuget JetbrainsAnnotations.Fody
-
-github tpluscode/FileVersionExtractor
