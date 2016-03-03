@@ -7,11 +7,11 @@ framework: net40, net45
 
 nuget Nancy
 nuget newtonsoft.json
-nuget dotNetRDF < 1.0.7
+nuget dotNetRDF
 nuget json-ld.net
 nuget Nancy
 nuget GitVersionTask
-nuget HtmlAgilityPack == 1.4.6
+nuget HtmlAgilityPack
 nuget SpecFlow
 nuget FakeItEasy
 nuget NUnit < 3
