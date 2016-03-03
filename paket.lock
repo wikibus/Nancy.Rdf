@@ -34,5 +34,5 @@ NUGET
     VDS.Common (1.6.0)
   remote: https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
   specs:
-    JsonLd.Entities (0.3.0-pre0095)
+    JsonLd.Entities (0.3.0)
       json-ld.net (>= 1.0)
