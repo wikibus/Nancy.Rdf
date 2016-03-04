@@ -3,3 +3,4 @@ Nancy
 GitVersionTask
 JsonLd.Entities
 NullGuard.Fody
+StyleCopPlus.MSBuild
