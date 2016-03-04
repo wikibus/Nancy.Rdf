@@ -1,0 +1,15 @@
+type project
+include-pdbs true
+excludeddependencies
+  GitVersionTask
+projectUrl
+  http://github.org/wikibus/Nancy.RDF
+description
+  Copyright 2014 Tomasz Pluskiewicz
+  Icon designed by Piotrek Chuchla from The Noun Project
+tags
+  rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web
+licenseUrl
+  http://www.opensource.org/licenses/mit-license.php
+iconUrl
+  https://raw.githubusercontent.com/wikibus/Nancy.RDF/blob/master/assets/icon_21532.png
