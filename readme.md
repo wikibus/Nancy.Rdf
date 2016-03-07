@@ -1,5 +1,5 @@
 ![graph icon](https://raw.githubusercontent.com/wikibus/Nancy.RDF/master/assets/icon_21532.png)
-[![Build status](https://ci.appveyor.com/api/projects/status/tu54t4e76c1c773e/branch/master?svg=true)](https://ci.appveyor.com/project/tpluscode78631/nancy-rdf/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/utu3rrmadr1p2p3v?svg=true)](https://ci.appveyor.com/project/tpluscode78631/nancy-rdf/branch/master)
 
 [Nancy](http://github.org/nancyFx/nancy) serializers for RDF datatypes
 
