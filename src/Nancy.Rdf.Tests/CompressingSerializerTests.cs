@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using FakeItEasy;
 using JsonLD.Entities;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 using NUnit.Framework;
 using VDS.RDF;
 
-namespace Nancy.RDF.Tests
+namespace Nancy.Rdf.Tests
 {
     [TestFixture]
     public class CompressingSerializerTests

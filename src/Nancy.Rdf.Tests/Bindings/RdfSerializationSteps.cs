@@ -1,11 +1,11 @@
 using System.IO;
 using FakeItEasy;
 using JsonLD.Entities;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 using TechTalk.SpecFlow;
 using VDS.RDF;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     [Binding]
     public class RdfSerializationSteps

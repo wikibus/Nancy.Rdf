@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nancy.RDF.Conventions;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Conventions;
+using Nancy.Rdf.Responses;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     [Binding]
     public class AcceptHeaderCoercionSteps

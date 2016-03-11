@@ -1,6 +1,6 @@
 ﻿using Nancy.Bootstrapper;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Installs components required by Nancy.RDF

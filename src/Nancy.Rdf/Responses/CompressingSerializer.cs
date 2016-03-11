@@ -3,7 +3,7 @@ using System.IO;
 using JsonLD.Entities;
 using VDS.RDF;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// An RDF serializer, which applies namespace compression

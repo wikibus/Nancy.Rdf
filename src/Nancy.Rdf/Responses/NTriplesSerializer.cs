@@ -5,7 +5,7 @@ using VDS.RDF;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing.Formatting;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Serializer for NTriples format

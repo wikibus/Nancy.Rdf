@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Represents an RDF media type

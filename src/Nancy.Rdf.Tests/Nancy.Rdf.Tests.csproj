@@ -10,8 +10,8 @@
     <ProjectGuid>{FB53365A-39FF-45FD-A2B5-872B51691E7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nancy.RDF.Tests</RootNamespace>
-    <AssemblyName>Nancy.RDF.Tests</AssemblyName>
+    <RootNamespace>Nancy.Rdf.Tests</RootNamespace>
+    <AssemblyName>Nancy.Rdf.Tests</AssemblyName>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -92,9 +92,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nancy.RDF\Nancy.RDF.csproj">
+    <ProjectReference Include="..\Nancy.Rdf\Nancy.Rdf.csproj">
       <Project>{D789D63C-821B-410B-A953-DFEBCBFC9D40}</Project>
-      <Name>Nancy.RDF</Name>
+      <Name>Nancy.Rdf</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

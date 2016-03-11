@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nancy.RDF.Contexts
+namespace Nancy.Rdf.Contexts
 {
     /// <summary>
     /// Basic implementation of <see cref="IContextPathMapper"/>

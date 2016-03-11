@@ -6,11 +6,11 @@ using System.Linq;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
-using Nancy.RDF.Contexts;
+using Nancy.Rdf.Contexts;
 using Nancy.Responses.Negotiation;
 using Newtonsoft.Json.Linq;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Serializer of JSON-LD

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Nancy.Responses.Negotiation;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Response processor for RDF media types

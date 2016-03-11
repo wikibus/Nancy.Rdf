@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Response processor for Turtle

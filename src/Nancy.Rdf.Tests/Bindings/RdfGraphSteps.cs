@@ -6,7 +6,7 @@ using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     [Binding]
     public class RdfGraphSteps

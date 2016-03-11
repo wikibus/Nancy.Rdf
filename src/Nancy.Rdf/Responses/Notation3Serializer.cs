@@ -2,7 +2,7 @@
 using VDS.RDF;
 using VDS.RDF.Writing;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Serializer for Notation3 format

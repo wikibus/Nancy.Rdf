@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NullGuard;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Dictionary-backed <see cref="INamespaceManager"/>

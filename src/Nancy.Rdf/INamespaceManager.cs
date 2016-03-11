@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Manages RDF prefixes and base URI

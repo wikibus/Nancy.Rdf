@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 
-namespace Nancy.RDF.Conventions
+namespace Nancy.Rdf.Conventions
 {
     /// <summary>
     /// Delegate for Nancy's Accept header coercion convention

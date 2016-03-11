@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// A prefix-namespace mapping

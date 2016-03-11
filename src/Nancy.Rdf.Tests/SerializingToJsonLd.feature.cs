@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Nancy.RDF.Tests
+namespace Nancy.Rdf.Tests
 {
     using TechTalk.SpecFlow;
     

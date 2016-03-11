@@ -2,13 +2,13 @@
 using FluentAssertions;
 using JetBrains.Annotations;
 using JsonLD.Entities;
-using Nancy.RDF.Contexts;
+using Nancy.Rdf.Contexts;
 using Nancy.Responses.Negotiation;
 using Nancy.Testing;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
-namespace Nancy.RDF.Tests
+namespace Nancy.Rdf.Tests
 {
     public class ContextModuleTests
     {

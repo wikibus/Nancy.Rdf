@@ -2,7 +2,7 @@
 using FakeItEasy;
 using JsonLD.Entities;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     public class SerializationContext
     {

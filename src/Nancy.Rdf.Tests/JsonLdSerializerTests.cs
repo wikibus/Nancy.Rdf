@@ -3,12 +3,12 @@ using System.IO;
 using FakeItEasy;
 using FluentAssertions;
 using JsonLD.Entities;
-using Nancy.RDF.Contexts;
+using Nancy.Rdf.Contexts;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using JsonLdSerializer = Nancy.RDF.Responses.JsonLdSerializer;
+using JsonLdSerializer = Nancy.Rdf.Responses.JsonLdSerializer;
 
-namespace Nancy.RDF.Tests
+namespace Nancy.Rdf.Tests
 {
     [TestFixture]
     public class JsonLdSerializerTests

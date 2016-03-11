@@ -1,7 +1,7 @@
 ﻿using System;
 using NullGuard;
 
-namespace Nancy.RDF.Contexts
+namespace Nancy.Rdf.Contexts
 {
     /// <summary>
     /// Maps a Nancy path to a model type

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using FakeItEasy;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 using Nancy.Responses.Negotiation;
 using NUnit.Framework;
 
-namespace Nancy.RDF.Tests
+namespace Nancy.Rdf.Tests
 {
     [TestFixture]
     public class RdfResponseProcessorTests

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Nancy.RDF")]
+[assembly: AssemblyTitle("Nancy.Rdf")]
 [assembly: AssemblyDescription("Nancy components for handling RDF requests and responses")]
 [assembly: AssemblyCompany("Tomasz Pluskiewicz")]
 [assembly: AssemblyCopyright("Copyright © 2014-2016 Tomasz Pluskiewicz")]

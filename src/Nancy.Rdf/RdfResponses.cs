@@ -1,7 +1,7 @@
 ﻿using Nancy.Bootstrapper;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Optional setup for serving RDF

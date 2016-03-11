@@ -7,7 +7,7 @@ using JsonLD.Entities;
 using Nancy.IO;
 using VDS.RDF;
 
-namespace Nancy.RDF.Responses
+namespace Nancy.Rdf.Responses
 {
     /// <summary>
     /// Serializer for RDF data types (other than JSON-LD)

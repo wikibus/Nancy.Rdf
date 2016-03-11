@@ -1,12 +1,12 @@
 using System.IO;
 using FakeItEasy;
-using Nancy.RDF.Contexts;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Contexts;
+using Nancy.Rdf.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TechTalk.SpecFlow;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     [Binding, Scope(Tag = "JsonLd")]
     public class JsonLdSerializationSteps

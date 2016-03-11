@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using FakeItEasy;
-using Nancy.RDF.Responses;
+using Nancy.Rdf.Responses;
 using Nancy.Responses.Negotiation;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
-namespace Nancy.RDF.Tests.Bindings
+namespace Nancy.Rdf.Tests.Bindings
 {
     [Binding]
     public class ContentNegotiationSteps

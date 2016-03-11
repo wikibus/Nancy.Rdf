@@ -1,6 +1,6 @@
 using System;
 
-namespace Nancy.RDF
+namespace Nancy.Rdf
 {
     /// <summary>
     /// Helper methods for handling URIs

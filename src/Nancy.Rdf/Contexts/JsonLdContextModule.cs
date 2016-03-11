@@ -3,7 +3,7 @@ using JsonLD.Entities;
 using Nancy.Responses;
 using Newtonsoft.Json.Linq;
 
-namespace Nancy.RDF.Contexts
+namespace Nancy.Rdf.Contexts
 {
     /// <summary>
     /// Module, which serves JSON-LD contexts
