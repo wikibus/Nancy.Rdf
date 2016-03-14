@@ -2,6 +2,8 @@ type project
 include-pdbs true
 excludeddependencies
   GitVersionTask
+dependencies
+  JsonLD.Entities ~> LOCKEDVERSION
 projectUrl
   http://github.org/wikibus/Nancy.RDF
 description

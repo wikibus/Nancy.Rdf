@@ -12,7 +12,7 @@ namespace Nancy.Rdf
         /// </summary>
         public Installer()
         {
-            Register<INamespaceManager>(new DictionaryNamespaceManager());
+            RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
         }
     }
 }
