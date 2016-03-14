@@ -18,7 +18,7 @@ namespace Nancy.Rdf.Tests.Bindings
         [Given(@"A serialized model:")]
         public void GivenASerializedModel(string json)
         {
-            A.CallTo(() => _context.Serializer.Serialize(A<object>.Ignored)).Returns(JObject.Parse(json));
+            A.CallTo(() => _context.Serializer.Serialize(A<object>.Ignored, null)).Returns(JObject.Parse(json));
         }
 
         [Given(@"accepted media type '(.*)'")]
