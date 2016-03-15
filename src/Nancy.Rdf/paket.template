@@ -3,7 +3,7 @@ include-pdbs true
 excludeddependencies
   GitVersionTask
 dependencies
-  JsonLD.Entities ~> LOCKEDVERSION
+  JsonLD.Entities >= LOCKEDVERSION
 projectUrl
   http://github.org/wikibus/Nancy.RDF
 description
