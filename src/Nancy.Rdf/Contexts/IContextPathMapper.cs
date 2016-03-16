@@ -19,8 +19,8 @@ namespace Nancy.Rdf.Contexts
         IEnumerable<ContextPathMap> Contexts { get; }
 
         /// <summary>
-        /// Gets the application path.
+        /// Gets the base <see cref="Uri"/> path at which @contexts will be served.
         /// </summary>
-        Uri AppPath { get; }
+        Uri BaseContextUrl { get; }
     }
 }

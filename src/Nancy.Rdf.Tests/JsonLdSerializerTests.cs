@@ -32,8 +32,7 @@ namespace Nancy.Rdf.Tests
         {
             // given
             const string expectedUri = "http://example.com/contexts/model";
-            A.CallTo(() => _pathMapper.AppPath).Returns(new Uri("http://example.com"));
-            A.CallTo(() => _pathMapper.BasePath).Returns("contexts");
+            A.CallTo(() => _pathMapper.BaseContextUrl).Returns(new Uri("http://example.com/contexts"));
             A.CallTo(() => _pathMapper.Contexts).Returns(new[] { new ContextPathMap("model", typeof(object)) });
             A.CallTo(() => _entitySerializer.Serialize(A<object>.Ignored, null)).Returns(_modelWithContext);
             var outStream = new MemoryStream();

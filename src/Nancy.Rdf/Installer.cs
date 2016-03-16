@@ -1,4 +1,5 @@
 ﻿using Nancy.Bootstrapper;
+using Nancy.Rdf.Contexts;
 
 namespace Nancy.Rdf
 {
@@ -13,6 +14,7 @@ namespace Nancy.Rdf
         public Installer()
         {
             RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
+            RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper), Lifetime.PerRequest);
         }
     }
 }

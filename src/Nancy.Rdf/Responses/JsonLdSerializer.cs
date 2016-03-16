@@ -81,9 +81,7 @@ namespace Nancy.Rdf.Responses
 
                         if (contextMap != default(ContextPathMap))
                         {
-                            var newContext = _contextPathMapper.AppPath
-                                .Append(_contextPathMapper.BasePath)
-                                .Append(contextMap.Path);
+                            var newContext = _contextPathMapper.BaseContextUrl.Append(contextMap.Path);
                             serialized[JsonLdKeywords.Context] = newContext;
                         }
                     }
