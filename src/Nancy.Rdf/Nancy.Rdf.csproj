@@ -57,6 +57,7 @@
     <Compile Include="NamespaceMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RdfResponses.cs" />
+    <Compile Include="Responses\IRdfSerializer.cs" />
     <Compile Include="Responses\Notation3Serializer.cs" />
     <Compile Include="Responses\JsonLdResponseProcessor.cs" />
     <Compile Include="Responses\JsonLdSerializer.cs" />

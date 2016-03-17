@@ -30,7 +30,7 @@ namespace Nancy.Rdf.Tests
         public void Should_match_wildcard_when_set_up()
         {
             // given
-            var serializer = A.Fake<ISerializer>();
+            var serializer = A.Fake<RdfSerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
             var nancyContext = new NancyContext();
             nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.RdfXml);
@@ -48,7 +48,7 @@ namespace Nancy.Rdf.Tests
         public void Should_not_match_wildcard_when_another_fallback_set_up()
         {
             // given
-            var serializer = A.Fake<ISerializer>();
+            var serializer = A.Fake<RdfSerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
             var nancyContext = new NancyContext();
             nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.Turtle);
@@ -66,7 +66,7 @@ namespace Nancy.Rdf.Tests
         public void Should_not_match_wildcard_when_not_set_up()
         {
             // given
-            var serializer = A.Fake<ISerializer>();
+            var serializer = A.Fake<RdfSerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
 

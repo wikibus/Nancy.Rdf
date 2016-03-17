@@ -15,7 +15,7 @@ namespace Nancy.Rdf.Responses
     /// <summary>
     /// Serializer of JSON-LD
     /// </summary>
-    public class JsonLdSerializer : ISerializer
+    public class JsonLdSerializer : IRdfSerializer
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
         private readonly IEntitySerializer _serializer;

@@ -12,7 +12,7 @@ namespace Nancy.Rdf.Responses
     /// <summary>
     /// Serializer for RDF data types (other than JSON-LD)
     /// </summary>
-    public abstract class RdfSerializer : ISerializer
+    public abstract class RdfSerializer : IRdfSerializer
     {
         private readonly RdfSerialization _serialization;
         private readonly INodeFactory _nodeFactory;
