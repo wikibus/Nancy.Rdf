@@ -15,7 +15,7 @@ namespace Nancy.Rdf
         public Installer()
         {
             RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
-            RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper), Lifetime.PerRequest);
+            RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
             Register<IEntitySerializer>(typeof(EntitySerializer));
         }
     }
