@@ -71,6 +71,7 @@
     <Compile Include="Responses\RdfXmlSerializer.cs" />
     <Compile Include="Responses\TurtleResponseProcessor.cs" />
     <Compile Include="Responses\TurtleSerializer.cs" />
+    <Compile Include="Responses\WrappedModel.cs" />
     <Compile Include="UriExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

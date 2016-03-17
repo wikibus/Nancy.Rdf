@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Nancy.Rdf.Contexts
@@ -9,15 +8,13 @@ namespace Nancy.Rdf.Contexts
     public class DefaultContextPathMapper : IContextPathMapper
     {
         private const string DefaultContextPath = "_contexts";
-        private readonly NancyContext _context;
         private readonly IList<ContextPathMap> _contexts = new List<ContextPathMap>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultContextPathMapper"/> class.
         /// </summary>
-        public DefaultContextPathMapper(NancyContext context)
+        public DefaultContextPathMapper()
         {
-            _context = context;
             BasePath = DefaultContextPath;
         }
 
@@ -32,14 +29,6 @@ namespace Nancy.Rdf.Contexts
         public virtual IEnumerable<ContextPathMap> Contexts
         {
             get { return _contexts; }
-        }
-
-        /// <summary>
-        /// Gets the base <see cref="Uri" /> path at which @contexts will be served.
-        /// </summary>
-        public virtual Uri BaseContextUrl
-        {
-            get { return new Uri(_context.Request.Url.SiteBase + BasePath); }
         }
 
         /// <summary>

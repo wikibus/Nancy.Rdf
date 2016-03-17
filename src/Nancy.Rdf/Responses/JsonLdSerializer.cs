@@ -62,9 +62,12 @@ namespace Nancy.Rdf.Responses
         /// <param name="outputStream">The output stream.</param>
         public void Serialize<TModel>(string contentType, TModel model, Stream outputStream)
         {
+            WrappedModel? wrappedModel = model as WrappedModel?;
+            var actualModel = wrappedModel == null ? model : wrappedModel.Value.Model;
+
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                JToken serialized = _serializer.Serialize(model);
+                JToken serialized = _serializer.Serialize(actualModel);
 
                 var mediaRange = new MediaRange(contentType);
 
@@ -76,12 +79,13 @@ namespace Nancy.Rdf.Responses
                 {
                     if (serialized[JsonLdKeywords.Context] != null)
                     {
-                        var contextMap =
-                            _contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == typeof(TModel));
+                        var contextMap = _contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == actualModel.GetType());
 
-                        if (contextMap != default(ContextPathMap))
+                        if (contextMap != default(ContextPathMap) && wrappedModel != null)
                         {
-                            var newContext = _contextPathMapper.BaseContextUrl.Append(contextMap.Path);
+                            var newContext = wrappedModel.Value.BaseUrl
+                                .Append(_contextPathMapper.BasePath)
+                                .Append(contextMap.Path);
                             serialized[JsonLdKeywords.Context] = newContext;
                         }
                     }

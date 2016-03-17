@@ -4,6 +4,7 @@ using FakeItEasy;
 using FluentAssertions;
 using JsonLD.Entities;
 using Nancy.Rdf.Contexts;
+using Nancy.Rdf.Responses;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using JsonLdSerializer = Nancy.Rdf.Responses.JsonLdSerializer;
@@ -31,14 +32,15 @@ namespace Nancy.Rdf.Tests
         public void Should_replace_context_when_available()
         {
             // given
+            const string siteBase = "http://example.com/";
             const string expectedUri = "http://example.com/contexts/model";
-            A.CallTo(() => _pathMapper.BaseContextUrl).Returns(new Uri("http://example.com/contexts"));
             A.CallTo(() => _pathMapper.Contexts).Returns(new[] { new ContextPathMap("model", typeof(object)) });
+            A.CallTo(() => _pathMapper.BasePath).Returns("contexts");
             A.CallTo(() => _entitySerializer.Serialize(A<object>.Ignored, null)).Returns(_modelWithContext);
             var outStream = new MemoryStream();
 
             // when
-            _serializer.Serialize("content/type", new object(), outStream);
+            _serializer.Serialize("content/type", new WrappedModel(new object(), siteBase), outStream);
 
             // then
             outStream.Seek(0, SeekOrigin.Begin);

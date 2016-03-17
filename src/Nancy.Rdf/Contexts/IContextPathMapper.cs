@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Nancy.Rdf.Contexts
@@ -17,10 +16,5 @@ namespace Nancy.Rdf.Contexts
         /// Gets the context path maps.
         /// </summary>
         IEnumerable<ContextPathMap> Contexts { get; }
-
-        /// <summary>
-        /// Gets the base <see cref="Uri"/> path at which @contexts will be served.
-        /// </summary>
-        Uri BaseContextUrl { get; }
     }
 }

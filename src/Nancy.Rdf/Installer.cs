@@ -1,4 +1,5 @@
-﻿using Nancy.Bootstrapper;
+﻿using JsonLD.Entities;
+using Nancy.Bootstrapper;
 using Nancy.Rdf.Contexts;
 
 namespace Nancy.Rdf
@@ -15,6 +16,7 @@ namespace Nancy.Rdf
         {
             RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
             RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper), Lifetime.PerRequest);
+            Register<IEntitySerializer>(typeof(EntitySerializer));
         }
     }
 }
