@@ -21,7 +21,7 @@ namespace Nancy.Rdf.Responses
         protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers)
         {
             _serialization = serialization;
-            _serializer = serializers.FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
+            _serializer = serializers.Cast<RdfSerializer>().FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
         }
 
         /// <summary>
