@@ -28,7 +28,10 @@ You may also want to install Rdf.Vocabularies, so that you don't have to remembe
 PM> Install-Package Rdf.Vocabularies
 ```
 
-## Usage
+## Basic usage
+
+With Nancy.Rdf I struggle to follow the [Super-Duper-Happy-Path][sdhp]. Nancy has an unparalelled extensibility model and thanks to
+SDHP there is a minimal number of steps required to get RDF up and running in your API. It just works!
 
 ### Create a POCO model class
 
@@ -126,9 +129,27 @@ Other RDF media types are served by serializing to JSON-LD first and then conver
 ### (Optional) Get rid of inline `@context`
 
 The JSON-LD context can become quite lengthy and Nancy.Rdf makes it trivialy to serve remote contexts and replace the `@context`
-object on serialized models.
+object on serialized models. By implementing `IContextPathMapper` it is possible to make Nancy.Rdf replace context of serialized
+models and have it served from a dedicated module. For convenience there is a base class to set that up.
 
-// todo
+``` c#
+public class ContextPathMapper : Contexts.DefaultContextPathMapper
+{
+  public ContextPathMapper()
+  {
+    ServeContextOf<Person>();
+  }
+}
+```
+
+The above class will expose a `/_contexts/Person` resource and use it as context whenever an instance of `Person` is serialized.
+The `_contexts` part can be changed by overriding the `BasePath` property. The `/Person` part can be changed by passing a parameter
+to the `ServeContextOf` method call.
+
+## Credits
+
+Great thanks to the [Nancy][nancy] team for creating this great framework.
+Thanks to the [NuGet][nuget] team for implementing the [JSON-LD API][ld-api].
 
 [The icon](http://thenounproject.com/term/graph/21532/) desiged by [Piotrek Chuchla](http://thenounproject.com/pchuchla/) from [The Noun Project](http://thenounproject.com/)
 
@@ -139,3 +160,6 @@ object on serialized models.
 [nuget-link]: https://badge.fury.io/nu/nancy.rdf
 [entities]: https://github.com/wikibus/JsonLD.Entities/
 [entities-samples]: https://github.com/wikibus/JsonLD.Entities/tree/master/src/Documentation
+[nuget]: https://github.com/nuget/json-ld.net
+[ld-api]: http://json-ld.org/spec/latest/json-ld-api/
+[sdhp]: https://github.com/NancyFx/Nancy/wiki/Introduction#the-super-duper-happy-path
