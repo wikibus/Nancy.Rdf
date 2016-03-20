@@ -232,3 +232,4 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 .paket/paket.exe
+.vs/

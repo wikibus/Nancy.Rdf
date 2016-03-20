@@ -1,0 +1,5 @@
+Nancy.Owin
+Microsoft.Owin.Host.SystemWeb
+Microsoft.Owin.Hosting
+Rdf.Vocabularies
+JsonLD.Entities

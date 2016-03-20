@@ -21,12 +21,12 @@ namespace Nancy.Rdf.Contexts
         /// <summary>
         /// Gets the base path at which @contexts will be served.
         /// </summary>
-        public string BasePath { get; }
+        public virtual string BasePath { get; }
 
         /// <summary>
         /// Gets the context path maps.
         /// </summary>
-        public virtual IEnumerable<ContextPathMap> Contexts
+        public IEnumerable<ContextPathMap> Contexts
         {
             get { return _contexts; }
         }

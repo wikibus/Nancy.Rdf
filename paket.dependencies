@@ -22,3 +22,7 @@ nuget Nullguard.Fody
 nuget Nancy.Testing
 nuget FluentAssertions
 nuget JetbrainsAnnotations.Fody
+nuget Nancy.Owin
+nuget Microsoft.Owin.Host.SystemWeb
+nuget Microsoft.Owin.Hosting
+nuget Rdf.Vocabularies
