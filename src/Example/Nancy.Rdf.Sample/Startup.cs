@@ -70,9 +70,6 @@ namespace Nancy.Rdf.Sample
 
     public class ContextPathMapper : Contexts.DefaultContextPathMapper
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ContextPathMapper"/> class.
-        /// </summary>
         public ContextPathMapper()
         {
             ServeContextOf<Person>();
