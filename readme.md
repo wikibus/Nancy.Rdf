@@ -14,7 +14,7 @@ Nancy.Rdf is a set of [Nancy][nancy] components, which allow working with POCO m
 * Notation3
 * n-triples
 
-Under the hood dotNetRDF is used. Thus in the future I plan to add the possibility to serve dotNetRDF graphs and datasets directly.
+Under the hood [dotNetRDF][dnr] is used. Thus in the future I plan to add the possibility to serve dotNetRDF graphs and datasets directly.
 
 ## Installation
 
@@ -22,7 +22,7 @@ Under the hood dotNetRDF is used. Thus in the future I plan to add the possibili
 PM> Install-Package Nancy.Rdf
 ```
 
-You may also want to install Rdf.Vocabularies, so that you don't have to remember all of those common URIs.
+You may also want to install [Rdf.Vocabularies][vocab], so that you don't have to remember all of those common URIs.
 
 ```
 PM> Install-Package Rdf.Vocabularies
@@ -166,3 +166,5 @@ Thanks to the [NuGet][nuget] team for implementing the [JSON-LD API][ld-api].
 [ld-api]: http://json-ld.org/spec/latest/json-ld-api/
 [sdhp]: https://github.com/NancyFx/Nancy/wiki/Introduction#the-super-duper-happy-path
 [sample]: https://github.com/wikibus/Nancy.Rdf/tree/master/src/Example/Nancy.Rdf.Sample
+[dnr]: http://dotnetrdf.org
+[vocab]: https://github.com/wikibus/Rdf.Vocabularies
