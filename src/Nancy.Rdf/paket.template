@@ -12,6 +12,6 @@ description
 tags
   rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web
 licenseUrl
-  http://www.opensource.org/licenses/mit-license.php
+  https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/LICENSE
 iconUrl
   https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/assets/icon_21532.png
