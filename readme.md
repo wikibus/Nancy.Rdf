@@ -33,6 +33,8 @@ PM> Install-Package Rdf.Vocabularies
 With Nancy.Rdf I struggle to follow the [Super-Duper-Happy-Path][sdhp]. Nancy has an unparalelled extensibility model and thanks to
 SDHP there is a minimal number of steps required to get RDF up and running in your API. It just works!
 
+**You can try out the code below by running the [sample project][sample]**
+
 ### Create a POCO model class
 
 This is done with [JsonLD.Entites][entities]. A simples possible model is an ordinary .NET type with a `Context` and `Type` 
@@ -163,3 +165,4 @@ Thanks to the [NuGet][nuget] team for implementing the [JSON-LD API][ld-api].
 [nuget]: https://github.com/nuget/json-ld.net
 [ld-api]: http://json-ld.org/spec/latest/json-ld-api/
 [sdhp]: https://github.com/NancyFx/Nancy/wiki/Introduction#the-super-duper-happy-path
+[sample]: https://github.com/wikibus/Nancy.Rdf/tree/master/src/Example/Nancy.Rdf.Sample
