@@ -12,6 +12,7 @@ nuget json-ld.net
 nuget Nancy
 nuget GitVersionTask
 nuget HtmlAgilityPack
+nuget OpenCover
 nuget SpecFlow
 nuget FakeItEasy
 nuget NUnit < 3
