@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SerializingToRdf.feature</DependentUpon>
     </Compile>
+    <Compile Include="Serializing\RdfSerializerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AcceptHeaderCoercion.feature">
