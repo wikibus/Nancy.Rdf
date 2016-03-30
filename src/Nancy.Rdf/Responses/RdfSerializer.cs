@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
@@ -75,7 +76,7 @@ namespace Nancy.Rdf.Responses
                     DateTime dateTime;
                     if (DateTime.TryParse(literal, out dateTime))
                     {
-                        return dateTime.ToString("yyyy-MM-ddTHH:mm:ss");
+                        return XmlConvert.ToString(dateTime, XmlDateTimeSerializationMode.RoundtripKind);
                     }
 
                     break;
