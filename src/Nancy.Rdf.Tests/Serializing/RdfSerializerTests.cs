@@ -26,7 +26,7 @@ namespace Nancy.Rdf.Tests.Serializing
         }
 
         [Test]
-        public void Should_serialize_bool()
+        public void Should_serialize_bool_with_proper_format()
         {
             // given
             A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
@@ -48,6 +48,35 @@ namespace Nancy.Rdf.Tests.Serializing
             Assert.That(_serializer.Triples.Any(triple =>
             {
                 var valueMatches = ((LiteralNode)triple.Object).Value == "true";
+                var dataTypeMatches = ((LiteralNode)triple.Object).DataType == new Uri(Xsd.boolean);
+
+                return valueMatches && dataTypeMatches;
+            }));
+        }
+
+        [Test]
+        public void Should_serialize_datetime_with_proper_format()
+        {
+            // given
+            A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+                .Returns(JObject.Parse(@"{
+  '@context':
+    {
+      'dateCreated': 'http://example.api/o#Issue/dateCreated',
+      'isResolved': 'http://example.api/o#Issue/isResolved'
+    },
+  '@id': 'http://localhost:61186/issues/2',
+  'dateCreated': { '@value': '2016-03-21T00:00:00', '@type': 'http://www.w3.org/2001/XMLSchema#dateTime' },
+  'isResolved': true
+}"));
+
+            // when
+            _serializer.Serialize("text/turtle", new object(), new MemoryStream());
+
+            // then
+            Assert.That(_serializer.Triples.Any(triple =>
+            {
+                var valueMatches = ((LiteralNode)triple.Object).Value == "2016-03-21T00:00:00";
                 var dataTypeMatches = ((LiteralNode)triple.Object).DataType == new Uri(Xsd.dateTime);
 
                 return valueMatches && dataTypeMatches;
