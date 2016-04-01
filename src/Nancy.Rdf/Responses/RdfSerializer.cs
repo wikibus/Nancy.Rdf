@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
 using VDS.RDF;
+using Vocab;
 
 namespace Nancy.Rdf.Responses
 {
@@ -62,6 +64,27 @@ namespace Nancy.Rdf.Responses
         /// </summary>
         protected abstract void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples);
 
+        [Obsolete("Remove when json-ld.net is fixed")]
+        private static string FixSerializedValue(string literal, Uri datatype)
+        {
+            switch (datatype.ToString())
+            {
+                case Xsd.boolean:
+                    return literal.ToLower();
+                case Xsd.dateTime:
+                case Xsd.date:
+                    DateTime dateTime;
+                    if (DateTime.TryParse(literal, out dateTime))
+                    {
+                        return XmlConvert.ToString(dateTime, XmlDateTimeSerializationMode.RoundtripKind);
+                    }
+
+                    break;
+            }
+
+            return literal;
+        }
+
         private INode CreateNode(RDFDataset.Node node)
         {
             if (node.IsIRI())
@@ -74,7 +97,12 @@ namespace Nancy.Rdf.Responses
                 return _nodeFactory.CreateBlankNode(node.GetValue());
             }
 
-            return _nodeFactory.CreateLiteralNode(node.GetValue(), new Uri(node.GetDatatype()));
+            var literal = node.GetValue();
+            var datatype = new Uri(node.GetDatatype());
+
+            literal = FixSerializedValue(literal, datatype);
+
+            return _nodeFactory.CreateLiteralNode(literal, datatype);
         }
 
         private Triple ToTriple(RDFDataset.Quad triple)

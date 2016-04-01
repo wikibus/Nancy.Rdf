@@ -4,3 +4,4 @@ GitVersionTask
 JsonLd.Entities
 NullGuard.Fody
 StyleCopPlus.MSBuild
+Rdf.Vocabularies
