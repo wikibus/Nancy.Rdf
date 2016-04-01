@@ -3,7 +3,7 @@
     /// <summary>
     /// Marker interface for RDF serializers
     /// </summary>
-    internal interface IRdfSerializer : ISerializer
+    public interface IRdfSerializer : ISerializer
     {
     }
 }

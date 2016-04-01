@@ -17,6 +17,7 @@ namespace Nancy.Rdf.Tests.Serializing
     {
         private RdfSerializerTestable _serializer;
         private IEntitySerializer _entitySerializer;
+        private INodeFactory _nodeFactory = new NodeFactory();
 
         [SetUp]
         public void Setup()
@@ -81,6 +82,26 @@ namespace Nancy.Rdf.Tests.Serializing
 
                 return valueMatches && dataTypeMatches;
             }));
+        }
+
+        [Test]
+        public void Should_serialize_correct_relative_URIs_according_to_base()
+        {
+            // given
+            A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+                .Returns(JObject.Parse(@"{
+    '@id': 'some/id',
+    'http://example.com/property': { '@id': 'some/relative/path' }
+}"));
+
+            // when
+            _serializer.Serialize("text/turtle", new WrappedModel(new object(), "http://example.api/site"), new MemoryStream());
+
+            // then
+            Assert.That(_serializer.Triples.Contains(new Triple(
+                _nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/id")),
+                _nodeFactory.CreateUriNode(new Uri("http://example.com/property")),
+                _nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/relative/path")))));
         }
 
         private class RdfSerializerTestable : RdfSerializer

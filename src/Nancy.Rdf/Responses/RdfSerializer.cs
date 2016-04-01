@@ -48,11 +48,17 @@ namespace Nancy.Rdf.Responses
         /// <inheritdoc />
         public void Serialize<TModel>(string contentType, TModel model, Stream outputStream)
         {
-            var actualModel = model is WrappedModel ? ((WrappedModel)(object)model).Model : model;
+            WrappedModel? wrappedModel = model as WrappedModel?;
+            var actualModel = wrappedModel == null ? model : wrappedModel.Value.Model;
 
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
                 var jsObject = _entitySerializer.Serialize(actualModel);
+                if (wrappedModel != null)
+                {
+                    jsObject.AddBaseToContext(wrappedModel.Value.BaseUrl);
+                }
+
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
 
                 WriteRdf(writer, rdf.GetQuads("@default").Select(ToTriple));

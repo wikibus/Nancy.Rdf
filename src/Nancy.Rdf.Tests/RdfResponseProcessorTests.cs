@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using FakeItEasy;
 using Nancy.Rdf.Responses;
 using Nancy.Responses.Negotiation;
@@ -76,6 +78,34 @@ namespace Nancy.Rdf.Tests
             // then
             Assert.That(match.ModelResult, Is.EqualTo(MatchResult.DontCare));
             Assert.That(match.RequestedContentTypeResult, Is.EqualTo(MatchResult.NoMatch));
+        }
+
+        [Test]
+        public void Should_pass_SiteBase_from_context_to_serializtion()
+        {
+            // given
+            var serializer = A.Fake<IRdfSerializer>();
+            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
+            var nancyContext = new NancyContext
+            {
+                Request = new Request(
+                    "GET",
+                    new Url("http://example.com/api/test")
+                    {
+                        BasePath = "api"
+                    })
+            };
+
+            // when
+            var response = processor.Process(new MediaRange("application/rdf+xml"), new object(), nancyContext);
+            response.Contents(new MemoryStream());
+
+            // then
+            A.CallTo(() => serializer.Serialize(
+                RdfSerialization.RdfXml.MediaType,
+                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri(nancyContext.Request.Url.SiteBase)),
+                A<MemoryStream>._)).MustHaveHappened();
         }
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor

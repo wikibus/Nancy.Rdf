@@ -69,6 +69,11 @@ namespace Nancy.Rdf.Responses
             {
                 JToken serialized = _serializer.Serialize(actualModel);
 
+                if (wrappedModel.HasValue)
+                {
+                    serialized.AddBaseToContext(wrappedModel.Value.BaseUrl);
+                }
+
                 var mediaRange = new MediaRange(contentType);
 
                 if (mediaRange.Parameters["profile"] == JsonLdProfiles.Expanded)

@@ -70,6 +70,7 @@
     <Compile Include="Responses\RdfSerializer.cs" />
     <Compile Include="Responses\RdfXmlResponseProcessor.cs" />
     <Compile Include="Responses\RdfXmlSerializer.cs" />
+    <Compile Include="Responses\SerializedExtension.cs" />
     <Compile Include="Responses\TurtleResponseProcessor.cs" />
     <Compile Include="Responses\TurtleSerializer.cs" />
     <Compile Include="Responses\WrappedModel.cs" />
