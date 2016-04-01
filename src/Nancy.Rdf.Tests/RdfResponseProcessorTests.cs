@@ -13,6 +13,21 @@ namespace Nancy.Rdf.Tests
     {
         private const string FallbackSerializationKey = "__nrfs";
 
+        private static readonly NancyContext NancyContext;
+
+        static RdfResponseProcessorTests()
+        {
+            NancyContext = new NancyContext
+            {
+                Request = new Request(
+                    "GET",
+                    new Url("http://example.com/api/test")
+                    {
+                        BasePath = "api"
+                    })
+            };
+        }
+
         [Test]
         public void Should_not_allow_processing_when_no_compatible_serializer_is_available()
         {
@@ -87,25 +102,33 @@ namespace Nancy.Rdf.Tests
             var serializer = A.Fake<IRdfSerializer>();
             A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
-            var nancyContext = new NancyContext
-            {
-                Request = new Request(
-                    "GET",
-                    new Url("http://example.com/api/test")
-                    {
-                        BasePath = "api"
-                    })
-            };
 
             // when
-            var response = processor.Process(new MediaRange("application/rdf+xml"), new object(), nancyContext);
+            var response = processor.Process(new MediaRange("application/rdf+xml"), new object(), NancyContext);
             response.Contents(new MemoryStream());
 
             // then
             A.CallTo(() => serializer.Serialize(
                 RdfSerialization.RdfXml.MediaType,
-                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri(nancyContext.Request.Url.SiteBase)),
+                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri(NancyContext.Request.Url.SiteBase)),
                 A<MemoryStream>._)).MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_pass_actual_requested()
+        {
+            // given
+            const string contentType = "application/rdf+xml;profile=testprofile";
+            var serializer = A.Fake<IRdfSerializer>();
+            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
+
+            // when
+            var response = processor.Process(new MediaRange(contentType), new object(), NancyContext);
+            response.Contents(new MemoryStream());
+
+            // then
+            A.CallTo(() => serializer.Serialize(contentType, A<WrappedModel>._, A<MemoryStream>._)).MustHaveHappened();
         }
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor

@@ -74,7 +74,7 @@ namespace Nancy.Rdf.Responses
                     Contents = stream =>
                     {
                         var wrappedModel = new WrappedModel(model, context.Request.Url.SiteBase);
-                        _serializer.Serialize(_serialization.MediaType, wrappedModel, stream);
+                        _serializer.Serialize(requestedMediaRange, wrappedModel, stream);
                     },
                     StatusCode = HttpStatusCode.OK,
                     ContentType = _serialization.MediaType
