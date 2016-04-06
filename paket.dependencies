@@ -27,3 +27,4 @@ nuget Nancy.Owin
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
+nuget infoof.fody
