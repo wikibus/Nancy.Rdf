@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
@@ -11,12 +10,12 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public abstract class RdfBodyDeserializer : IBodyDeserializer
     {
-        private readonly RdfSerialization _serialization;
-
         /// <summary>
         /// The serializer
         /// </summary>
-        protected readonly IEntitySerializer Serializer;
+        protected readonly IEntitySerializer _serializer;
+
+        private readonly RdfSerialization _serialization;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfBodyDeserializer"/> class.
@@ -24,7 +23,7 @@ namespace Nancy.Rdf.ModelBinding
         protected RdfBodyDeserializer(RdfSerialization serialization, IEntitySerializer serializer)
         {
             _serialization = serialization;
-            Serializer = serializer;
+            _serializer = serializer;
         }
 
         /// <summary>
