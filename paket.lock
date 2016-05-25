@@ -17,8 +17,6 @@ NUGET
     HtmlAgilityPack (1.4.9)
     JetBrainsAnnotations.Fody (1.0.4)
       Fody (>= 1.29.2)
-    JsonLd.Entities (0.3.1)
-      json-ld.net
     json-ld.net (1.0.4)
       Newtonsoft.Json (>= 4.0.1)
     Microsoft.Owin (3.0.1)
@@ -48,3 +46,7 @@ NUGET
     StyleCopPlus.MSBuild (4.7.49.5)
       StyleCop.MSBuild (>= 4.7.49.0)
     VDS.Common (1.6.0)
+  remote: https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
+  specs:
+    JsonLD.Entities (0.3.3)
+      json-ld.net
