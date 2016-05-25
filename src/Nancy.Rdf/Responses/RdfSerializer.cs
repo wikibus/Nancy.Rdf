@@ -7,7 +7,6 @@ using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
 using VDS.RDF;
-using Vocab;
 
 namespace Nancy.Rdf.Responses
 {
@@ -53,13 +52,13 @@ namespace Nancy.Rdf.Responses
 
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var jsObject = _entitySerializer.Serialize(actualModel);
+                var javascriptObject = _entitySerializer.Serialize(actualModel);
                 if (wrappedModel != null)
                 {
-                    jsObject.AddBaseToContext(wrappedModel.Value.BaseUrl);
+                    javascriptObject.AddBaseToContext(wrappedModel.Value.BaseUrl);
                 }
 
-                var rdf = (RDFDataset)JsonLdProcessor.ToRDF(jsObject);
+                var rdf = (RDFDataset)JsonLdProcessor.ToRDF(javascriptObject);
 
                 WriteRdf(writer, rdf.GetQuads("@default").Select(ToTriple));
             }
@@ -69,27 +68,6 @@ namespace Nancy.Rdf.Responses
         /// Writes the RDF is proper serialization.
         /// </summary>
         protected abstract void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples);
-
-        [Obsolete("Remove when json-ld.net is fixed")]
-        private static string FixSerializedValue(string literal, Uri datatype)
-        {
-            switch (datatype.ToString())
-            {
-                case Xsd.boolean:
-                    return literal.ToLower();
-                case Xsd.dateTime:
-                case Xsd.date:
-                    DateTime dateTime;
-                    if (DateTime.TryParse(literal, out dateTime))
-                    {
-                        return XmlConvert.ToString(dateTime, XmlDateTimeSerializationMode.RoundtripKind);
-                    }
-
-                    break;
-            }
-
-            return literal;
-        }
 
         private INode CreateNode(RDFDataset.Node node)
         {
@@ -105,8 +83,6 @@ namespace Nancy.Rdf.Responses
 
             var literal = node.GetValue();
             var datatype = new Uri(node.GetDatatype());
-
-            literal = FixSerializedValue(literal, datatype);
 
             return _nodeFactory.CreateLiteralNode(literal, datatype);
         }

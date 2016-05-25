@@ -16,7 +16,7 @@ nuget OpenCover
 nuget SpecFlow
 nuget FakeItEasy
 nuget NUnit < 3
-nuget StyleCopPlus.MSBuild
+nuget StyleCop.Analyzers
 nuget GitLink
 nuget JsonLd.Entities prerelease
 nuget Nullguard.Fody
