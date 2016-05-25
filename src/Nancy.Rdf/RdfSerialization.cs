@@ -104,29 +104,25 @@ namespace Nancy.Rdf
         }
 
 #pragma warning disable 1591
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Operator or built-in override")]
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
         public static bool operator ==(RdfSerialization left, RdfSerialization right)
         {
             return left.Equals(right);
         }
 
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Operator or built-in override")]
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
         public static bool operator !=(RdfSerialization left, RdfSerialization right)
         {
             return !left.Equals(right);
         }
 
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Operator or built-in override")]
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
         public bool Equals(RdfSerialization other)
         {
             return string.Equals(_mediaType, other._mediaType) && string.Equals(_extension, other._extension);
         }
 
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Operator or built-in override")]
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -137,8 +133,7 @@ namespace Nancy.Rdf
             return obj is RdfSerialization && Equals((RdfSerialization)obj);
         }
 
-        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-            Justification = "Operator or built-in override")]
+        [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operator or built-in override")]
         public override int GetHashCode()
         {
             unchecked
@@ -149,7 +144,7 @@ namespace Nancy.Rdf
 #pragma warning restore
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="string" /> that represents this instance.
         /// </summary>
         public override string ToString()
         {

@@ -41,7 +41,7 @@ namespace Nancy.Rdf.ModelBinding
         {
             var deserialize = DeserializeNquadsMethod.MakeGenericMethod(context.DestinationType);
 
-            return deserialize.Invoke(_serializer, new object[] { GetNquads(body) });
+            return deserialize.Invoke(Serializer, new object[] { GetNquads(body) });
         }
 
         /// <summary>

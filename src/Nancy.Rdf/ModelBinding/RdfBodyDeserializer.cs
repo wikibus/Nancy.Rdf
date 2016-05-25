@@ -10,11 +10,6 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public abstract class RdfBodyDeserializer : IBodyDeserializer
     {
-        /// <summary>
-        /// The serializer
-        /// </summary>
-        protected readonly IEntitySerializer _serializer;
-
         private readonly RdfSerialization _serialization;
 
         /// <summary>
@@ -23,8 +18,13 @@ namespace Nancy.Rdf.ModelBinding
         protected RdfBodyDeserializer(RdfSerialization serialization, IEntitySerializer serializer)
         {
             _serialization = serialization;
-            _serializer = serializer;
+            Serializer = serializer;
         }
+
+        /// <summary>
+        /// Gets the serializer.
+        /// </summary>
+        public IEntitySerializer Serializer { get; }
 
         /// <summary>
         /// Determines whether this instance can deserialize the specified content type.
