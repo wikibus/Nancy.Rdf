@@ -9,5 +9,5 @@ JsonLd.Entities
 Nancy.Testing
 FluentAssertions
 JetbrainsAnnotations.Fody
-StyleCopPlus.MSBuild
+StyleCop.Analyzers
 Rdf.Vocabularies
