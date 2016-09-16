@@ -76,7 +76,7 @@ namespace Nancy.Rdf.Responses
 
                 var mediaRange = new MediaRange(contentType);
 
-                if (mediaRange.Parameters["profile"] == JsonLdProfiles.Expanded)
+                if (mediaRange.Parameters["profile"]?.Trim('"') == JsonLdProfiles.Expanded)
                 {
                     serialized = JsonLdProcessor.Expand(serialized);
                 }
