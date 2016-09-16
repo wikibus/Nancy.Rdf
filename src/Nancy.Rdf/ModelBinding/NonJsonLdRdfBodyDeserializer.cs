@@ -14,11 +14,7 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public abstract class NonJsonLdRdfBodyDeserializer : RdfBodyDeserializer
     {
-        private static readonly MethodInfo DeserializeNquadsMethod = Info.OfMethod(
-            "JsonLd.Entities",
-            "JsonLD.Entities.IEntitySerializer",
-            "Deserialize",
-            "String");
+        private static readonly MethodInfo DeserializeNquadsMethod = typeof(IEntitySerializer).GetMethod("Deserialize", new[] { typeof(string) });
 
         private static readonly IRdfWriter RdfWriter = new NTriplesWriter(NTriplesSyntax.Rdf11);
         private readonly IRdfReader _reader;

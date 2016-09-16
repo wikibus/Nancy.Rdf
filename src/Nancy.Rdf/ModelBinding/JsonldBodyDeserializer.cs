@@ -13,11 +13,7 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public class JsonldBodyDeserializer : RdfBodyDeserializer
     {
-        private static readonly MethodInfo DeserializeJsonLdMethod = Info.OfMethod(
-            "JsonLd.Entities",
-            "JsonLD.Entities.IEntitySerializer",
-            "Deserialize",
-            "JToken");
+        private static readonly MethodInfo DeserializeJsonLdMethod = typeof(IEntitySerializer).GetMethod("Deserialize", new[] { typeof(JToken) });
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonldBodyDeserializer"/> class.
