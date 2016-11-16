@@ -1,5 +1,4 @@
 ﻿using Nancy.Bootstrapper;
-using Nancy.Rdf.Responses;
 
 namespace Nancy.Rdf
 {
@@ -8,6 +7,9 @@ namespace Nancy.Rdf
     /// </summary>
     public static class RdfResponses
     {
+        /// <summary>
+        /// The key used to store default RDF serialization in Nancy's context
+        /// </summary>
         internal const string FallbackSerializationKey = "__nrfs";
 
         /// <summary>

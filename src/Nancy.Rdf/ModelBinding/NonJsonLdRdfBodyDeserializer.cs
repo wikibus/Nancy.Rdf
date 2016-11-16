@@ -26,7 +26,8 @@ namespace Nancy.Rdf.ModelBinding
         protected NonJsonLdRdfBodyDeserializer(
             RdfSerialization serialization,
             IEntitySerializer serializer,
-            IRdfReader reader) : base(serialization, serializer)
+            IRdfReader reader)
+            : base(serialization, serializer)
         {
             _reader = reader;
         }

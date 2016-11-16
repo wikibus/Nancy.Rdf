@@ -13,7 +13,8 @@ namespace Nancy.Rdf.Contexts
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="modelType">Type of the model.</param>
-        public ContextPathMap(string path, Type modelType) : this()
+        public ContextPathMap(string path, Type modelType)
+            : this()
         {
             Path = path;
             ModelType = modelType;
@@ -56,7 +57,7 @@ namespace Nancy.Rdf.Contexts
         /// <summary>
         /// Checks equality
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals([AllowNull] object obj)
         {
             if (ReferenceEquals(null, obj))
             {

@@ -25,6 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\Nancy.RDF\Nancy.Rdf.Tests.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,10 +55,10 @@
     <Compile Include="Bindings\AcceptHeaderCoercionSteps.cs" />
     <Compile Include="Bindings\ContentNegotiationSteps.cs" />
     <Compile Include="Bindings\GraphSetup.cs" />
-    <Compile Include="Bindings\RdfGraphSteps.cs" />
-    <Compile Include="Bindings\RdfSerializationSteps.cs" />
     <Compile Include="Bindings\JsonLdSerializationSteps.cs" />
     <Compile Include="Bindings\ModelSerializingSteps.cs" />
+    <Compile Include="Bindings\RdfGraphSteps.cs" />
+    <Compile Include="Bindings\RdfSerializationSteps.cs" />
     <Compile Include="CompressingSerializerTests.cs" />
     <Compile Include="ContextModuleTests.cs" />
     <Compile Include="JsonLdSerializerTests.cs" />

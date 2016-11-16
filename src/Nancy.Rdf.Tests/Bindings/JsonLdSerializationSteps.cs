@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using FakeItEasy;
 using Nancy.Rdf.Contexts;
 using Nancy.Rdf.Responses;

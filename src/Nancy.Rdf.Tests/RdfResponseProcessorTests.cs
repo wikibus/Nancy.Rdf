@@ -17,14 +17,14 @@ namespace Nancy.Rdf.Tests
 
         static RdfResponseProcessorTests()
         {
+            var path = new Url("http://example.com/api/test")
+            {
+                BasePath = "api"
+            };
+
             NancyContext = new NancyContext
             {
-                Request = new Request(
-                    "GET",
-                    new Url("http://example.com/api/test")
-                    {
-                        BasePath = "api"
-                    })
+                Request = new Request("GET", path)
             };
         }
 

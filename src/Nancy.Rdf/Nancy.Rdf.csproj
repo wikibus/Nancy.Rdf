@@ -27,6 +27,7 @@
     <DocumentationFile>bin\Debug\Nancy.Rdf.xml</DocumentationFile>
     <CodeAnalysisRuleSet>Nancy.Rdf.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,7 +38,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Nancy.Rdf.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Nancy.Rdf.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -95,7 +97,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Nancy.Rdf.ruleset" />
+    <None Include="Nancy.Rdf.Tests.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>

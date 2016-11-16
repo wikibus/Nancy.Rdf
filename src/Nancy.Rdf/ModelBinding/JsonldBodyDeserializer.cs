@@ -18,7 +18,8 @@ namespace Nancy.Rdf.ModelBinding
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonldBodyDeserializer"/> class.
         /// </summary>
-        public JsonldBodyDeserializer(IEntitySerializer serializer) : base(RdfSerialization.JsonLd, serializer)
+        public JsonldBodyDeserializer(IEntitySerializer serializer)
+            : base(RdfSerialization.JsonLd, serializer)
         {
         }
 

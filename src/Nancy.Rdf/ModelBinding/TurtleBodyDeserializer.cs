@@ -1,4 +1,4 @@
-using JsonLD.Entities;
+﻿using JsonLD.Entities;
 using VDS.RDF.Parsing;
 
 namespace Nancy.Rdf.ModelBinding
