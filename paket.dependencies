@@ -8,7 +8,7 @@ nuget Nancy prerelease
 nuget newtonsoft.json
 nuget dotNetRDF
 nuget json-ld.net
-nuget Nancy
+nuget Nancy >= 2 prerelease
 nuget GitVersionTask
 nuget HtmlAgilityPack
 nuget OpenCover
@@ -19,10 +19,10 @@ nuget StyleCop.Analyzers
 nuget GitLink
 nuget JsonLd.Entities prerelease
 nuget Nullguard.Fody
-nuget Nancy.Testing prerelease
+nuget Nancy.Testing >= 2 prerelease
 nuget FluentAssertions
 nuget JetbrainsAnnotations.Fody
-nuget Nancy.Owin prerelease
+nuget Nancy.Owin >= 2 prerelease
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
