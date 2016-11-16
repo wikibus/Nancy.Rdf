@@ -6,6 +6,7 @@ using System.Xml;
 using JsonLD.Core;
 using JsonLD.Entities;
 using Nancy.IO;
+using Nancy.Responses.Negotiation;
 using VDS.RDF;
 
 namespace Nancy.Rdf.Responses
@@ -39,13 +40,13 @@ namespace Nancy.Rdf.Responses
         }
 
         /// <inheritdoc />
-        public virtual bool CanSerialize(string contentType)
+        public virtual bool CanSerialize(MediaRange contentType)
         {
             return _serialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <inheritdoc />
-        public void Serialize<TModel>(string contentType, TModel model, Stream outputStream)
+        public void Serialize<TModel>(MediaRange contentType, TModel model, Stream outputStream)
         {
             WrappedModel? wrappedModel = model as WrappedModel?;
             var actualModel = wrappedModel == null ? model : wrappedModel.Value.Model;

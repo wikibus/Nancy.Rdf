@@ -24,7 +24,7 @@ namespace Nancy.Rdf.Contexts
 
             foreach (var path in pathProvider.Contexts)
             {
-                Get[path.Path] = ServeContextOf(path.ModelType);
+                Get(path.Path, ServeContextOf(path.ModelType));
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Reflection;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
+using Nancy.Responses.Negotiation;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
@@ -33,7 +34,7 @@ namespace Nancy.Rdf.ModelBinding
         /// <summary>
         /// Deserialize the request body to a model
         /// </summary>
-        public override object Deserialize(string contentType, Stream body, BindingContext context)
+        public override object Deserialize(MediaRange contentType, Stream body, BindingContext context)
         {
             var deserialize = DeserializeNquadsMethod.MakeGenericMethod(context.DestinationType);
 

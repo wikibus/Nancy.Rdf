@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
+using Nancy.Responses.Negotiation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -25,7 +25,7 @@ namespace Nancy.Rdf.ModelBinding
         /// <summary>
         /// Deserialize the request body to a model
         /// </summary>
-        public override object Deserialize(string contentType, Stream body, BindingContext context)
+        public override object Deserialize(MediaRange contentType, Stream body, BindingContext context)
         {
             body.Position = 0;
             using (var bodyReader = new StreamReader(body))

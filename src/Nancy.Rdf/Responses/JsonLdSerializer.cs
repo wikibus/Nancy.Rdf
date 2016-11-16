@@ -44,23 +44,23 @@ namespace Nancy.Rdf.Responses
         /// <summary>
         /// Whether the serializer can serialize the content type
         /// </summary>
-        /// <param name="contentType">Content type to serialize</param>
+        /// <param name="mediaRange">Content type to serialize</param>
         /// <returns>
         /// True if supported, false otherwise
         /// </returns>
-        public bool CanSerialize(string contentType)
+        public bool CanSerialize(MediaRange mediaRange)
         {
-            return JsonLdSerialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
+            return JsonLdSerialization.MediaType.Equals(mediaRange, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
         /// Serializes the specified content type.
         /// </summary>
         /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <param name="contentType">Type of the content.</param>
+        /// <param name="mediaRange">Type of the content.</param>
         /// <param name="model">The model.</param>
         /// <param name="outputStream">The output stream.</param>
-        public void Serialize<TModel>(string contentType, TModel model, Stream outputStream)
+        public void Serialize<TModel>(MediaRange mediaRange, TModel model, Stream outputStream)
         {
             WrappedModel? wrappedModel = model as WrappedModel?;
             var actualModel = wrappedModel == null ? model : wrappedModel.Value.Model;
@@ -73,8 +73,6 @@ namespace Nancy.Rdf.Responses
                 {
                     serialized.AddBaseToContext(wrappedModel.Value.BaseUrl);
                 }
-
-                var mediaRange = new MediaRange(contentType);
 
                 if (mediaRange.Parameters["profile"]?.Trim('"') == JsonLdProfiles.Expanded)
                 {

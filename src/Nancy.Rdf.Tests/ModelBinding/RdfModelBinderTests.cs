@@ -5,6 +5,7 @@ using FluentAssertions;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
 using Nancy.Rdf.ModelBinding;
+using Nancy.Responses.Negotiation;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -65,7 +66,7 @@ namespace Nancy.Rdf.Tests.ModelBinding
             {
             }
 
-            public override object Deserialize(string contentType, Stream body, BindingContext context)
+            public override object Deserialize(MediaRange contentType, Stream body, BindingContext context)
             {
                 throw new System.NotImplementedException();
             }

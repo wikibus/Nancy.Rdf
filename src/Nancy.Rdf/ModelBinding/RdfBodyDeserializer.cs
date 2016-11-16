@@ -30,14 +30,14 @@ namespace Nancy.Rdf.ModelBinding
         /// Determines whether this instance can deserialize the specified content type.
         /// </summary>
         /// <returns>true for any of <see cref="RdfSerialization"/></returns>
-        public bool CanDeserialize(string contentType, BindingContext context)
+        public bool CanDeserialize(MediaRange contentType, BindingContext context)
         {
-            return new MediaRange(contentType).Matches(_serialization.MediaType);
+            return contentType.Matches(_serialization.MediaType);
         }
 
         /// <summary>
         /// Deserialize the request body to a model
         /// </summary>
-        public abstract object Deserialize(string contentType, Stream body, BindingContext context);
+        public abstract object Deserialize(MediaRange contentType, Stream body, BindingContext context);
     }
 }
