@@ -16,9 +16,9 @@ namespace Nancy.Rdf.Responses
     /// </summary>
     public abstract class RdfSerializer : IRdfSerializer
     {
-        private readonly RdfSerialization _serialization;
-        private readonly INodeFactory _nodeFactory;
-        private readonly IEntitySerializer _entitySerializer;
+        private readonly RdfSerialization serialization;
+        private readonly INodeFactory nodeFactory;
+        private readonly IEntitySerializer entitySerializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfSerializer" /> class.
@@ -27,22 +27,22 @@ namespace Nancy.Rdf.Responses
         /// <param name="entitySerializer">The entity serializer.</param>
         protected RdfSerializer(RdfSerialization serialization, IEntitySerializer entitySerializer)
         {
-            _serialization = serialization;
-            _entitySerializer = entitySerializer;
+            this.serialization = serialization;
+            this.entitySerializer = entitySerializer;
 
-            _nodeFactory = new NodeFactory();
+            this.nodeFactory = new NodeFactory();
         }
 
         /// <inheritdoc />
         public IEnumerable<string> Extensions
         {
-            get { yield return _serialization.Extension; }
+            get { yield return this.serialization.Extension; }
         }
 
         /// <inheritdoc />
         public virtual bool CanSerialize(MediaRange contentType)
         {
-            return _serialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
+            return this.serialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <inheritdoc />
@@ -53,7 +53,7 @@ namespace Nancy.Rdf.Responses
 
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                var javascriptObject = _entitySerializer.Serialize(actualModel);
+                var javascriptObject = this.entitySerializer.Serialize(actualModel);
                 if (wrappedModel != null)
                 {
                     javascriptObject.AddBaseToContext(wrappedModel.Value.BaseUrl);
@@ -61,7 +61,7 @@ namespace Nancy.Rdf.Responses
 
                 var rdf = (RDFDataset)JsonLdProcessor.ToRDF(javascriptObject);
 
-                WriteRdf(writer, rdf.GetQuads("@default").Select(ToTriple));
+                this.WriteRdf(writer, rdf.GetQuads("@default").Select(this.ToTriple));
             }
         }
 
@@ -74,25 +74,25 @@ namespace Nancy.Rdf.Responses
         {
             if (node.IsIRI())
             {
-                return _nodeFactory.CreateUriNode(new Uri(node.GetValue()));
+                return this.nodeFactory.CreateUriNode(new Uri(node.GetValue()));
             }
 
             if (node.IsBlankNode())
             {
-                return _nodeFactory.CreateBlankNode(node.GetValue());
+                return this.nodeFactory.CreateBlankNode(node.GetValue());
             }
 
             var literal = node.GetValue();
             var datatype = new Uri(node.GetDatatype());
 
-            return _nodeFactory.CreateLiteralNode(literal, datatype);
+            return this.nodeFactory.CreateLiteralNode(literal, datatype);
         }
 
         private Triple ToTriple(RDFDataset.Quad triple)
         {
-            var subj = CreateNode(triple.GetSubject());
-            var pred = CreateNode(triple.GetPredicate());
-            var obj = CreateNode(triple.GetObject());
+            var subj = this.CreateNode(triple.GetSubject());
+            var pred = this.CreateNode(triple.GetPredicate());
+            var obj = this.CreateNode(triple.GetObject());
 
             return new Triple(subj, pred, obj);
         }

@@ -18,7 +18,7 @@ namespace Nancy.Rdf.ModelBinding
         private static readonly MethodInfo DeserializeNquadsMethod = typeof(IEntitySerializer).GetMethod("Deserialize", new[] { typeof(string) });
 
         private static readonly IRdfWriter RdfWriter = new NTriplesWriter(NTriplesSyntax.Rdf11);
-        private readonly IRdfReader _reader;
+        private readonly IRdfReader reader;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NonJsonLdRdfBodyDeserializer"/> class.
@@ -29,7 +29,7 @@ namespace Nancy.Rdf.ModelBinding
             IRdfReader reader)
             : base(serialization, serializer)
         {
-            _reader = reader;
+            this.reader = reader;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Nancy.Rdf.ModelBinding
         {
             var deserialize = DeserializeNquadsMethod.MakeGenericMethod(context.DestinationType);
 
-            return deserialize.Invoke(Serializer, new object[] { GetNquads(body) });
+            return deserialize.Invoke(this.Serializer, new object[] { this.GetNquads(body) });
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Nancy.Rdf.ModelBinding
 
             using (var streamReader = new StreamReader(body))
             {
-                _reader.Load(g, streamReader);
+                this.reader.Load(g, streamReader);
             }
 
             using (var stringWriter = new StringWriter())

@@ -11,23 +11,23 @@ namespace Nancy.Rdf.Tests.Bindings
     [Binding]
     public class RdfGraphSteps
     {
-        private readonly IGraph _graph;
-        private readonly ISparqlQueryProcessor _queryProcessor;
-        private readonly SparqlQueryParser _parser = new SparqlQueryParser();
+        private readonly IGraph graph;
+        private readonly ISparqlQueryProcessor queryProcessor;
+        private readonly SparqlQueryParser parser = new SparqlQueryParser();
 
         public RdfGraphSteps(IGraph graph)
         {
-            _graph = graph;
-            _queryProcessor = new LeviathanQueryProcessor(new InMemoryDataset(_graph));
+            this.graph = graph;
+            this.queryProcessor = new LeviathanQueryProcessor(new InMemoryDataset(this.graph));
         }
 
         [Then(@"graph should match:")]
         public void ThenGraphShouldMatch(string askQuery)
         {
-            var query = _parser.ParseFromString(askQuery);
+            var query = this.parser.ParseFromString(askQuery);
             Assert.That(query.QueryType, Is.EqualTo(SparqlQueryType.Ask), "Query must be ASK");
 
-            _queryProcessor.ProcessQuery(query);
+            this.queryProcessor.ProcessQuery(query);
         }
     }
 }

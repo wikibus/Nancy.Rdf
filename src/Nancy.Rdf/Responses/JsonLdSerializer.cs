@@ -18,16 +18,16 @@ namespace Nancy.Rdf.Responses
     public class JsonLdSerializer : IRdfSerializer
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
-        private readonly IEntitySerializer _serializer;
-        private readonly IContextPathMapper _contextPathMapper;
+        private readonly IEntitySerializer serializer;
+        private readonly IContextPathMapper contextPathMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
         /// </summary>
         public JsonLdSerializer(IEntitySerializer serializer, IContextPathMapper contextPathMapper)
         {
-            _serializer = serializer;
-            _contextPathMapper = contextPathMapper;
+            this.serializer = serializer;
+            this.contextPathMapper = contextPathMapper;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Nancy.Rdf.Responses
 
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                JToken serialized = _serializer.Serialize(actualModel);
+                JToken serialized = this.serializer.Serialize(actualModel);
 
                 if (wrappedModel.HasValue)
                 {
@@ -82,12 +82,12 @@ namespace Nancy.Rdf.Responses
                 {
                     if (serialized[JsonLdKeywords.Context] != null)
                     {
-                        var contextMap = _contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == actualModel.GetType());
+                        var contextMap = this.contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == actualModel.GetType());
 
                         if (contextMap != default(ContextPathMap) && wrappedModel != null)
                         {
                             var newContext = wrappedModel.Value.BaseUrl
-                                .Append(_contextPathMapper.BasePath)
+                                .Append(this.contextPathMapper.BasePath)
                                 .Append(contextMap.Path);
                             serialized[JsonLdKeywords.Context] = newContext;
                         }

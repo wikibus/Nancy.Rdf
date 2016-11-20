@@ -7,17 +7,17 @@ namespace Nancy.Rdf.Tests.Bindings
 {
     public class SerializationContext : IDisposable
     {
-        private readonly IEntitySerializer _serializer = A.Fake<IEntitySerializer>();
-        private Stream _outputStream = new MemoryStream();
+        private readonly IEntitySerializer serializer = A.Fake<IEntitySerializer>();
+        private Stream outputStream = new MemoryStream();
 
         public Stream OutputStream
         {
-            get { return _outputStream; }
+            get { return this.outputStream; }
         }
 
         public IEntitySerializer Serializer
         {
-            get { return _serializer; }
+            get { return this.serializer; }
         }
 
         public dynamic Result { get; set; }
@@ -26,7 +26,7 @@ namespace Nancy.Rdf.Tests.Bindings
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -34,10 +34,10 @@ namespace Nancy.Rdf.Tests.Bindings
         {
             if (disposing)
             {
-                if (_outputStream != null)
+                if (this.outputStream != null)
                 {
-                    _outputStream.Dispose();
-                    _outputStream = null;
+                    this.outputStream.Dispose();
+                    this.outputStream = null;
                 }
             }
         }

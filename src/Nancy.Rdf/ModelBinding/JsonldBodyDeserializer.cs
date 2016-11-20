@@ -33,7 +33,7 @@ namespace Nancy.Rdf.ModelBinding
             {
                 var deserialize = DeserializeJsonLdMethod.MakeGenericMethod(context.DestinationType);
 
-                return deserialize.Invoke(Serializer, new object[] { JToken.ReadFrom(new JsonTextReader(bodyReader)) });
+                return deserialize.Invoke(this.Serializer, new object[] { JToken.ReadFrom(new JsonTextReader(bodyReader)) });
             }
         }
     }

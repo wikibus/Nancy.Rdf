@@ -12,8 +12,8 @@ namespace Nancy.Rdf.Responses
         /// </summary>
         public WrappedModel(object model, string siteBase)
         {
-            Model = model;
-            BaseUrl = new Uri(siteBase, UriKind.Absolute);
+            this.Model = model;
+            this.BaseUrl = new Uri(siteBase, UriKind.Absolute);
         }
 
         /// <summary>

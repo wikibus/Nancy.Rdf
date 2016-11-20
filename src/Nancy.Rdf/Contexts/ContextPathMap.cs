@@ -16,8 +16,8 @@ namespace Nancy.Rdf.Contexts
         public ContextPathMap(string path, Type modelType)
             : this()
         {
-            Path = path;
-            ModelType = modelType;
+            this.Path = path;
+            this.ModelType = modelType;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Nancy.Rdf.Contexts
         /// </summary>
         public bool Equals(ContextPathMap other)
         {
-            return string.Equals(Path, other.Path) && ModelType == other.ModelType;
+            return string.Equals(this.Path, other.Path) && this.ModelType == other.ModelType;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Nancy.Rdf.Contexts
                 return false;
             }
 
-            return obj is ContextPathMap && Equals((ContextPathMap)obj);
+            return obj is ContextPathMap && this.Equals((ContextPathMap)obj);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Nancy.Rdf.Contexts
         {
             unchecked
             {
-                return ((Path != null ? Path.GetHashCode() : 0) * 397) ^ (ModelType != null ? ModelType.GetHashCode() : 0);
+                return ((this.Path != null ? this.Path.GetHashCode() : 0) * 397) ^ (this.ModelType != null ? this.ModelType.GetHashCode() : 0);
             }
         }
     }

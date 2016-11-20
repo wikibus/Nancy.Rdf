@@ -4,7 +4,6 @@ content: none
 redirects: on
 framework: net452
 
-nuget Nancy prerelease
 nuget newtonsoft.json
 nuget dotNetRDF
 nuget json-ld.net
@@ -26,3 +25,5 @@ nuget Nancy.Owin >= 2 prerelease
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
+
+gist tpluscode/a285267d2543466fc35c3a168c846f9f

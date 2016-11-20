@@ -10,8 +10,8 @@ namespace Nancy.Rdf.Responses
     /// </summary>
     public abstract class RdfResponseProcessor : IResponseProcessor
     {
-        private readonly RdfSerialization _serialization;
-        private readonly ISerializer _serializer;
+        private readonly RdfSerialization serialization;
+        private readonly ISerializer serializer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfResponseProcessor"/> class.
@@ -20,8 +20,8 @@ namespace Nancy.Rdf.Responses
         /// <param name="serializers">The serializers.</param>
         protected RdfResponseProcessor(RdfSerialization serialization, IEnumerable<ISerializer> serializers)
         {
-            _serialization = serialization;
-            _serializer = serializers.Cast<IRdfSerializer>().FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
+            this.serialization = serialization;
+            this.serializer = serializers.Cast<IRdfSerializer>().FirstOrDefault(s => s.CanSerialize(serialization.MediaType));
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Nancy.Rdf.Responses
         {
             get
             {
-                yield return Tuple.Create(_serialization.Extension, new MediaRange(_serialization.MediaType));
+                yield return Tuple.Create(this.serialization.Extension, new MediaRange(this.serialization.MediaType));
             }
         }
 
@@ -45,15 +45,15 @@ namespace Nancy.Rdf.Responses
                 ModelResult = MatchResult.DontCare
             };
 
-            if (_serializer != null)
+            if (this.serializer != null)
             {
-                if (new MediaRange(_serialization.MediaType).Matches(requestedMediaRange))
+                if (new MediaRange(this.serialization.MediaType).Matches(requestedMediaRange))
                 {
                     if (requestedMediaRange.IsWildcard == false)
                     {
                         match.RequestedContentTypeResult = MatchResult.ExactMatch;
                     }
-                    else if (GetFallbackSerialization(context) == _serialization)
+                    else if (GetFallbackSerialization(context) == this.serialization)
                     {
                         match.RequestedContentTypeResult = MatchResult.NonExactMatch;
                     }
@@ -74,10 +74,10 @@ namespace Nancy.Rdf.Responses
                     Contents = stream =>
                     {
                         var wrappedModel = new WrappedModel(model, context.Request.Url.SiteBase);
-                        _serializer.Serialize(requestedMediaRange, wrappedModel, stream);
+                        this.serializer.Serialize(requestedMediaRange, wrappedModel, stream);
                     },
                     StatusCode = HttpStatusCode.OK,
-                    ContentType = _serialization.MediaType
+                    ContentType = this.serialization.MediaType
                 };
         }
 

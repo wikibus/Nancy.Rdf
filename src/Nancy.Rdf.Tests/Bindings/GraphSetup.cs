@@ -7,17 +7,17 @@ namespace Nancy.Rdf.Tests.Bindings
     [Binding]
     public class GraphSetup
     {
-        private readonly IObjectContainer _container;
+        private readonly IObjectContainer container;
 
         public GraphSetup(IObjectContainer container)
         {
-            _container = container;
+            this.container = container;
         }
 
         [BeforeScenario]
         public void InitializeGraph()
         {
-            _container.RegisterInstanceAs<IGraph>(new Graph());
+            this.container.RegisterInstanceAs<IGraph>(new Graph());
         }
     }
 }

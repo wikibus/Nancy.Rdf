@@ -4,6 +4,7 @@ excludeddependencies
   GitVersionTask
 dependencies
   JsonLD.Entities >= LOCKEDVERSION
+  Nancy >= LOCKEDVERSION
 projectUrl
   http://github.org/wikibus/Nancy.RDF
 description

@@ -13,8 +13,8 @@ namespace Nancy.Rdf
         public NamespaceMap(string prefix, Uri ns)
             : this()
         {
-            Namespace = ns;
-            Prefix = prefix;
+            this.Namespace = ns;
+            this.Prefix = prefix;
         }
 
         /// <summary>

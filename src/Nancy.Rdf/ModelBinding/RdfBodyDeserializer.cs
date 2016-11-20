@@ -10,15 +10,15 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public abstract class RdfBodyDeserializer : IBodyDeserializer
     {
-        private readonly RdfSerialization _serialization;
+        private readonly RdfSerialization serialization;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfBodyDeserializer"/> class.
         /// </summary>
         protected RdfBodyDeserializer(RdfSerialization serialization, IEntitySerializer serializer)
         {
-            _serialization = serialization;
-            Serializer = serializer;
+            this.serialization = serialization;
+            this.Serializer = serializer;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Nancy.Rdf.ModelBinding
         /// <returns>true for any of <see cref="RdfSerialization"/></returns>
         public bool CanDeserialize(MediaRange contentType, BindingContext context)
         {
-            return contentType.Matches(_serialization.MediaType);
+            return contentType.Matches(this.serialization.MediaType);
         }
 
         /// <summary>

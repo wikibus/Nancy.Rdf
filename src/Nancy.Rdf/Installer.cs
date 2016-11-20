@@ -15,9 +15,9 @@ namespace Nancy.Rdf
         public Installer(ITypeCatalog typeCatalog)
             : base(typeCatalog)
         {
-            RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
-            RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
-            Register<IEntitySerializer>(typeof(EntitySerializer));
+            this.RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
+            this.RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
+            this.Register<IEntitySerializer>(typeof(EntitySerializer));
         }
     }
 }
