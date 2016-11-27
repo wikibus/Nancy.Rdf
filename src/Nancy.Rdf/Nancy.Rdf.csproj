@@ -25,7 +25,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Nancy.Rdf.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>Nancy.Rdf.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
@@ -38,7 +39,8 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Nancy.Rdf.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\..\paket-files\tpluscode\a285267d2543466fc35c3a168c846f9f\Library.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -96,7 +98,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Nancy.Rdf.Tests.ruleset" />
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>

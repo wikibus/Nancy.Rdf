@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Nancy.Responses.Negotiation;
+using NullGuard;
 
 namespace Nancy.Rdf.Responses
 {
@@ -38,11 +39,11 @@ namespace Nancy.Rdf.Responses
         /// <summary>
         /// Determines whether the given <paramref name="model"/> and be processed in <paramref name="requestedMediaRange"/>
         /// </summary>
-        public ProcessorMatch CanProcess(MediaRange requestedMediaRange, dynamic model, NancyContext context)
+        public ProcessorMatch CanProcess(MediaRange requestedMediaRange, [AllowNull] dynamic model, NancyContext context)
         {
             var match = new ProcessorMatch
             {
-                ModelResult = MatchResult.DontCare
+                ModelResult = model == null ? MatchResult.NoMatch : MatchResult.DontCare
             };
 
             if (this.serializer != null)

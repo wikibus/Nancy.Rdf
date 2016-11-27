@@ -134,6 +134,19 @@ namespace Nancy.Rdf.Tests
                 A<MemoryStream>._)).MustHaveHappened();
         }
 
+        [Test]
+        public void CanProcess_Should_not_match_model_is_null()
+        {
+            // given
+            var processor = new RdfResponseProcessorTestable(new ISerializer[0]);
+
+            // when
+            var match = processor.CanProcess(new MediaRange(RdfSerialization.RdfXml.MediaType), null, new NancyContext());
+
+            // then
+            Assert.That(match.ModelResult, Is.EqualTo(MatchResult.NoMatch));
+        }
+
         private class RdfResponseProcessorTestable : RdfResponseProcessor
         {
             public RdfResponseProcessorTestable(IEnumerable<ISerializer> serializers)
