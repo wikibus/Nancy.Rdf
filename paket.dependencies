@@ -26,4 +26,5 @@ nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
 
+group code-analysis
 gist tpluscode/a285267d2543466fc35c3a168c846f9f

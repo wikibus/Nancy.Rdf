@@ -53,6 +53,9 @@ NUGET
     SpecFlow (2.1)
     StyleCop.Analyzers (1.0)
     VDS.Common (1.6.4)
+
+GROUP code-analysis
+
 GIST
   remote: tpluscode/a285267d2543466fc35c3a168c846f9f
-    FULLPROJECT (1625e92556df16d60d7b04f2c01c8b77212afd6f)
+    FULLPROJECT (c9b7a831e53e929f2ecce09b14a61e28007b669f)
