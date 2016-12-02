@@ -65,7 +65,8 @@
     <Compile Include="CompressingSerializerTests.cs" />
     <Compile Include="ContextModuleTests.cs" />
     <Compile Include="JsonLdSerializerTests.cs" />
-    <Compile Include="ModelBinding\RdfModelBinderTests.cs" />
+    <Compile Include="ModelBinding\JsonldBodyDeserializerTests.cs" />
+    <Compile Include="ModelBinding\NonJsonLdRdfBodyDeserializerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bindings\SerializationContext.cs" />
     <Compile Include="RdfResponseProcessorTests.cs" />

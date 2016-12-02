@@ -62,13 +62,11 @@
     <Compile Include="INamespaceManager.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="JsonLdProfiles.cs" />
+    <Compile Include="ModelBinding\IRdfConverter.cs" />
     <Compile Include="ModelBinding\JsonldBodyDeserializer.cs" />
     <Compile Include="ModelBinding\NonJsonLdRdfBodyDeserializer.cs" />
-    <Compile Include="ModelBinding\Notation3BodyDeserializer.cs" />
-    <Compile Include="ModelBinding\NtriplesBodyDeserializer.cs" />
     <Compile Include="ModelBinding\RdfBodyDeserializer.cs" />
-    <Compile Include="ModelBinding\RdfXmlBodyDeserializer.cs" />
-    <Compile Include="ModelBinding\TurtleBodyDeserializer.cs" />
+    <Compile Include="ModelBinding\RdfConverter.cs" />
     <Compile Include="NamespaceMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RdfResponses.cs" />

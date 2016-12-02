@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
@@ -6,30 +8,47 @@ using Nancy.Responses.Negotiation;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
-using StringWriter = System.IO.StringWriter;
 
 namespace Nancy.Rdf.ModelBinding
 {
     /// <summary>
-    /// Converts body, first converting it to NQuads
+    /// Deserializers request body, first converting it to n-triples
     /// </summary>
-    public abstract class NonJsonLdRdfBodyDeserializer : RdfBodyDeserializer
+    public class NonJsonLdRdfBodyDeserializer : RdfBodyDeserializer
     {
         private static readonly MethodInfo DeserializeNquadsMethod = typeof(IEntitySerializer).GetMethod("Deserialize", new[] { typeof(string) });
 
-        private static readonly IRdfWriter RdfWriter = new NTriplesWriter(NTriplesSyntax.Rdf11);
-        private readonly IRdfReader reader;
+        private readonly IDictionary<RdfSerialization, IRdfReader> readers;
+        private readonly IRdfConverter converter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NonJsonLdRdfBodyDeserializer"/> class.
         /// </summary>
-        protected NonJsonLdRdfBodyDeserializer(
-            RdfSerialization serialization,
-            IEntitySerializer serializer,
-            IRdfReader reader)
-            : base(serialization, serializer)
+        public NonJsonLdRdfBodyDeserializer(IEntitySerializer serializer)
+            : this(serializer, new RdfConverter())
         {
-            this.reader = reader;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NonJsonLdRdfBodyDeserializer"/> class.
+        /// </summary>
+        public NonJsonLdRdfBodyDeserializer(
+            IEntitySerializer serializer,
+            IRdfConverter converter)
+            : this(serializer, RdfSerialization.RdfXml, RdfSerialization.NTriples, RdfSerialization.Notation3, RdfSerialization.Turtle)
+        {
+            this.converter = converter;
+        }
+
+        private NonJsonLdRdfBodyDeserializer(IEntitySerializer serializer, params RdfSerialization[] serializations)
+            : base(serializer, serializations)
+        {
+            this.readers = new Dictionary<RdfSerialization, IRdfReader>
+            {
+                { RdfSerialization.Notation3, new Notation3Parser() },
+                { RdfSerialization.RdfXml, new RdfXmlParser() },
+                { RdfSerialization.Turtle, new TurtleParser() }
+            };
         }
 
         /// <summary>
@@ -38,28 +57,22 @@ namespace Nancy.Rdf.ModelBinding
         public override object Deserialize(MediaRange contentType, Stream body, BindingContext context)
         {
             var deserialize = DeserializeNquadsMethod.MakeGenericMethod(context.DestinationType);
+            string nquads;
 
-            return deserialize.Invoke(this.Serializer, new object[] { this.GetNquads(body) });
-        }
-
-        /// <summary>
-        /// Converts body to N-Triples
-        /// </summary>
-        protected virtual string GetNquads(Stream body)
-        {
-            // todo: implement actual parsers for json-ld.net so that it's not necessary to parse and write to ntriples
-            IGraph g = new Graph();
-
-            using (var streamReader = new StreamReader(body))
+            if (contentType.Matches(RdfSerialization.NTriples.MediaType))
             {
-                this.reader.Load(g, streamReader);
+                using (var bodyReader = new StreamReader(body))
+                {
+                    nquads = bodyReader.ReadToEnd();
+                }
+            }
+            else
+            {
+                var reader = this.readers.First(r => contentType.Matches(r.Key.MediaType)).Value;
+                nquads = this.converter.ConvertToNtriples(body, reader);
             }
 
-            using (var stringWriter = new StringWriter())
-            {
-                RdfWriter.Save(g, stringWriter);
-                return stringWriter.ToString();
-            }
+            return deserialize.Invoke(this.Serializer, new object[] { nquads });
         }
     }
 }

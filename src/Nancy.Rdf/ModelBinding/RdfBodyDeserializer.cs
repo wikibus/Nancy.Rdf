@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using JsonLD.Entities;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
@@ -10,21 +11,21 @@ namespace Nancy.Rdf.ModelBinding
     /// </summary>
     public abstract class RdfBodyDeserializer : IBodyDeserializer
     {
-        private readonly RdfSerialization serialization;
+        private readonly MediaRange[] serializations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RdfBodyDeserializer"/> class.
         /// </summary>
-        protected RdfBodyDeserializer(RdfSerialization serialization, IEntitySerializer serializer)
+        protected RdfBodyDeserializer(IEntitySerializer serializer, params RdfSerialization[] serializations)
         {
-            this.serialization = serialization;
+            this.serializations = serializations.Select(s => new MediaRange(s.MediaType)).ToArray();
             this.Serializer = serializer;
         }
 
         /// <summary>
         /// Gets the serializer.
         /// </summary>
-        public IEntitySerializer Serializer { get; }
+        protected IEntitySerializer Serializer { get; }
 
         /// <summary>
         /// Determines whether this instance can deserialize the specified content type.
@@ -32,7 +33,7 @@ namespace Nancy.Rdf.ModelBinding
         /// <returns>true for any of <see cref="RdfSerialization"/></returns>
         public bool CanDeserialize(MediaRange contentType, BindingContext context)
         {
-            return contentType.Matches(this.serialization.MediaType);
+            return this.serializations.Any(contentType.Matches);
         }
 
         /// <summary>
