@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Nancy.Rdf.Contexts
 {
@@ -8,14 +8,14 @@ namespace Nancy.Rdf.Contexts
     public class DefaultContextPathMapper : IContextPathMapper
     {
         private const string DefaultContextPath = "_contexts";
-        private readonly IList<ContextPathMap> _contexts = new List<ContextPathMap>();
+        private readonly IList<ContextPathMap> contexts = new List<ContextPathMap>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultContextPathMapper"/> class.
         /// </summary>
         public DefaultContextPathMapper()
         {
-            BasePath = DefaultContextPath;
+            this.BasePath = DefaultContextPath;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Nancy.Rdf.Contexts
         /// </summary>
         public IEnumerable<ContextPathMap> Contexts
         {
-            get { return _contexts; }
+            get { return this.contexts; }
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Nancy.Rdf.Contexts
         /// <typeparam name="T">model type</typeparam>
         protected void ServeContextOf<T>()
         {
-            ServeContextOf<T>(typeof(T).Name);
+            this.ServeContextOf<T>(typeof(T).Name);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Nancy.Rdf.Contexts
         /// <param name="path">The path to server the @context at.</param>
         protected void ServeContextOf<T>(string path)
         {
-            _contexts.Add(new ContextPathMap(path, typeof(T)));
+            this.contexts.Add(new ContextPathMap(path, typeof(T)));
         }
     }
 }

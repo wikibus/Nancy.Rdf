@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +11,14 @@ namespace Nancy.Rdf
     /// </summary>
     internal class DictionaryNamespaceManager : INamespaceManager
     {
-        private readonly IDictionary<string, Uri> _namespaces;
+        private readonly IDictionary<string, Uri> namespaces;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DictionaryNamespaceManager"/> class.
         /// </summary>
         public DictionaryNamespaceManager()
         {
-            _namespaces = new Dictionary<string, Uri>();
+            this.namespaces = new Dictionary<string, Uri>();
         }
 
         /// <inheritdoc />
@@ -27,25 +27,25 @@ namespace Nancy.Rdf
         /// <inheritdoc />
         public IEnumerator<NamespaceMap> GetEnumerator()
         {
-            return _namespaces.Select(p => new NamespaceMap(p.Key, p.Value)).GetEnumerator();
+            return this.namespaces.Select(p => new NamespaceMap(p.Key, p.Value)).GetEnumerator();
         }
 
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return this.GetEnumerator();
         }
 
         /// <inheritdoc />
         public void AddNamespace(string prefix, Uri ns)
         {
-            _namespaces.Add(prefix, ns);
+            this.namespaces.Add(prefix, ns);
         }
 
         /// <inheritdoc />
         public void SetBaseUri([AllowNull] Uri baseUri)
         {
-            BaseUri = baseUri;
+            this.BaseUri = baseUri;
         }
     }
 }

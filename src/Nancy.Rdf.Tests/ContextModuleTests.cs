@@ -12,32 +12,32 @@ namespace Nancy.Rdf.Tests
 {
     public class ContextModuleTests
     {
-        private Browser _browser;
-        private IContextPathMapper _mapper;
+        private Browser browser;
+        private IContextPathMapper mapper;
 
         [SetUp]
         public void Setup()
         {
-            _mapper = A.Fake<IContextPathMapper>();
-            A.CallTo(() => _mapper.BasePath).Returns("context");
-            A.CallTo(() => _mapper.Contexts).Returns(new[] { new ContextPathMap("staticString", typeof(Model)) });
+            this.mapper = A.Fake<IContextPathMapper>();
+            A.CallTo(() => this.mapper.BasePath).Returns("context");
+            A.CallTo(() => this.mapper.Contexts).Returns(new[] { new ContextPathMap("staticString", typeof(Model)) });
 
-            _browser = new Browser(
+            this.browser = new Browser(
                 with => with.Module<JsonLdContextModule>()
-                            .Dependency(_mapper)
+                            .Dependency(this.mapper)
                             .Dependency(A.Dummy<IEntitySerializer>())
                             .Dependency(A.Dummy<IContextProvider>()));
         }
 
         [Test]
-        public void Should_serve_type_jsonld_context_by_default()
+        public async void Should_serve_type_jsonld_context_by_default()
         {
             // given
             const string context = "{ 'sch': 'http://schema.org' }";
             string expected = string.Format("{{'@context': {0} }}", context);
 
             // when
-            var response = _browser.Get("/context/staticString");
+            var response = await this.browser.Get("/context/staticString");
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -45,10 +45,10 @@ namespace Nancy.Rdf.Tests
         }
 
         [Test]
-        public void Should_not_serve_jsonld_context_in_other_format()
+        public async void Should_not_serve_jsonld_context_in_other_format()
         {
             // when
-            var response = _browser.Get("/context/staticString", with => with.Accept(new MediaRange(RdfSerialization.Turtle.MediaType)));
+            var response = await this.browser.Get("/context/staticString", with => with.Accept(new MediaRange(RdfSerialization.Turtle.MediaType)));
 
             // then
             response.StatusCode.Should().Be(HttpStatusCode.NotAcceptable);

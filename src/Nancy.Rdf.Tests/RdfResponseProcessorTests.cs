@@ -17,14 +17,14 @@ namespace Nancy.Rdf.Tests
 
         static RdfResponseProcessorTests()
         {
+            var path = new Url("http://example.com/api/test")
+            {
+                BasePath = "api"
+            };
+
             NancyContext = new NancyContext
             {
-                Request = new Request(
-                    "GET",
-                    new Url("http://example.com/api/test")
-                    {
-                        BasePath = "api"
-                    })
+                Request = new Request("GET", path)
             };
         }
 
@@ -48,7 +48,7 @@ namespace Nancy.Rdf.Tests
         {
             // given
             var serializer = A.Fake<RdfSerializer>();
-            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
             var nancyContext = new NancyContext();
             nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.RdfXml);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
@@ -66,7 +66,7 @@ namespace Nancy.Rdf.Tests
         {
             // given
             var serializer = A.Fake<RdfSerializer>();
-            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
             var nancyContext = new NancyContext();
             nancyContext.Items.Add(FallbackSerializationKey, RdfSerialization.Turtle);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
@@ -84,7 +84,7 @@ namespace Nancy.Rdf.Tests
         {
             // given
             var serializer = A.Fake<RdfSerializer>();
-            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
@@ -100,7 +100,7 @@ namespace Nancy.Rdf.Tests
         {
             // given
             var serializer = A.Fake<IRdfSerializer>();
-            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
@@ -109,7 +109,7 @@ namespace Nancy.Rdf.Tests
 
             // then
             A.CallTo(() => serializer.Serialize(
-                RdfSerialization.RdfXml.MediaType,
+                A<MediaRange>.That.Matches(mr => mr == RdfSerialization.RdfXml.MediaType),
                 A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri(NancyContext.Request.Url.SiteBase)),
                 A<MemoryStream>._)).MustHaveHappened();
         }
@@ -118,9 +118,9 @@ namespace Nancy.Rdf.Tests
         public void Should_pass_actual_requested()
         {
             // given
-            const string contentType = "application/rdf+xml;profile=testprofile";
+            var contentType = new MediaRange("application/rdf+xml;profile=testprofile");
             var serializer = A.Fake<IRdfSerializer>();
-            A.CallTo(() => serializer.CanSerialize(A<string>.Ignored)).Returns(true);
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
             var processor = new RdfResponseProcessorTestable(new[] { serializer });
 
             // when
@@ -128,7 +128,23 @@ namespace Nancy.Rdf.Tests
             response.Contents(new MemoryStream());
 
             // then
-            A.CallTo(() => serializer.Serialize(contentType, A<WrappedModel>._, A<MemoryStream>._)).MustHaveHappened();
+            A.CallTo(() => serializer.Serialize(
+                A<MediaRange>.That.Matches(mr => mr.Equals(contentType)),
+                A<WrappedModel>._,
+                A<MemoryStream>._)).MustHaveHappened();
+        }
+
+        [Test]
+        public void CanProcess_Should_not_match_model_is_null()
+        {
+            // given
+            var processor = new RdfResponseProcessorTestable(new ISerializer[0]);
+
+            // when
+            var match = processor.CanProcess(new MediaRange(RdfSerialization.RdfXml.MediaType), null, new NancyContext());
+
+            // then
+            Assert.That(match.ModelResult, Is.EqualTo(MatchResult.NoMatch));
         }
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor

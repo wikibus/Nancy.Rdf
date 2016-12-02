@@ -1,4 +1,4 @@
-namespace Nancy.Rdf
+﻿namespace Nancy.Rdf
 {
     /// <summary>
     /// Predefined JSON-LD ACCEPT header profiles

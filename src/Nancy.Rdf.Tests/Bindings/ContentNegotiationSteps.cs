@@ -11,34 +11,34 @@ namespace Nancy.Rdf.Tests.Bindings
     [Binding]
     public class ContentNegotiationSteps
     {
-        private readonly ISerializer _serializer;
-        private MediaRange _mediaRange;
-        private Response _response;
+        private readonly ISerializer serializer;
+        private MediaRange mediaRange;
+        private Response response;
 
         public ContentNegotiationSteps()
         {
-            _serializer = A.Fake<ISerializer>();
-            A.CallTo(() => _serializer.CanSerialize(A<string>._)).Returns(true);
+            this.serializer = A.Fake<ISerializer>();
+            A.CallTo(() => this.serializer.CanSerialize(A<string>._)).Returns(true);
         }
 
         [Given(@"requested media range '(.*)'")]
         public void GivenRequestedMediaRange(string mediaRange)
         {
-            _mediaRange = new MediaRange(mediaRange);
+            this.mediaRange = new MediaRange(mediaRange);
         }
 
         [When(@"processing model"), Scope(Tag = "Rdf")]
         public void WhenProcessingRdfModel()
         {
-            var processor = new RdfResponseProcessorTestable(new[] { _serializer });
+            var processor = new RdfResponseProcessorTestable(new[] { this.serializer });
 
-            _response = processor.Process(_mediaRange, new object(), new NancyContext());
+            this.response = processor.Process(this.mediaRange, new object(), new NancyContext());
         }
 
         [Then(@"response should have status '(.*)'")]
         public void ThenResponseShouldHaveStatus(string expectedStatusCode)
         {
-            Assert.That(_response.StatusCode, Is.EqualTo(Enum.Parse(typeof(HttpStatusCode), expectedStatusCode)));
+            Assert.That(this.response.StatusCode, Is.EqualTo(Enum.Parse(typeof(HttpStatusCode), expectedStatusCode)));
         }
 
         private class RdfResponseProcessorTestable : RdfResponseProcessor

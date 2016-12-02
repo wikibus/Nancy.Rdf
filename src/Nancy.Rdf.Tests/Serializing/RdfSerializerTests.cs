@@ -15,22 +15,22 @@ namespace Nancy.Rdf.Tests.Serializing
     [TestFixture]
     public class RdfSerializerTests
     {
-        private RdfSerializerTestable _serializer;
-        private IEntitySerializer _entitySerializer;
-        private INodeFactory _nodeFactory = new NodeFactory();
+        private RdfSerializerTestable serializer;
+        private IEntitySerializer entitySerializer;
+        private INodeFactory nodeFactory = new NodeFactory();
 
         [SetUp]
         public void Setup()
         {
-            _entitySerializer = A.Fake<IEntitySerializer>();
-            _serializer = new RdfSerializerTestable(_entitySerializer);
+            this.entitySerializer = A.Fake<IEntitySerializer>();
+            this.serializer = new RdfSerializerTestable(this.entitySerializer);
         }
 
         [Test]
         public void Should_serialize_bool_with_proper_format()
         {
             // given
-            A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
                 .Returns(JObject.Parse(@"{
   '@context':
     {
@@ -43,10 +43,10 @@ namespace Nancy.Rdf.Tests.Serializing
 }"));
 
             // when
-            _serializer.Serialize("text/turtle", new object(), new MemoryStream());
+            this.serializer.Serialize("text/turtle", new object(), new MemoryStream());
 
             // then
-            Assert.That(_serializer.Triples.Any(triple =>
+            Assert.That(this.serializer.Triples.Any(triple =>
             {
                 var valueMatches = ((LiteralNode)triple.Object).Value == "true";
                 var dataTypeMatches = ((LiteralNode)triple.Object).DataType == new Uri(Xsd.boolean);
@@ -59,7 +59,7 @@ namespace Nancy.Rdf.Tests.Serializing
         public void Should_serialize_datetime_with_proper_format()
         {
             // given
-            A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
                 .Returns(JObject.Parse(@"{
   '@context':
     {
@@ -72,10 +72,10 @@ namespace Nancy.Rdf.Tests.Serializing
 }"));
 
             // when
-            _serializer.Serialize("text/turtle", new object(), new MemoryStream());
+            this.serializer.Serialize("text/turtle", new object(), new MemoryStream());
 
             // then
-            Assert.That(_serializer.Triples.Any(triple =>
+            Assert.That(this.serializer.Triples.Any(triple =>
             {
                 var valueMatches = ((LiteralNode)triple.Object).Value == "2016-03-21T00:00:00";
                 var dataTypeMatches = ((LiteralNode)triple.Object).DataType == new Uri(Xsd.dateTime);
@@ -88,20 +88,20 @@ namespace Nancy.Rdf.Tests.Serializing
         public void Should_serialize_correct_relative_URIs_according_to_base()
         {
             // given
-            A.CallTo(() => _entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
                 .Returns(JObject.Parse(@"{
     '@id': 'some/id',
     'http://example.com/property': { '@id': 'some/relative/path' }
 }"));
 
             // when
-            _serializer.Serialize("text/turtle", new WrappedModel(new object(), "http://example.api/site"), new MemoryStream());
+            this.serializer.Serialize("text/turtle", new WrappedModel(new object(), "http://example.api/site"), new MemoryStream());
 
             // then
-            Assert.That(_serializer.Triples.Contains(new Triple(
-                _nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/id")),
-                _nodeFactory.CreateUriNode(new Uri("http://example.com/property")),
-                _nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/relative/path")))));
+            Assert.That(this.serializer.Triples.Contains(new Triple(
+                this.nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/id")),
+                this.nodeFactory.CreateUriNode(new Uri("http://example.com/property")),
+                this.nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/relative/path")))));
         }
 
         private class RdfSerializerTestable : RdfSerializer
@@ -109,14 +109,14 @@ namespace Nancy.Rdf.Tests.Serializing
             public RdfSerializerTestable(IEntitySerializer entitySerializer)
                 : base(RdfSerialization.Turtle, entitySerializer)
             {
-                Triples = new List<Triple>();
+                this.Triples = new List<Triple>();
             }
 
             public IList<Triple> Triples { get; set; }
 
             protected override void WriteRdf(StreamWriter writer, IEnumerable<Triple> triples)
             {
-                Triples = triples.ToList();
+                this.Triples = triples.ToList();
             }
         }
     }

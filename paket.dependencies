@@ -1,15 +1,13 @@
 source https://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/jsonld-entities-aavhsnxi7xjp
 
 content: none
 redirects: on
-framework: net40, net45
+framework: net452
 
-nuget Nancy
 nuget newtonsoft.json
 nuget dotNetRDF
 nuget json-ld.net
-nuget Nancy
+nuget Nancy >= 2 prerelease
 nuget GitVersionTask
 nuget HtmlAgilityPack
 nuget OpenCover
@@ -20,10 +18,13 @@ nuget StyleCop.Analyzers
 nuget GitLink
 nuget JsonLd.Entities prerelease
 nuget Nullguard.Fody
-nuget Nancy.Testing
+nuget Nancy.Testing >= 2 prerelease
 nuget FluentAssertions
 nuget JetbrainsAnnotations.Fody
-nuget Nancy.Owin
+nuget Nancy.Owin >= 2 prerelease
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
+
+group code-analysis
+gist tpluscode/a285267d2543466fc35c3a168c846f9f

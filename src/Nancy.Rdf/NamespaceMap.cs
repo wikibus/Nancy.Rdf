@@ -10,10 +10,11 @@ namespace Nancy.Rdf
         /// <summary>
         /// Initializes a new instance of the <see cref="NamespaceMap"/> struct.
         /// </summary>
-        public NamespaceMap(string prefix, Uri ns) : this()
+        public NamespaceMap(string prefix, Uri ns)
+            : this()
         {
-            Namespace = ns;
-            Prefix = prefix;
+            this.Namespace = ns;
+            this.Prefix = prefix;
         }
 
         /// <summary>

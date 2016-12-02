@@ -28,7 +28,7 @@ Scenario: Should pass through serialized model
 
 @Brochure
 @JsonLd
-Scenario: Should allow expanded profile
+Scenario Template: Should allow expanded profile
 	Given A serialized model:
 		"""
 		{
@@ -39,7 +39,7 @@ Scenario: Should allow expanded profile
 			'title': 'Jelcz M11 - mały, stary autobus'
 		}
 		"""
-	Given accepted media type 'application/ld+json; profile=http://www.w3.org/ns/json-ld#expanded'
+	Given accepted media type '<mediaType>'
 	When model is serialized
 	Then output stream should equal
 		"""
@@ -50,3 +50,7 @@ Scenario: Should allow expanded profile
 			}]
 		}]
 		"""
+Examples: 
+	| mediaType                                                            |
+	| application/ld+json; profile="http://www.w3.org/ns/json-ld#expanded" |
+	| application/ld+json; profile=http://www.w3.org/ns/json-ld#expanded   | # without quotes

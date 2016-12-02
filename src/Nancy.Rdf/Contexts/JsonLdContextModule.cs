@@ -10,7 +10,7 @@ namespace Nancy.Rdf.Contexts
     /// </summary>
     public class JsonLdContextModule : NancyModule
     {
-        private readonly ContextResolver _resolver;
+        private readonly ContextResolver resolver;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdContextModule"/> class.
@@ -20,11 +20,11 @@ namespace Nancy.Rdf.Contexts
         public JsonLdContextModule(IContextPathMapper pathProvider, IContextProvider provider)
             : base(pathProvider.BasePath)
         {
-            _resolver = new ContextResolver(provider);
+            this.resolver = new ContextResolver(provider);
 
             foreach (var path in pathProvider.Contexts)
             {
-                Get[path.Path] = ServeContextOf(path.ModelType);
+                this.Get(path.Path, this.ServeContextOf(path.ModelType));
             }
         }
 
@@ -41,10 +41,10 @@ namespace Nancy.Rdf.Contexts
             {
                 var context = new JObject
                 {
-                    { JsonLdKeywords.Context, _resolver.GetContext(modelType) }
+                    { JsonLdKeywords.Context, this.resolver.GetContext(modelType) }
                 };
                 var response = new TextResponse(context.ToString(), RdfSerialization.JsonLd.MediaType);
-                return Negotiate.WithAllowedMediaRange(RdfSerialization.JsonLd.MediaType)
+                return this.Negotiate.WithAllowedMediaRange(RdfSerialization.JsonLd.MediaType)
                                 .WithMediaRangeResponse(RdfSerialization.JsonLd.MediaType, response);
             };
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using JsonLD.Entities;
 using JsonLD.Entities.Context;
 using Microsoft.Owin;
 using Nancy.Rdf.Sample;
@@ -30,6 +31,8 @@ namespace Nancy.Rdf.Sample
 
         public DateTime DateOfBirth { get; set; }
 
+        public string Friend { get; set; }
+
         [JsonProperty]
         private string Type
         {
@@ -55,16 +58,17 @@ namespace Nancy.Rdf.Sample
     {
         public PersonModule()
         {
-            Get["person/{id}"] = _ =>
+            Get("person/{id}", _ =>
             {
                 return new Person
                 {
                     Id = "http://api.guru/person/" + _.id,
                     Name = "John",
                     LastName = "Doe",
-                    DateOfBirth = new DateTime(1967, 8, 2)
+                    DateOfBirth = new DateTime(1967, 8, 2),
+                    Friend = ("http://api.guru/person/" + _.id + 10)
                 };
-            };
+            });
         }
     }
 

@@ -12,11 +12,12 @@ namespace Nancy.Rdf
         /// <summary>
         /// Initializes a new instance of the <see cref="Installer"/> class.
         /// </summary>
-        public Installer()
+        public Installer(ITypeCatalog typeCatalog)
+            : base(typeCatalog)
         {
-            RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
-            RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
-            Register<IEntitySerializer>(typeof(EntitySerializer));
+            this.RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
+            this.RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
+            this.Register<IEntitySerializer>(typeof(EntitySerializer));
         }
     }
 }

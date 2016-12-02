@@ -18,16 +18,16 @@ namespace Nancy.Rdf.Tests
         private static readonly JObject ModelWithContext = JObject.Parse("{ '@context': { 'ex': 'http://example.com' } }");
         private static readonly JObject ModelWithoutContext = JObject.Parse("{ 'some': 'model' }");
 
-        private JsonLdSerializer _serializer;
-        private IEntitySerializer _entitySerializer;
-        private IContextPathMapper _pathMapper;
+        private JsonLdSerializer serializer;
+        private IEntitySerializer entitySerializer;
+        private IContextPathMapper pathMapper;
 
         [SetUp]
         public void Setup()
         {
-            _entitySerializer = A.Fake<IEntitySerializer>();
-            _pathMapper = A.Fake<IContextPathMapper>();
-            _serializer = new JsonLdSerializer(_entitySerializer, _pathMapper);
+            this.entitySerializer = A.Fake<IEntitySerializer>();
+            this.pathMapper = A.Fake<IContextPathMapper>();
+            this.serializer = new JsonLdSerializer(this.entitySerializer, this.pathMapper);
         }
 
         [Test]
@@ -36,13 +36,13 @@ namespace Nancy.Rdf.Tests
             // given
             const string siteBase = "http://example.com/";
             const string expectedUri = "http://example.com/contexts/model";
-            A.CallTo(() => _pathMapper.Contexts).Returns(new[] { new ContextPathMap("model", typeof(object)) });
-            A.CallTo(() => _pathMapper.BasePath).Returns("contexts");
-            A.CallTo(() => _entitySerializer.Serialize(A<object>.Ignored, null)).Returns(ModelWithContext);
+            A.CallTo(() => this.pathMapper.Contexts).Returns(new[] { new ContextPathMap("model", typeof(object)) });
+            A.CallTo(() => this.pathMapper.BasePath).Returns("contexts");
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>.Ignored, null)).Returns(ModelWithContext);
             var outStream = new MemoryStream();
 
             // when
-            _serializer.Serialize("content/type", new WrappedModel(new object(), siteBase), outStream);
+            this.serializer.Serialize("content/type", new WrappedModel(new object(), siteBase), outStream);
 
             // then
             outStream.Seek(0, SeekOrigin.Begin);
@@ -60,10 +60,10 @@ namespace Nancy.Rdf.Tests
         {
             // given
             var outStream = new MemoryStream();
-            A.CallTo(() => _entitySerializer.Serialize(A<object>.Ignored, null)).Returns(model);
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>.Ignored, null)).Returns(model);
 
             // when
-            _serializer.Serialize("content/type", new WrappedModel(new object(), siteBase), outStream);
+            this.serializer.Serialize("content/type", new WrappedModel(new object(), siteBase), outStream);
 
             // then
             outStream.Seek(0, SeekOrigin.Begin);

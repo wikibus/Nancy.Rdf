@@ -18,16 +18,16 @@ namespace Nancy.Rdf.Responses
     public class JsonLdSerializer : IRdfSerializer
     {
         private static readonly RdfSerialization JsonLdSerialization = RdfSerialization.JsonLd;
-        private readonly IEntitySerializer _serializer;
-        private readonly IContextPathMapper _contextPathMapper;
+        private readonly IEntitySerializer serializer;
+        private readonly IContextPathMapper contextPathMapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonLdSerializer"/> class.
         /// </summary>
         public JsonLdSerializer(IEntitySerializer serializer, IContextPathMapper contextPathMapper)
         {
-            _serializer = serializer;
-            _contextPathMapper = contextPathMapper;
+            this.serializer = serializer;
+            this.contextPathMapper = contextPathMapper;
         }
 
         /// <summary>
@@ -44,39 +44,37 @@ namespace Nancy.Rdf.Responses
         /// <summary>
         /// Whether the serializer can serialize the content type
         /// </summary>
-        /// <param name="contentType">Content type to serialize</param>
+        /// <param name="mediaRange">Content type to serialize</param>
         /// <returns>
         /// True if supported, false otherwise
         /// </returns>
-        public bool CanSerialize(string contentType)
+        public bool CanSerialize(MediaRange mediaRange)
         {
-            return JsonLdSerialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
+            return JsonLdSerialization.MediaType.Equals(mediaRange, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
         /// Serializes the specified content type.
         /// </summary>
         /// <typeparam name="TModel">The type of the model.</typeparam>
-        /// <param name="contentType">Type of the content.</param>
+        /// <param name="mediaRange">Type of the content.</param>
         /// <param name="model">The model.</param>
         /// <param name="outputStream">The output stream.</param>
-        public void Serialize<TModel>(string contentType, TModel model, Stream outputStream)
+        public void Serialize<TModel>(MediaRange mediaRange, TModel model, Stream outputStream)
         {
             WrappedModel? wrappedModel = model as WrappedModel?;
             var actualModel = wrappedModel == null ? model : wrappedModel.Value.Model;
 
             using (var writer = new StreamWriter(new UnclosableStreamWrapper(outputStream)))
             {
-                JToken serialized = _serializer.Serialize(actualModel);
+                JToken serialized = this.serializer.Serialize(actualModel);
 
                 if (wrappedModel.HasValue)
                 {
                     serialized.AddBaseToContext(wrappedModel.Value.BaseUrl);
                 }
 
-                var mediaRange = new MediaRange(contentType);
-
-                if (mediaRange.Parameters["profile"] == JsonLdProfiles.Expanded)
+                if (mediaRange.Parameters["profile"]?.Trim('"') == JsonLdProfiles.Expanded)
                 {
                     serialized = JsonLdProcessor.Expand(serialized);
                 }
@@ -84,12 +82,12 @@ namespace Nancy.Rdf.Responses
                 {
                     if (serialized[JsonLdKeywords.Context] != null)
                     {
-                        var contextMap = _contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == actualModel.GetType());
+                        var contextMap = this.contextPathMapper.Contexts.FirstOrDefault(map => map.ModelType == actualModel.GetType());
 
                         if (contextMap != default(ContextPathMap) && wrappedModel != null)
                         {
                             var newContext = wrappedModel.Value.BaseUrl
-                                .Append(_contextPathMapper.BasePath)
+                                .Append(this.contextPathMapper.BasePath)
                                 .Append(contextMap.Path);
                             serialized[JsonLdKeywords.Context] = newContext;
                         }
