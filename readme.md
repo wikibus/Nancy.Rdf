@@ -156,7 +156,7 @@ Thanks to the [NuGet][nuget] team for implementing the [JSON-LD API][ld-api].
 [The icon](http://thenounproject.com/term/graph/21532/) desiged by [Piotrek Chuchla](http://thenounproject.com/pchuchla/) from [The Noun Project](http://thenounproject.com/)
 
 [nancy]: https://github.com/NancyFx/Nancy/
-[av-badge]: https://ci.appveyor.com/api/projects/status/utu3rrmadr1p2p3v?svg=true
+[av-badge]: https://ci.appveyor.com/api/projects/status/so0uk5kw89371b3f/branch/master?svg=true
 [build]: https://ci.appveyor.com/project/tpluscode78631/nancy-rdf/branch/master
 [nuget-badge]: https://badge.fury.io/nu/nancy.rdf.svg
 [nuget-link]: https://badge.fury.io/nu/nancy.rdf
