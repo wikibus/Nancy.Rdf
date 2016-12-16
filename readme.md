@@ -1,6 +1,6 @@
 ![graph icon](https://raw.githubusercontent.com/wikibus/Nancy.RDF/master/assets/icon_21532.png)
 
-# Nancy.Rdf [![Build status][av-badge]][build] [![NuGet version][nuget-badge]][nuget-link] [![codecov.io][cov-badge]][cov-link]
+# Nancy.Rdf [![Build status][av-badge]][build] [![NuGet version][nuget-badge]][nuget-link] [![codecov.io][cov-badge]][cov-link] [![codefactor][codefactor-badge]][codefactor-link]
 
 [Nancy](http://github.org/nancyFx/nancy) serializers for RDF media types
 
@@ -170,3 +170,5 @@ Thanks to the [NuGet][nuget] team for implementing the [JSON-LD API][ld-api].
 [vocab]: https://github.com/wikibus/Rdf.Vocabularies
 [cov-badge]: https://codecov.io/github/wikibus/Nancy.Rdf/coverage.svg?branch=master
 [cov-link]: https://codecov.io/github/wikibus/Nancy.Rdf?branch=master
+[codefactor-badge]: https://www.codefactor.io/repository/github/wikibus/Nancy.Rdf/badge/master
+[codefactor-link]: https://www.codefactor.io/repository/github/wikibus/Nancy.Rdf/overview/master
