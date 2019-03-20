@@ -1,22 +1,20 @@
 source https://nuget.org/api/v2
+source https://www.myget.org/F/tpluscode/api/v3/index.json
 
 content: none
 redirects: on
-framework: net452
+strategy: min
 
 nuget newtonsoft.json
-nuget dotNetRDF
+nuget dotNetRDF >= 2
 nuget json-ld.net
 nuget Nancy >= 2 prerelease
-nuget GitVersionTask
 nuget HtmlAgilityPack
-nuget OpenCover
-nuget SpecFlow
+nuget SpecFlow.NUnit
 nuget FakeItEasy
-nuget NUnit < 3
+nuget NUnit
 nuget StyleCop.Analyzers
-nuget GitLink
-nuget JsonLd.Entities prerelease
+nuget JsonLd.Entities
 nuget Nullguard.Fody
 nuget Nancy.Testing >= 2 prerelease
 nuget FluentAssertions
@@ -25,6 +23,9 @@ nuget Nancy.Owin >= 2 prerelease
 nuget Microsoft.Owin.Host.SystemWeb
 nuget Microsoft.Owin.Hosting
 nuget Rdf.Vocabularies
-
-group code-analysis
-gist tpluscode/a285267d2543466fc35c3a168c846f9f
+nuget tpluscode.Library.Ruleset
+nuget tpluscode.UnitTests.Ruleset
+nuget JetBrains.Annotations
+nuget Microsoft.Extensions.Configuration 1.1.2
+nuget Microsoft.Extensions.Configuration.Abstractions < 2
+nuget Microsoft.Extensions.Primitives < 2

@@ -42,7 +42,7 @@ namespace Nancy.Rdf.Responses
         /// <inheritdoc />
         public virtual bool CanSerialize(MediaRange contentType)
         {
-            return this.serialization.MediaType.Equals(contentType, StringComparison.InvariantCultureIgnoreCase);
+            return this.serialization.MediaType.Equals(contentType, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <inheritdoc />
