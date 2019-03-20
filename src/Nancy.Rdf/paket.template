@@ -1,7 +1,5 @@
 type project
 include-pdbs true
-excludeddependencies
-  GitVersionTask
 dependencies
   JsonLD.Entities >= LOCKEDVERSION
   Nancy >= LOCKEDVERSION

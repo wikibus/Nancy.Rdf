@@ -1,8 +1,7 @@
 dotNetRDF
 json-ld.net
 Nancy
-GitVersionTask
-SpecFlow
+SpecFlow.NUnit
 FakeItEasy
 NUnit
 JsonLd.Entities
@@ -11,3 +10,4 @@ FluentAssertions
 JetbrainsAnnotations.Fody
 StyleCop.Analyzers
 Rdf.Vocabularies
+JetBrains.Annotations

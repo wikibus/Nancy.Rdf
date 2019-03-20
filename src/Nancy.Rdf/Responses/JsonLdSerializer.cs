@@ -50,7 +50,7 @@ namespace Nancy.Rdf.Responses
         /// </returns>
         public bool CanSerialize(MediaRange mediaRange)
         {
-            return JsonLdSerialization.MediaType.Equals(mediaRange, StringComparison.InvariantCultureIgnoreCase);
+            return JsonLdSerialization.MediaType.Equals(mediaRange, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
