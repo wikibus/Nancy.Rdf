@@ -72,6 +72,11 @@ namespace Nancy.Rdf.Tests
                 throw new System.NotImplementedException();
             }
 
+            public void Save(IGraph g, TextWriter output, bool leaveOpen)
+            {
+                this.Save(g, output);
+            }
+
             public void Save(IGraph g, TextWriter output)
             {
                 this.Prefixes = g.NamespaceMap;

@@ -62,7 +62,7 @@ namespace Nancy.Rdf.Tests.ModelBinding
             A.CallTo(() => converter.ConvertToNtriples(body, A<IRdfReader>.That.Matches(rr => rr.GetType() == serializerType))).MustHaveHappened();
         }
 
-        public IEnumerable<RdfSerialization> NonJsonLdSerializations()
+        public static IEnumerable<RdfSerialization> NonJsonLdSerializations()
         {
             yield return RdfSerialization.Notation3;
             yield return RdfSerialization.Turtle;

@@ -53,6 +53,11 @@ namespace Nancy.Rdf.Tests.Bindings
 
             public event RdfWriterWarning Warning;
 
+            public void Save(IGraph g, TextWriter output, bool leaveOpen)
+            {
+                this.Save(g, output);
+            }
+
             public void Save(IGraph g, string filename)
             {
                 this.graph.Assert(g.Triples);

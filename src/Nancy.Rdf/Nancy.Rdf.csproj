@@ -1,14 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <RootNamespace>Nancy.Rdf</RootNamespace>
-    <AssemblyName>Nancy.Rdf</AssemblyName>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\..\paket-files\tpluscode\a285267d2543466fc35c3a168c846f9f\Library.ruleset</CodeAnalysisRuleSet>
+    <Description>Nancy components for handling RDF requests and responses
+Icon designed by Piotrek Chuchla from The Noun Project</Description>
+    <Company>Tomasz Pluskiewicz T+Code</Company>
+    <Authors>Tomasz Pluskiewicz</Authors>
+    <Copyright>2014-2019 Tomasz Pluskiewicz</Copyright>
+    <PackageProjectUrl>http://github.org/wikibus/Nancy.RDF</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/assets/icon_21532.png</PackageIconUrl>
+    <RepositoryUrl>http://github.org/wikibus/Nancy.RDF</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web</PackageTags>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="dotNetRDF" Version="2.2.0" />
+    <PackageReference Include="JsonLD.Entities" Version="0.3.5" />
+    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+    <PackageReference Include="NullGuard.Fody" Version="1.8.7" />
+  </ItemGroup>
+
 </Project>

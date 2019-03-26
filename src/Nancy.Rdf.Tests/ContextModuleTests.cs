@@ -1,4 +1,5 @@
-﻿using FakeItEasy;
+﻿using System.Threading.Tasks;
+using FakeItEasy;
 using FluentAssertions;
 using JetBrains.Annotations;
 using JsonLD.Entities;
@@ -30,7 +31,7 @@ namespace Nancy.Rdf.Tests
         }
 
         [Test]
-        public async void Should_serve_type_jsonld_context_by_default()
+        public async Task Should_serve_type_jsonld_context_by_default()
         {
             // given
             const string context = "{ 'sch': 'http://schema.org' }";
@@ -45,7 +46,7 @@ namespace Nancy.Rdf.Tests
         }
 
         [Test]
-        public async void Should_not_serve_jsonld_context_in_other_format()
+        public async Task Should_not_serve_jsonld_context_in_other_format()
         {
             // when
             var response = await this.browser.Get("/context/staticString", with => with.Accept(new MediaRange(RdfSerialization.Turtle.MediaType)));
