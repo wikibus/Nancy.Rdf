@@ -1,82 +1,34 @@
 ﻿using System;
-using JsonLD.Entities;
-using JsonLD.Entities.Context;
-using Microsoft.Owin;
-using Nancy.Rdf.Sample;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Owin;
-using Vocab;
-
-[assembly: OwinStartup(typeof(Startup))]
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Nancy.Rdf.Sample
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
         {
-            app.UseNancy();
         }
-    }
 
-    public class Person
-    {
-        public string Id { get; set; }
-
-        [JsonProperty("givenName")]
-        public string Name { get; set; }
-
-        public string LastName { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
-
-        public string Friend { get; set; }
-
-        [JsonProperty]
-        private string Type
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            get
+            if (env.IsDevelopment())
             {
-                return Foaf.Person;
+                app.UseDeveloperExceptionPage();
             }
-        }
 
-        private static JObject Context
-        {
-            get
+            app.Run(async (context) =>
             {
-                return new JObject(
-                  "givenName".IsProperty(Foaf.givenName),
-                  "lastName".IsProperty(Foaf.lastName),
-                  "dateOfBirth".IsProperty(Schema.birthDate)
-                );
-            }
-        }
-    }
-    public class PersonModule : NancyModule
-    {
-        public PersonModule()
-        {
-            Get("person/{id}", _ =>
-            {
-                return new Person
-                {
-                    Id = "http://api.guru/person/" + _.id,
-                    Name = "John",
-                    LastName = "Doe",
-                    DateOfBirth = new DateTime(1967, 8, 2),
-                    Friend = ("http://api.guru/person/" + _.id + 10)
-                };
+                await context.Response.WriteAsync("Hello World!");
             });
-        }
-    }
-
-    public class ContextPathMapper : Contexts.DefaultContextPathMapper
-    {
-        public ContextPathMapper()
-        {
-            ServeContextOf<Person>();
         }
     }
 }
