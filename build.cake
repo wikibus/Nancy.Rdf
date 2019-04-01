@@ -54,7 +54,15 @@ Task("Build")
 Task("Codecov")
     .IsDependentOn("Test")
     .Does(() => {
-        Codecov("./coverage/cobertura.xml");
+        var buildVersion = string.Format("{0}.build.{1}",
+            version.FullSemVer,
+            BuildSystem.AppVeyor.Environment.Build.Version
+        );
+        var settings = new CodecovSettings {
+            Files = new[] { "./coverage/cobertura.xml" },
+            EnvironmentVariables = new Dictionary<string,string> { { "APPVEYOR_BUILD_VERSION", buildVersion } }
+        };
+        Codecov(settings);
     });
 
 Task("Test")
