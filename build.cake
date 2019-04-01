@@ -19,14 +19,14 @@ Task("Pack")
     .Does(() => {
          var settings = new DotNetCorePackSettings {
             MSBuildSettings = new DotNetCoreMSBuildSettings(),
-            Configuration = "Release",
+            Configuration = configuration,
             NoBuild = true,
             OutputDirectory = "./nugets/"
         };
 
         settings.MSBuildSettings.Properties["Version"] = new [] { version.NuGetVersion };
 
-        DotNetCorePack("./src/*", settings);
+        DotNetCorePack("nancy.rdf.sln", settings);
     });
 
 Task("GitVersion")
