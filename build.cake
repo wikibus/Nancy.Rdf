@@ -2,6 +2,8 @@
 #tool nuget:?package=codecov&version=1.3.0
 #tool nuget:?package=GitVersion.CommandLine&version=4.0.0
 #addin nuget:?package=Cake.Codecov&version=0.5.0
+#tool nuget:?package=JetBrains.dotCover.CommandLineTools&version=2018.3.4
+#tool nuget:?package=ReportGenerator&version=4.0.15
 
 var target = Argument("target", "Build");
 var configuration = Argument("Configuration", "Debug");
@@ -52,49 +54,26 @@ Task("Build")
 Task("Codecov")
     .IsDependentOn("Test")
     .Does(() => {
-        Codecov("opencover.xml");
+        Codecov("./coverage/cobertura.xml");
     });
 
 Task("Test")
     .IsDependentOn("Build")
     .Does(() => {
-        var openCoverSettings = new OpenCoverSettings
-        {
-            OldStyle = true,
-            MergeOutput = true,
-            MergeByHash = true,
-            Register = "user",
-            ReturnTargetCodeOffset = 0
-        }
-        .WithFilter("+[nancy.rdf]*");
-
-        bool success = true;
-        foreach(var projectFile in new [] { "nancy.rdf.tests.csproj" }.SelectMany(f => GetFiles($"**\\{f}")))
-        {
-            try
-            {
-                openCoverSettings.WorkingDirectory = projectFile.GetDirectory();
-
-                OpenCover(context => {
-                        context.DotNetCoreTool(
-                          projectPath: projectFile.FullPath,
-                          command: "xunit", 
-                          arguments: $"-noshadow");
-                    },
-                    "opencover.xml",
-                    openCoverSettings);
-            }
-            catch(Exception ex)
-            {
-                success = false;
-                Error("There was an error while running the tests", ex);
-            }
-        }
- 
-        if(success == false)
-        {
-            throw new CakeException("There was an error while running the tests");
-        }
+        DotCoverAnalyse(context => {
+                context.DotNetCoreTest(GetFiles("src/nancy.rdf.tests/nancy.rdf.tests.csproj").Single().FullPath);
+            },
+            "./coverage/dotcover.xml",
+            new DotCoverAnalyseSettings {
+                ReportType = DotCoverReportType.DetailedXML
+                }
+                .WithFilter("+:Nancy.Rdf")
+                .WithFilter("-:Nancy.Rdf.Tests"));
+    })
+    .Does(() => {
+        ReportGenerator("./coverage/dotcover.xml", "./coverage", new ReportGeneratorSettings() {
+            ReportTypes = new [] { ReportGeneratorReportType.Cobertura }
+        });
     });
 
 RunTarget(target);

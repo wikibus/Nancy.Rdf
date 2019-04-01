@@ -234,3 +234,4 @@ $RECYCLE.BIN/
 .paket/paket.exe
 .vs/
 /tools
+/coverage
