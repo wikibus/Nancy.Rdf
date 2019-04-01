@@ -56,7 +56,7 @@ Task("Codecov")
     .Does(() => {
         var buildVersion = string.Format("{0}.build.{1}",
             version.FullSemVer,
-            BuildSystem.AppVeyor.Environment.Build.Version
+            BuildSystem.AppVeyor.Environment.Build.Number
         );
         var settings = new CodecovSettings {
             Files = new[] { "./coverage/cobertura.xml" },
