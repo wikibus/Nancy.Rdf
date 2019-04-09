@@ -19,7 +19,9 @@ Icon designed by Piotrek Chuchla from The Noun Project</Description>
     <PackageReference Include="dotNetRDF" Version="2.2.0" />
     <PackageReference Include="JsonLD.Entities" Version="0.3.5" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
-    <PackageReference Include="NullGuard.Fody" Version="1.8.7" />
+    <PackageReference Include="NullGuard.Fody" Version="1.8.7" >
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
