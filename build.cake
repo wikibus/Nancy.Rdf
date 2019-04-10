@@ -48,6 +48,7 @@ Task("Build")
     .Does(() => {
         var settings = new DotNetCoreBuildSettings {
             MSBuildSettings = new DotNetCoreMSBuildSettings(),
+            Verbosity = DotNetCoreVerbosity.Detailed,
             Configuration = configuration
         };
 
