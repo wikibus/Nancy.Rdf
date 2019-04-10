@@ -46,9 +46,14 @@ Task("GitVersion")
 Task("Build")
     .IsDependentOn("GitVersion")
     .Does(() => {
-        DotNetCoreBuild("Nancy.Rdf.sln", new DotNetCoreBuildSettings {
+        var settings = new DotNetCoreBuildSettings {
+            MSBuildSettings = new DotNetCoreMSBuildSettings(),
             Configuration = configuration
-        });
+        };
+
+        settings.MSBuildSettings.Properties["Version"] = new [] { version.NuGetVersion };
+
+        DotNetCoreBuild("Nancy.Rdf.sln", settings);
     });
 
 Task("Codecov")
