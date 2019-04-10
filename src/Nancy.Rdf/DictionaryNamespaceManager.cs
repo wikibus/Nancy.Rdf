@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using NullGuard;
 
 namespace Nancy.Rdf
 {
@@ -43,7 +42,7 @@ namespace Nancy.Rdf
         }
 
         /// <inheritdoc />
-        public void SetBaseUri([AllowNull] Uri baseUri)
+        public void SetBaseUri(Uri baseUri)
         {
             this.BaseUri = baseUri;
         }
