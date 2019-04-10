@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NullGuard;
 
 namespace Nancy.Rdf
 {
     /// <summary>
     /// Dictionary-backed <see cref="INamespaceManager"/>
     /// </summary>
+    [NullGuard(ValidationFlags.AllPublic)]
     internal class DictionaryNamespaceManager : INamespaceManager
     {
         private readonly IDictionary<string, Uri> namespaces;
@@ -42,7 +44,7 @@ namespace Nancy.Rdf
         }
 
         /// <inheritdoc />
-        public void SetBaseUri(Uri baseUri)
+        public void SetBaseUri([AllowNull] Uri baseUri)
         {
             this.BaseUri = baseUri;
         }
