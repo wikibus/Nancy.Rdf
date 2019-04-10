@@ -9,7 +9,6 @@ namespace Nancy.Rdf
     /// <summary>
     /// Dictionary-backed <see cref="INamespaceManager"/>
     /// </summary>
-    [NullGuard(ValidationFlags.AllPublic)]
     internal class DictionaryNamespaceManager : INamespaceManager
     {
         private readonly IDictionary<string, Uri> namespaces;
@@ -23,7 +22,7 @@ namespace Nancy.Rdf
         }
 
         /// <inheritdoc />
-        public Uri BaseUri { get; private set; }
+        public Uri BaseUri { [return: AllowNull] get; private set; }
 
         /// <inheritdoc />
         public IEnumerator<NamespaceMap> GetEnumerator()
