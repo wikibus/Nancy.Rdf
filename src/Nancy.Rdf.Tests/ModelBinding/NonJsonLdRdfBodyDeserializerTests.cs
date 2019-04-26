@@ -23,7 +23,7 @@ namespace Nancy.Rdf.Tests.ModelBinding
         public void Should_support_serialization(RdfSerialization serialization)
         {
             // given
-            var deserializer = new NonJsonLdRdfBodyDeserializer(A.Fake<IEntitySerializer>());
+            var deserializer = new NonJsonLdRdfBodyDeserializer(A.Fake<IEntitySerializer>(), new RdfConverter());
 
             // when
             deserializer.CanDeserialize(serialization.MediaType, new BindingContext());
@@ -34,7 +34,7 @@ namespace Nancy.Rdf.Tests.ModelBinding
         {
             // given
             var entitySerializer = A.Fake<IEntitySerializer>();
-            var binder = new NonJsonLdRdfBodyDeserializer(entitySerializer);
+            var binder = new NonJsonLdRdfBodyDeserializer(entitySerializer, new RdfConverter());
             const string bodyString = "some nquads";
             var body = new MemoryStream(Encoding.UTF8.GetBytes(bodyString));
 
