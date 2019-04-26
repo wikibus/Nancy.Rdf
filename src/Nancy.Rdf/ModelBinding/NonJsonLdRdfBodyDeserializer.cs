@@ -24,14 +24,6 @@ namespace Nancy.Rdf.ModelBinding
         /// <summary>
         /// Initializes a new instance of the <see cref="NonJsonLdRdfBodyDeserializer"/> class.
         /// </summary>
-        public NonJsonLdRdfBodyDeserializer(IEntitySerializer serializer)
-            : this(serializer, new RdfConverter())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NonJsonLdRdfBodyDeserializer"/> class.
-        /// </summary>
         public NonJsonLdRdfBodyDeserializer(
             IEntitySerializer serializer,
             IRdfConverter converter)

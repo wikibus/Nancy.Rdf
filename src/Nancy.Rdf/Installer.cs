@@ -1,6 +1,7 @@
 ﻿using JsonLD.Entities;
 using Nancy.Bootstrapper;
 using Nancy.Rdf.Contexts;
+using Nancy.Rdf.ModelBinding;
 
 namespace Nancy.Rdf
 {
@@ -15,6 +16,7 @@ namespace Nancy.Rdf
         public Installer(ITypeCatalog typeCatalog)
             : base(typeCatalog)
         {
+            this.RegisterWithDefault<IRdfConverter>(typeof(RdfConverter));
             this.RegisterWithDefault<INamespaceManager>(typeof(DictionaryNamespaceManager));
             this.RegisterWithDefault<IContextPathMapper>(typeof(DefaultContextPathMapper));
             this.Register<IEntitySerializer>(typeof(EntitySerializer));
