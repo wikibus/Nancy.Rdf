@@ -83,15 +83,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
 #line 7
- testRunner.Given("A serialized model:", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
-                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
-                    "", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("A serialized model:", "{\n\t\'@context\': { \n\t\t\'title\': \'http://purl.org/dcterms/title\'\n\t},\n\t\'@id\': \'http://" +
+                    "wikibus.org/brochure/12345\',\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("graph should match:", "\tASK WHERE\r\n\t{\r\n\t\t<http://wikibus.org/brochure/12345> <http://purl.org/dcterms/ti" +
-                    "tle> \"Jelcz M11 - mały, stary autobus\"\r\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("graph should match:", "\tASK WHERE\n\t{\n\t\t<http://wikibus.org/brochure/12345> <http://purl.org/dcterms/titl" +
+                    "e> \"Jelcz M11 - mały, stary autobus\"\n\t}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

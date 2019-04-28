@@ -83,16 +83,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
 #line 7
- testRunner.Given("A serialized model:", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
-                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
-                    "", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("A serialized model:", "{\n\t\'@context\': { \n\t\t\'title\': \'http://purl.org/dcterms/title\'\n\t},\n\t\'@id\': \'http://" +
+                    "wikibus.org/brochure/12345\',\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 17
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("output stream should equal", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
-                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
-                    "", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("output stream should equal", "{\n\t\'@context\': { \n\t\t\'title\': \'http://purl.org/dcterms/title\'\n\t},\n\t\'@id\': \'http://" +
+                    "wikibus.org/brochure/12345\',\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\n}", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -118,17 +116,16 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
 #line 32
- testRunner.Given("A serialized model:", "{\r\n\t\'@context\': { \r\n\t\t\'title\': \'http://purl.org/dcterms/title\'\r\n\t},\r\n\t\'@id\': \'htt" +
-                    "p://wikibus.org/brochure/12345\',\r\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\r\n}" +
-                    "", ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("A serialized model:", "{\n\t\'@context\': { \n\t\t\'title\': \'http://purl.org/dcterms/title\'\n\t},\n\t\'@id\': \'http://" +
+                    "wikibus.org/brochure/12345\',\n\t\'title\': \'Jelcz M11 - mały, stary autobus\'\n}", ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 42
  testRunner.Given(string.Format("accepted media type \'{0}\'", mediaType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 43
  testRunner.When("model is serialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
- testRunner.Then("output stream should equal", "[{\r\n\t\'@id\': \'http://wikibus.org/brochure/12345\',\r\n\t\'http://purl.org/dcterms/title" +
-                    "\': [{\r\n\t\t\'@value\': \'Jelcz M11 - mały, stary autobus\'\r\n\t}]\r\n}]", ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("output stream should equal", "[{\n\t\'@id\': \'http://wikibus.org/brochure/12345\',\n\t\'http://purl.org/dcterms/title\':" +
+                    " [{\n\t\t\'@value\': \'Jelcz M11 - mały, stary autobus\'\n\t}]\n}]", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

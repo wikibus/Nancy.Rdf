@@ -8,9 +8,9 @@ Icon designed by Piotrek Chuchla from The Noun Project</Description>
     <Company>Tomasz Pluskiewicz T+Code</Company>
     <Authors>Tomasz Pluskiewicz</Authors>
     <Copyright>2014-2019 Tomasz Pluskiewicz</Copyright>
-    <PackageProjectUrl>http://github.org/wikibus/Nancy.RDF</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/wikibus/Nancy.RDF</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/assets/icon_21532.png</PackageIconUrl>
-    <RepositoryUrl>http://github.org/wikibus/Nancy.RDF</RepositoryUrl>
+    <RepositoryUrl>https://github.com/wikibus/Nancy.RDF</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/LICENSE</PackageLicenseUrl>
