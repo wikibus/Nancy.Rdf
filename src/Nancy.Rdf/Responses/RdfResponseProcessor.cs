@@ -70,11 +70,27 @@ namespace Nancy.Rdf.Responses
         /// <returns>a response</returns>
         public Response Process(MediaRange requestedMediaRange, dynamic model, NancyContext context)
         {
-            var siteBase = context.Request.Url.SiteBase;
+            var siteBaseUri = new UriBuilder(context.Request.Url.SiteBase);
 
             if (context.Request.Headers["X-Forwarded-Proto"].Any(v => v == "https"))
             {
-                var siteBaseUri = new UriBuilder(siteBase) {Scheme = "HTTPS"};
+                siteBaseUri.Scheme = "HTTPS";
+                siteBaseUri.Port = 443;
+            }
+
+            string siteBase;
+            var usesHttpsDefaultPort = siteBaseUri.Scheme.Equals("https", StringComparison.OrdinalIgnoreCase) &&
+                                       siteBaseUri.Port == 443;
+            var usesHttpDefaultPort = siteBaseUri.Scheme.Equals("http", StringComparison.OrdinalIgnoreCase) &&
+                                      siteBaseUri.Port == 80;
+            if (usesHttpDefaultPort || usesHttpsDefaultPort)
+            {
+                siteBase = siteBaseUri.Uri.GetComponents(
+                    UriComponents.AbsoluteUri & ~UriComponents.Port,
+                    UriFormat.UriEscaped);
+            }
+            else
+            {
                 siteBase = siteBaseUri.ToString();
             }
 

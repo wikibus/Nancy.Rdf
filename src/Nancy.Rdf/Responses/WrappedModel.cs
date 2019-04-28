@@ -25,5 +25,10 @@ namespace Nancy.Rdf.Responses
         /// Gets the actual serialized model.
         /// </summary>
         public object Model { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{BaseUrl}";
+        }
     }
 }

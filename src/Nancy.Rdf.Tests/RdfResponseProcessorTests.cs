@@ -110,7 +110,7 @@ namespace Nancy.Rdf.Tests
             // then
             A.CallTo(() => serializer.Serialize(
                 A<MediaRange>.That.Matches(mr => mr == RdfSerialization.RdfXml.MediaType),
-                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri(NancyContext.Request.Url.SiteBase)),
+                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri("http://example.com/")),
                 A<MemoryStream>._)).MustHaveHappened();
         }
 
@@ -142,7 +142,36 @@ namespace Nancy.Rdf.Tests
             // then
             A.CallTo(() => serializer.Serialize(
                 A<MediaRange>.That.Matches(mr => mr == RdfSerialization.RdfXml.MediaType),
-                A<WrappedModel>.That.Matches(wm => wm.BaseUrl == new Uri("https://example.com:80/")),
+                A<WrappedModel>.That.Matches(wm => wm.BaseUrl.ToString() == "https://example.com/"),
+                A<MemoryStream>._)).MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_not_contain_unnecessary_443_port_in_base_url()
+        {
+            // given
+            var serializer = A.Fake<IRdfSerializer>();
+            A.CallTo(() => serializer.CanSerialize(A<MediaRange>.Ignored)).Returns(true);
+            var processor = new RdfResponseProcessorTestable(new[] { serializer });
+
+            var path = new Url("https://example.com/api/test")
+            {
+                BasePath = "api"
+            };
+
+            var nancyContext = new NancyContext
+            {
+                Request = new Request("GET", path)
+            };
+
+            // when
+            var response = processor.Process(new MediaRange("application/rdf+xml"), new object(), nancyContext);
+            response.Contents(new MemoryStream());
+
+            // then
+            A.CallTo(() => serializer.Serialize(
+                A<MediaRange>.That.Matches(mr => mr == RdfSerialization.RdfXml.MediaType),
+                A<WrappedModel>.That.Matches(wm => wm.BaseUrl.ToString() == "https://example.com/"),
                 A<MemoryStream>._)).MustHaveHappened();
         }
 
