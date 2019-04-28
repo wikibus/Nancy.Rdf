@@ -70,11 +70,19 @@ namespace Nancy.Rdf.Responses
         /// <returns>a response</returns>
         public Response Process(MediaRange requestedMediaRange, dynamic model, NancyContext context)
         {
+            var siteBase = context.Request.Url.SiteBase;
+
+            if (context.Request.Headers["X-Forwarded-Proto"].Any(v => v == "https"))
+            {
+                var siteBaseUri = new UriBuilder(siteBase) {Scheme = "HTTPS"};
+                siteBase = siteBaseUri.ToString();
+            }
+
             return new Response
                 {
                     Contents = stream =>
                     {
-                        var wrappedModel = new WrappedModel(model, context.Request.Url.SiteBase);
+                        var wrappedModel = new WrappedModel(model, siteBase);
                         this.serializer.Serialize(requestedMediaRange, wrappedModel, stream);
                     },
                     StatusCode = HttpStatusCode.OK,
