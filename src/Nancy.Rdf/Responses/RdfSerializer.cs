@@ -79,7 +79,7 @@ namespace Nancy.Rdf.Responses
 
             if (node.IsBlankNode())
             {
-                return this.nodeFactory.CreateBlankNode(node.GetValue());
+                return this.nodeFactory.CreateBlankNode(node.GetValue().Remove(0, 2));
             }
 
             var literal = node.GetValue();

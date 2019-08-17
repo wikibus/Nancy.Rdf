@@ -104,6 +104,24 @@ namespace Nancy.Rdf.Tests.Serializing
                 this.nodeFactory.CreateUriNode(new Uri("http://example.api/site/some/relative/path")))));
         }
 
+        [Test]
+        public void Should_serialize_blank_nodes_without_prefix()
+        {
+            // given
+            A.CallTo(() => this.entitySerializer.Serialize(A<object>._, A<SerializationOptions>._))
+                .Returns(JObject.Parse(@"{
+    '@id': 'some/id',
+    'http://example.com/property': { 'http://example.com/property': 'literal' }
+}"));
+
+            // when
+            this.serializer.Serialize("text/turtle", new WrappedModel(new object(), "http://example.api/site"), new MemoryStream());
+
+            // then
+            Assert.IsFalse(this.serializer.Triples.Any(t =>
+                t.Subject is IBlankNode blankSubject && blankSubject.InternalID.Contains("_:")));
+        }
+
         private class RdfSerializerTestable : RdfSerializer
         {
             public RdfSerializerTestable(IEntitySerializer entitySerializer)
