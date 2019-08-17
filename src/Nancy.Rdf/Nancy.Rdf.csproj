@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>$(Version)</VersionPrefix>
+    <Version>0.4.3</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Nancy components for handling RDF requests and responses
 Icon designed by Piotrek Chuchla from The Noun Project</Description>
