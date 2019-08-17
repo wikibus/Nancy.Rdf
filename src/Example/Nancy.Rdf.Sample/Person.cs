@@ -15,9 +15,11 @@ namespace Nancy.Rdf.Sample
 
         public string LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public string Friend { get; set; }
+
+        public Person Parent { get; set; }
 
         [JsonProperty]
         private string Type
@@ -28,15 +30,16 @@ namespace Nancy.Rdf.Sample
             }
         }
 
-        private static JObject Context
+        private static JToken Context
         {
             get
             {
-                return new JObject(
+                return new VocabContext<Person>("http://example.com/vocab#")
+                    .MergeWith(new JObject(
                     "givenName".IsProperty(Foaf.givenName),
                     "lastName".IsProperty(Foaf.lastName),
                     "dateOfBirth".IsProperty(Schema.birthDate)
-                );
+                ));
             }
         }
     }
