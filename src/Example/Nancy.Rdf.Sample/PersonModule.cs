@@ -8,7 +8,6 @@ namespace Nancy.Rdf.Sample
         {
             Get("person/{id}", _ =>
             {
-
                 return new Person
                 {
                     Id = "http://api.guru/person/" + _.id,
