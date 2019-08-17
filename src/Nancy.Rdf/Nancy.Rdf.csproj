@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>$(Version)</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Nancy components for handling RDF requests and responses
 Icon designed by Piotrek Chuchla from The Noun Project</Description>
     <Company>Tomasz Pluskiewicz T+Code</Company>
@@ -19,7 +19,7 @@ Icon designed by Piotrek Chuchla from The Noun Project</Description>
   <ItemGroup>
     <PackageReference Include="dotNetRDF" Version="2.2.0" />
     <PackageReference Include="JsonLD.Entities" Version="0.3.5" />
-    <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="NullGuard.Fody" Version="1.8.7" >
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
