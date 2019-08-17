@@ -14,6 +14,7 @@ Icon designed by Piotrek Chuchla from The Noun Project</Description>
     <RepositoryType>git</RepositoryType>
     <PackageTags>rdf nancy mvc json-ld turtle ttl n3 notation3 semantic web</PackageTags>
     <PackageLicenseUrl>https://raw.githubusercontent.com/wikibus/Nancy.Rdf/master/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes>https://github.com/wikibus/Nancy.Rdf/blob/master/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
